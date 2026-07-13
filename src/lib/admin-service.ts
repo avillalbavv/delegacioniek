@@ -12,6 +12,23 @@ function client() {
   if (!supabase) throw new Error("Supabase no está configurado");
   return supabase;
 }
+
+export function adminErrorMessage(error: unknown): string {
+  const raw =
+    error && typeof error === "object" && "message" in error
+      ? String((error as { message: unknown }).message)
+      : error instanceof Error
+        ? error.message
+        : "No se pudo completar la operación";
+  const normalized = raw.toLowerCase();
+  if (normalized.includes("row-level security") || normalized.includes("permission denied"))
+    return "Supabase rechazó la operación por permisos. Verificá que tu rol esté activo y ejecutá la migración administrativa 004.";
+  if (normalized.includes("does not exist") || normalized.includes("could not find the table"))
+    return "Falta una tabla o función administrativa en Supabase. Ejecutá las migraciones 001 a 004 en orden.";
+  if (normalized.includes("jwt") || normalized.includes("session"))
+    return "La sesión venció. Cerrá sesión, volvé a ingresar y repetí la operación.";
+  return raw;
+}
 export async function searchUsers(term = ""): Promise<RegisteredUser[]> {
   const { data, error } = await client().rpc("search_registered_users", {
     search_term: term,

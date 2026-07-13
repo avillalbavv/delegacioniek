@@ -63,6 +63,11 @@ export async function checkScheduleUpdates(): Promise<ScheduleRevision | null> {
 
 export async function publishScheduleRevision(file: File, summary: string): Promise<void> {
   if (!supabase) throw new Error("Supabase no está configurado");
+  const extension = file.name.split(".").pop()?.toLowerCase();
+  if (!extension || !["xlsx", "xls", "csv"].includes(extension))
+    throw new Error("Formato no permitido. Seleccioná un archivo XLSX, XLS o CSV.");
+  if (file.size > 10 * 1024 * 1024) throw new Error("El archivo supera el límite de 10 MB.");
+  if (!summary.trim()) throw new Error("Describí brevemente qué cambió en los horarios.");
   const { data: userData } = await supabase.auth.getUser();
   if (!userData.user) throw new Error("Sesión administrativa requerida");
   const checksum = [
@@ -72,9 +77,16 @@ export async function publishScheduleRevision(file: File, summary: string): Prom
     .join("");
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]+/g, "-");
   const path = `${new Date().toISOString().replace(/[:.]/g, "-")}-${safeName}`;
+  const contentType =
+    file.type ||
+    (extension === "csv"
+      ? "text/csv"
+      : extension === "xls"
+        ? "application/vnd.ms-excel"
+        : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
   const { error: uploadError } = await supabase.storage
     .from("schedule-imports")
-    .upload(path, file, { contentType: file.type || "application/octet-stream", upsert: false });
+    .upload(path, file, { contentType, upsert: false });
   if (uploadError) throw uploadError;
   const { error } = await supabase.from("schedule_revisions").insert({
     file_name: file.name,
@@ -84,5 +96,9 @@ export async function publishScheduleRevision(file: File, summary: string): Prom
     affects_all: true,
     published_by: userData.user.id,
   });
-  if (error) throw error;
+  if (error) {
+    // Evita archivos huérfanos cuando el registro de la revisión es rechazado.
+    await supabase.storage.from("schedule-imports").remove([path]);
+    throw error;
+  }
 }

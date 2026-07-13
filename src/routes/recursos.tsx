@@ -2,20 +2,43 @@
  * /recursos — Recursos académicos, Guía, enlaces y material de apoyo.
  */
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import {
-  BookOpen, Download, ExternalLink, ChevronRight, GraduationCap,
-  Compass, HelpCircle, FileText, Network, Map, Lightbulb,
+  BookOpen,
+  Download,
+  ExternalLink,
+  ChevronRight,
+  GraduationCap,
+  Compass,
+  HelpCircle,
+  FileText,
+  Network,
+  Map,
+  Lightbulb,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SiteNavbar } from "@/components/SiteNavbar";
 import { SiteFooter } from "@/components/SiteFooter";
+import { supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/recursos")({ component: RecursosPage });
 
 const ENLACES = [
-  { label: "Sitio oficial IEK · FPUNA", url: "https://www.pol.una.py/carreras/iek/", desc: "Página oficial de la carrera en el sitio de la Facultad Politécnica." },
-  { label: "Facultad Politécnica UNA", url: "https://www.pol.una.py/", desc: "Portal principal de la Facultad Politécnica de la UNA." },
-  { label: "SGA FPUNA (Sistema de Gestión Académica)", url: "https://www.pol.una.py/", desc: "Sistema de gestión académica para inscripciones y trámites." },
+  {
+    label: "Sitio oficial IEK · FPUNA",
+    url: "https://www.pol.una.py/carreras/iek/",
+    desc: "Página oficial de la carrera en el sitio de la Facultad Politécnica.",
+  },
+  {
+    label: "Facultad Politécnica UNA",
+    url: "https://www.pol.una.py/",
+    desc: "Portal principal de la Facultad Politécnica de la UNA.",
+  },
+  {
+    label: "SGA FPUNA (Sistema de Gestión Académica)",
+    url: "https://www.pol.una.py/",
+    desc: "Sistema de gestión académica para inscripciones y trámites.",
+  },
 ];
 
 const FAQS = [
@@ -54,6 +77,20 @@ const FAQS = [
 ];
 
 function RecursosPage() {
+  const [recursosDelegacion, setRecursosDelegacion] = useState<
+    { id: string; title: string; description: string | null; url: string; category: string }[]
+  >([]);
+
+  useEffect(() => {
+    if (!supabase) return;
+    void supabase
+      .from("academic_resources")
+      .select("id,title,description,url,category")
+      .eq("status", "published")
+      .order("updated_at", { ascending: false })
+      .then(({ data }) => setRecursosDelegacion(data || []));
+  }, []);
+
   return (
     <div className="min-h-screen">
       <SiteNavbar />
@@ -64,7 +101,9 @@ function RecursosPage() {
           <div className="mx-auto max-w-6xl px-6">
             <Reveal className="max-w-3xl">
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
-                <Link to="/" className="hover:text-foreground transition-colors">Inicio</Link>
+                <Link to="/" className="hover:text-foreground transition-colors">
+                  Inicio
+                </Link>
                 <ChevronRight className="h-3 w-3" />
                 <span className="text-foreground">Recursos</span>
               </div>
@@ -76,8 +115,8 @@ function RecursosPage() {
                 Recursos <span className="text-gradient">Académicos</span>
               </h1>
               <p className="mt-5 text-base text-muted-foreground max-w-xl leading-relaxed">
-                Guía Académica, información para ingresantes, enlaces institucionales y
-                preguntas frecuentes para acompañar tu trayectoria en IEK.
+                Guía Académica, información para ingresantes, enlaces institucionales y preguntas
+                frecuentes para acompañar tu trayectoria en IEK.
               </p>
             </Reveal>
           </div>
@@ -103,9 +142,9 @@ function RecursosPage() {
                       Guía Académica IEK 2024
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                      Documento oficial de la malla curricular de Ingeniería en Electrónica.
-                      Incluye plan de estudios, correlatividades, requisitos de titulación
-                      y reglamentos de la carrera.
+                      Documento oficial de la malla curricular de Ingeniería en Electrónica. Incluye
+                      plan de estudios, correlatividades, requisitos de titulación y reglamentos de
+                      la carrera.
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <a
@@ -186,7 +225,10 @@ function RecursosPage() {
                   <h3 className="font-display font-semibold text-lg mb-4">{title}</h3>
                   <ul className="space-y-2">
                     {items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                      >
                         <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
                         {item}
                       </li>
@@ -197,6 +239,42 @@ function RecursosPage() {
             </Reveal>
           </div>
         </section>
+
+        {recursosDelegacion.length > 0 && (
+          <section className="py-16">
+            <div className="mx-auto max-w-6xl px-6">
+              <Reveal className="mb-8">
+                <h2 className="flex items-center gap-3 text-2xl font-bold sm:text-3xl">
+                  <BookOpen className="h-6 w-6 text-primary" />
+                  Recursos publicados por la Delegación
+                </h2>
+              </Reveal>
+              <Reveal variant="stagger" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {recursosDelegacion.map((recurso) => (
+                  <a
+                    key={recurso.id}
+                    href={recurso.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass card-hover group rounded-2xl p-5"
+                  >
+                    <div className="flex items-center justify-between">
+                      <FileText className="h-5 w-5 text-primary" />
+                      <ExternalLink className="h-4 w-4 text-muted-foreground transition group-hover:text-primary" />
+                    </div>
+                    <p className="mt-3 text-[10px] font-bold uppercase tracking-wider text-primary">
+                      {recurso.category}
+                    </p>
+                    <h3 className="mt-1 font-semibold text-foreground">{recurso.title}</h3>
+                    {recurso.description && (
+                      <p className="mt-2 text-sm text-muted-foreground">{recurso.description}</p>
+                    )}
+                  </a>
+                ))}
+              </Reveal>
+            </div>
+          </section>
+        )}
 
         {/* Links institucionales */}
         <section className="py-16">
@@ -209,8 +287,13 @@ function RecursosPage() {
             </Reveal>
             <Reveal variant="stagger" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {ENLACES.map(({ label, url, desc }) => (
-                <a key={url} href={url} target="_blank" rel="noopener noreferrer"
-                  className="glass card-hover group rounded-2xl p-5 flex flex-col gap-3">
+                <a
+                  key={url}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass card-hover group rounded-2xl p-5 flex flex-col gap-3"
+                >
                   <div className="flex items-center justify-between">
                     <Network className="h-5 w-5 text-primary" />
                     <ExternalLink className="h-4 w-4 text-muted-foreground/40 transition group-hover:text-primary" />

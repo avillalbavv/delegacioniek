@@ -17,6 +17,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { useAuth } from "@/components/AuthProvider";
 import {
   assignRole,
+  adminErrorMessage,
   deleteAdminRow,
   listAdminRows,
   listAudit,
@@ -30,17 +31,20 @@ import { publishScheduleRevision } from "@/lib/schedule-update-service";
 export const Route = createFileRoute("/admin")({ component: AdminPage });
 type Tab =
   "dashboard" | "notices" | "calendar" | "exams" | "resources" | "schedules" | "users" | "audit";
+type AdminOperation = (action: () => Promise<unknown>, success: string) => Promise<void>;
 function AdminPage() {
   const auth = useAuth();
   const [tab, setTab] = useState<Tab>("dashboard");
   const [rows, setRows] = useState<Record<string, unknown>[]>([]);
   const [users, setUsers] = useState<RegisteredUser[]>([]);
   const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState("");
+  const [feedback, setFeedback] = useState<{ kind: "success" | "error"; text: string } | null>(
+    null,
+  );
   const allowed = auth.user && auth.role !== "student";
   async function load(next = tab) {
     setBusy(true);
-    setMessage("");
+    setFeedback(null);
     try {
       if (next === "notices") setRows(await listAdminRows("admin_notices"));
       if (next === "calendar") setRows(await listAdminRows("academic_events"));
@@ -50,11 +54,20 @@ function AdminPage() {
       if (next === "users") setUsers(await searchUsers());
       if (next === "audit") setRows(await listAudit());
     } catch (e) {
-      setMessage(e instanceof Error ? e.message : "No se pudieron cargar los datos");
+      setFeedback({ kind: "error", text: adminErrorMessage(e) });
     } finally {
       setBusy(false);
     }
   }
+  const perform: AdminOperation = async (action, success) => {
+    setFeedback(null);
+    try {
+      await action();
+      setFeedback({ kind: "success", text: success });
+    } catch (error) {
+      setFeedback({ kind: "error", text: adminErrorMessage(error) });
+    }
+  };
   useEffect(() => {
     if (allowed) void load(tab);
     // `load` depende del tab actual y solo se ejecuta al cambiar permiso/pestaña.
@@ -141,8 +154,17 @@ function AdminPage() {
               </button>
             ))}
         </div>
-        {message && (
-          <p className="mt-4 rounded-xl bg-red-400/10 p-3 text-sm text-red-300">{message}</p>
+        {feedback && (
+          <p
+            role={feedback.kind === "error" ? "alert" : "status"}
+            className={`mt-4 rounded-xl p-3 text-sm ${
+              feedback.kind === "error"
+                ? "bg-red-400/10 text-red-300"
+                : "bg-emerald-400/10 text-emerald-300"
+            }`}
+          >
+            {feedback.text}
+          </p>
         )}
         {busy ? (
           <Loader2 className="mx-auto mt-16 animate-spin" />
@@ -150,7 +172,12 @@ function AdminPage() {
           <div className="mt-6">
             {tab === "dashboard" && <Dashboard />}
             {tab === "notices" && (
-              <Notices rows={rows} role={auth.role} reload={() => load("notices")} />
+              <Notices
+                rows={rows}
+                role={auth.role}
+                reload={() => load("notices")}
+                perform={perform}
+              />
             )}
             {tab === "calendar" && (
               <CalendarManager
@@ -158,22 +185,26 @@ function AdminPage() {
                 canWrite={auth.role !== "viewer"}
                 canDelete={["admin", "superadmin"].includes(auth.role)}
                 reload={() => load("calendar")}
+                perform={perform}
               />
             )}
-            {tab === "exams" && <ExamManager rows={rows} reload={() => load("exams")} />}
+            {tab === "exams" && (
+              <ExamManager rows={rows} reload={() => load("exams")} perform={perform} />
+            )}
             {tab === "resources" && (
               <ResourceManager
                 rows={rows}
                 canWrite={auth.role !== "viewer"}
                 canDelete={["admin", "superadmin"].includes(auth.role)}
                 reload={() => load("resources")}
+                perform={perform}
               />
             )}
             {tab === "schedules" && (
-              <ScheduleUpdates rows={rows} reload={() => load("schedules")} />
+              <ScheduleUpdates rows={rows} reload={() => load("schedules")} perform={perform} />
             )}
             {tab === "users" && auth.role === "superadmin" && (
-              <UsersPanel users={users} reload={() => load("users")} />
+              <UsersPanel users={users} reload={() => load("users")} perform={perform} />
             )}{" "}
             {tab === "audit" && <Audit rows={rows} />}
           </div>
@@ -209,27 +240,31 @@ function Notices({
   rows,
   role,
   reload,
+  perform,
 }: {
   rows: Record<string, unknown>[];
   role: string;
   reload: () => void;
+  perform: AdminOperation;
 }) {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [priority, setPriority] = useState("informativo");
   async function create(e: React.FormEvent) {
     e.preventDefault();
-    await saveAdminRow("admin_notices", {
-      title,
-      summary,
-      category: "comunicado",
-      priority,
-      status: "draft",
-      audience: { type: "all" },
-    });
-    setTitle("");
-    setSummary("");
-    reload();
+    await perform(async () => {
+      await saveAdminRow("admin_notices", {
+        title,
+        summary,
+        category: "comunicado",
+        priority,
+        status: "draft",
+        audience: { type: "all" },
+      });
+      setTitle("");
+      setSummary("");
+      await reload();
+    }, "Aviso guardado correctamente como borrador.");
   }
   return (
     <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
@@ -277,11 +312,19 @@ function Notices({
               <div className="mt-4 flex flex-wrap gap-2">
                 <button
                   onClick={() =>
-                    void saveAdminRow("admin_notices", {
-                      ...r,
-                      status: role === "editor" ? "review" : "published",
-                      publish_at: role === "editor" ? r.publish_at : new Date().toISOString(),
-                    }).then(reload)
+                    void perform(
+                      async () => {
+                        await saveAdminRow("admin_notices", {
+                          ...r,
+                          status: role === "editor" ? "review" : "published",
+                          publish_at: role === "editor" ? r.publish_at : new Date().toISOString(),
+                        });
+                        await reload();
+                      },
+                      role === "editor"
+                        ? "Aviso enviado a revisión."
+                        : "Aviso publicado correctamente.",
+                    )
                   }
                   className="rounded-lg bg-primary px-3 py-2 text-xs font-medium text-primary-foreground"
                 >
@@ -289,7 +332,12 @@ function Notices({
                 </button>
                 {["admin", "superadmin"].includes(role) && (
                   <button
-                    onClick={() => void deleteAdminRow("admin_notices", String(r.id)).then(reload)}
+                    onClick={() =>
+                      void perform(async () => {
+                        await deleteAdminRow("admin_notices", String(r.id));
+                        await reload();
+                      }, "Aviso eliminado.")
+                    }
                     className="rounded-lg border border-red-400/30 px-3 py-2 text-xs text-red-400"
                   >
                     Eliminar
@@ -312,26 +360,30 @@ function CalendarManager({
   canWrite,
   canDelete,
   reload,
+  perform,
 }: {
   rows: Record<string, unknown>[];
   canWrite: boolean;
   canDelete: boolean;
   reload: () => void;
+  perform: AdminOperation;
 }) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   async function create(event: React.FormEvent) {
     event.preventDefault();
-    await saveAdminRow("academic_events", {
-      title,
-      category: "evento-institucional",
-      starts_at: new Date(date).toISOString(),
-      status: "draft",
-      audience: { type: "all" },
-    });
-    setTitle("");
-    setDate("");
-    reload();
+    await perform(async () => {
+      await saveAdminRow("academic_events", {
+        title,
+        category: "evento-institucional",
+        starts_at: new Date(date).toISOString(),
+        status: "draft",
+        audience: { type: "all" },
+      });
+      setTitle("");
+      setDate("");
+      await reload();
+    }, "Evento guardado correctamente.");
   }
   return (
     <ManagerLayout
@@ -365,26 +417,38 @@ function CalendarManager({
       table="academic_events"
       reload={reload}
       canDelete={canDelete}
+      canPublish={canDelete}
+      perform={perform}
     />
   );
 }
 
-function ExamManager({ rows, reload }: { rows: Record<string, unknown>[]; reload: () => void }) {
+function ExamManager({
+  rows,
+  reload,
+  perform,
+}: {
+  rows: Record<string, unknown>[];
+  reload: () => void;
+  perform: AdminOperation;
+}) {
   const [subject, setSubject] = useState("");
   const [date, setDate] = useState("");
   const [room, setRoom] = useState("");
   async function create(event: React.FormEvent) {
     event.preventDefault();
-    await saveAdminRow("exam_schedules", {
-      subject_name: subject,
-      exam_at: new Date(date).toISOString(),
-      room: room || null,
-      status: "confirmed",
-    });
-    setSubject("");
-    setDate("");
-    setRoom("");
-    reload();
+    await perform(async () => {
+      await saveAdminRow("exam_schedules", {
+        subject_name: subject,
+        exam_at: new Date(date).toISOString(),
+        room: room || null,
+        status: "confirmed",
+      });
+      setSubject("");
+      setDate("");
+      setRoom("");
+      await reload();
+    }, "Examen publicado correctamente.");
   }
   return (
     <ManagerLayout
@@ -422,6 +486,7 @@ function ExamManager({ rows, reload }: { rows: Record<string, unknown>[]; reload
       table="exam_schedules"
       reload={reload}
       canDelete
+      perform={perform}
     />
   );
 }
@@ -431,20 +496,29 @@ function ResourceManager({
   canWrite,
   canDelete,
   reload,
+  perform,
 }: {
   rows: Record<string, unknown>[];
   canWrite: boolean;
   canDelete: boolean;
   reload: () => void;
+  perform: AdminOperation;
 }) {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   async function create(event: React.FormEvent) {
     event.preventDefault();
-    await saveAdminRow("academic_resources", { title, url, category: "enlace", status: "draft" });
-    setTitle("");
-    setUrl("");
-    reload();
+    await perform(async () => {
+      await saveAdminRow("academic_resources", {
+        title,
+        url,
+        category: "enlace",
+        status: "draft",
+      });
+      setTitle("");
+      setUrl("");
+      await reload();
+    }, "Recurso guardado correctamente.");
   }
   return (
     <ManagerLayout
@@ -479,6 +553,8 @@ function ResourceManager({
       table="academic_resources"
       reload={reload}
       canDelete={canDelete}
+      canPublish={canDelete}
+      perform={perform}
     />
   );
 }
@@ -486,9 +562,11 @@ function ResourceManager({
 function ScheduleUpdates({
   rows,
   reload,
+  perform,
 }: {
   rows: Record<string, unknown>[];
   reload: () => void;
+  perform: AdminOperation;
 }) {
   const [file, setFile] = useState<File | null>(null);
   const [summary, setSummary] = useState("");
@@ -497,14 +575,16 @@ function ScheduleUpdates({
     event.preventDefault();
     if (!file) return;
     setSending(true);
-    try {
-      await publishScheduleRevision(file, summary);
-      setFile(null);
-      setSummary("");
-      reload();
-    } finally {
-      setSending(false);
-    }
+    await perform(async () => {
+      try {
+        await publishScheduleRevision(file, summary);
+        setFile(null);
+        setSummary("");
+        await reload();
+      } finally {
+        setSending(false);
+      }
+    }, "Archivo de horarios publicado y revisión registrada.");
   }
   return (
     <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
@@ -564,6 +644,8 @@ function ManagerLayout({
   table,
   reload,
   canDelete,
+  canPublish = false,
+  perform,
 }: {
   form: React.ReactNode;
   rows: Record<string, unknown>[];
@@ -572,6 +654,8 @@ function ManagerLayout({
   table: string;
   reload: () => void;
   canDelete: boolean;
+  canPublish?: boolean;
+  perform: AdminOperation;
 }) {
   return (
     <div className="grid gap-6 lg:grid-cols-[340px_1fr]">
@@ -581,10 +665,28 @@ function ManagerLayout({
           <article key={String(row.id)} className="glass rounded-2xl p-5">
             <h3 className="font-semibold">{String(row[titleKey])}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{String(row[detailKey] ?? "")}</p>
+            {canPublish && row.status !== "published" && (
+              <button
+                onClick={() =>
+                  void perform(async () => {
+                    await saveAdminRow(table, { ...row, status: "published" });
+                    await reload();
+                  }, "Registro publicado correctamente.")
+                }
+                className="mt-3 rounded-lg bg-primary px-3 py-2 text-xs font-medium text-primary-foreground"
+              >
+                Publicar
+              </button>
+            )}
             {canDelete && (
               <button
-                onClick={() => void deleteAdminRow(table, String(row.id)).then(reload)}
-                className="mt-3 text-xs text-red-400"
+                onClick={() =>
+                  void perform(async () => {
+                    await deleteAdminRow(table, String(row.id));
+                    await reload();
+                  }, "Registro eliminado.")
+                }
+                className="mt-3 ml-3 text-xs text-red-400"
               >
                 Eliminar
               </button>
@@ -595,14 +697,24 @@ function ManagerLayout({
     </div>
   );
 }
-function UsersPanel({ users, reload }: { users: RegisteredUser[]; reload: () => void }) {
+function UsersPanel({
+  users,
+  reload,
+  perform,
+}: {
+  users: RegisteredUser[];
+  reload: () => void;
+  perform: AdminOperation;
+}) {
   const [term, setTerm] = useState("");
   const filtered = users.filter((u) =>
     (u.email + " " + (u.display_name || "")).toLowerCase().includes(term.toLowerCase()),
   );
   async function change(u: RegisteredUser, role: AppRole) {
-    await assignRole(u.user_id, role, "Asignado desde el panel IEK");
-    reload();
+    await perform(async () => {
+      await assignRole(u.user_id, role, "Asignado desde el panel IEK");
+      await reload();
+    }, `Rol ${role} asignado correctamente.`);
   }
   return (
     <div>
@@ -647,7 +759,10 @@ function UsersPanel({ users, reload }: { users: RegisteredUser[]; reload: () => 
                   {u.role !== "student" && (
                     <button
                       onClick={() =>
-                        void revokeRole(u.user_id, "Revocado desde el panel").then(reload)
+                        void perform(async () => {
+                          await revokeRole(u.user_id, "Revocado desde el panel");
+                          await reload();
+                        }, "Permisos administrativos revocados.")
                       }
                       className="ml-2 text-xs text-red-400"
                     >

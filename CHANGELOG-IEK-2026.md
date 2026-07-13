@@ -21,3 +21,7 @@
 - Diferenciadas explícitamente las vistas de grafo y tabla para Malla 2008 y Malla 2026.
 - Completado el panel con gestión de avisos, calendario, exámenes, recursos y versiones de horarios.
 - Añadida notificación al sincronizar cuando la Delegación publica una nueva versión del Excel/CSV de horarios.
+- Reparados los permisos del panel administrativo para avisos, eventos, exámenes, recursos y archivos de horarios.
+- Añadida validación de Excel/CSV, limpieza de archivos huérfanos y mensajes visibles de éxito o error en todas las acciones administrativas.
+- Conectados los eventos, exámenes y recursos publicados desde el panel con sus respectivas páginas públicas.
+- Añadida la acción de publicación para eventos y recursos, manteniendo los borradores fuera de la vista estudiantil.

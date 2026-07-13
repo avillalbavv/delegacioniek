@@ -19,6 +19,12 @@ Ejecutar, en orden:
 1. `supabase/migrations/202607120001_auth_and_user_state.sql`
 2. `supabase/migrations/202607120002_platform_modules.sql`
 3. `supabase/migrations/202607120003_schedule_revisions_and_permissions.sql`
+4. `supabase/migrations/202607120004_admin_panel_reliability.sql`
+
+La migración 004 corrige los permisos efectivos de publicación, la secuencia de
+versiones y los tipos de archivo que algunos navegadores asignan a Excel/CSV. Si
+el panel ya estaba instalado pero no permitía guardar o subir archivos, ejecutá
+solamente la 004 y luego cerrá y volvé a iniciar sesión.
 
 La migración crea:
 
@@ -111,3 +117,14 @@ npm run test:academic
 npx tsc --noEmit
 npm run build
 ```
+
+Después de aplicar las migraciones, comprobar desde `/admin`:
+
+1. Guardar y publicar un aviso de prueba.
+2. Crear un evento y un examen.
+3. Guardar un recurso.
+4. Subir un XLSX o CSV menor a 10 MB en **Horarios**.
+5. Confirmar que cada operación muestre un mensaje verde de éxito.
+
+Si Supabase rechaza una operación, el panel ahora muestra si falta una migración,
+si la sesión venció o si RLS bloqueó el rol.
