@@ -1,0 +1,23 @@
+{
+  "name": "Delegación Estudiantil · Ingeniería en Electrónica",
+  "short_name": "IEK FP-UNA",
+  "description": "Información y herramientas académicas de la Delegación Estudiantil de Ingeniería en Electrónica",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#10182a",
+  "theme_color": "#249bd6",
+  "icons": [
+    {
+      "src": "/iek-favicon-circle.png",
+      "sizes": "640x640",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/iek-favicon-circle.png",
+      "sizes": "640x640",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

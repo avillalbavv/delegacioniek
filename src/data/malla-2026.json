@@ -1,0 +1,1479 @@
+[
+  {
+    "id": "geometria-analitica-y-vectores",
+    "nombre": "Geometría Analítica y Vectores",
+    "semestre": 1,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Matemática",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "calculo-de-una-variable",
+    "nombre": "Cálculo de una Variable",
+    "semestre": 1,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Matemática",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "fundamentos-de-mecanica",
+    "nombre": "Fundamentos de Mecánica",
+    "semestre": 1,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "comunicacion-oral-y-escrita",
+    "nombre": "Comunicación Oral y Escrita",
+    "semestre": 1,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "optativa-i",
+    "nombre": "Optativa I",
+    "semestre": 1,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "optativa-ii",
+    "nombre": "Optativa II",
+    "semestre": 1,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "algebra-lineal",
+    "nombre": "Álgebra Lineal",
+    "semestre": 2,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Matemática",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "calculo-de-varias-variables",
+    "nombre": "Cálculo de Varias Variables",
+    "semestre": 2,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Matemática",
+    "requisitos": [
+      "geometria-analitica-y-vectores",
+      "calculo-de-una-variable"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "electricidad-y-magnetismo",
+    "nombre": "Electricidad y Magnetismo",
+    "semestre": 2,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [
+      "calculo-de-una-variable",
+      "fundamentos-de-mecanica"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "quimica-organica-e-inorganica",
+    "nombre": "Química Orgánica e Inorgánica",
+    "semestre": 2,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "diseno-asistido-por-computador",
+    "nombre": "Diseño Asistido por Computador",
+    "semestre": 2,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Electrónica",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "ingles-profesional",
+    "nombre": "Inglés Profesional",
+    "semestre": 2,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "ecuaciones-diferenciales",
+    "nombre": "Ecuaciones Diferenciales",
+    "semestre": 3,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Matemática",
+    "requisitos": [
+      "calculo-de-varias-variables"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "estadistica-y-probabilidad",
+    "nombre": "Estadística y Probabilidad",
+    "semestre": 3,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Matemática",
+    "requisitos": [
+      "calculo-de-una-variable"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "oscilaciones-y-ondas",
+    "nombre": "Oscilaciones y Ondas",
+    "semestre": 3,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [
+      "calculo-de-una-variable",
+      "fundamentos-de-mecanica"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "conductores-y-semiconductores",
+    "nombre": "Conductores y Semiconductores",
+    "semestre": 3,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "electricidad-y-magnetismo",
+      "quimica-organica-e-inorganica"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "fundamentos-de-programacion",
+    "nombre": "Fundamentos de Programación",
+    "semestre": 3,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Informática",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "analisis-de-circuitos-electricos-i",
+    "nombre": "Análisis de Circuitos Eléctricos I",
+    "semestre": 3,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "calculo-de-varias-variables",
+      "electricidad-y-magnetismo"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "calculo-avanzado",
+    "nombre": "Cálculo Avanzado",
+    "semestre": 4,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Matemática",
+    "requisitos": [
+      "ecuaciones-diferenciales"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "metodos-numericos",
+    "nombre": "Métodos Numéricos",
+    "semestre": 4,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Matemática",
+    "requisitos": [
+      "algebra-lineal",
+      "ecuaciones-diferenciales"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "termodinamica-clasica-y-estadistica",
+    "nombre": "Termodinámica Clásica y Estadística",
+    "semestre": 4,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [
+      "fundamentos-de-mecanica",
+      "calculo-de-varias-variables"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "electronica-i",
+    "nombre": "Electrónica I",
+    "semestre": 4,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "analisis-de-circuitos-electricos-i",
+      "conductores-y-semiconductores",
+      "diseno-asistido-por-computador"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "estructura-de-datos-y-entornos-de-programacion",
+    "nombre": "Estructura de Datos y Entornos de Programación",
+    "semestre": 4,
+    "enfasis": [
+      "control-industrial",
+      "mecatronica",
+      "electronica-medica"
+    ],
+    "area": "Informática",
+    "requisitos": [
+      "fundamentos-de-programacion"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "estructura-de-datos-y-programacion-web",
+    "nombre": "Estructura de Datos y Programación Web",
+    "semestre": 4,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Informática",
+    "requisitos": [
+      "fundamentos-de-programacion"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "analisis-de-circuitos-electricos-ii",
+    "nombre": "Análisis de Circuitos Eléctricos II",
+    "semestre": 4,
+    "enfasis": [
+      "comun"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "ecuaciones-diferenciales",
+      "analisis-de-circuitos-electricos-i"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "electromagnetismo",
+    "nombre": "Electromagnetismo",
+    "semestre": 5,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [
+      "electricidad-y-magnetismo",
+      "ecuaciones-diferenciales"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "sistemas-de-control-continuo",
+    "nombre": "Sistemas de Control Continuo",
+    "semestre": 5,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "calculo-avanzado"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "electronica-ii",
+    "nombre": "Electrónica II",
+    "semestre": 5,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "electronica-i",
+      "analisis-de-circuitos-electricos-ii"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "electronica-digital-i",
+    "nombre": "Electrónica Digital I",
+    "semestre": 5,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "electronica-i"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "metrologia-cientifica-e-industrial",
+    "nombre": "Metrología Científica e Industrial",
+    "semestre": 5,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "conductores-y-semiconductores",
+      "estadistica-y-probabilidad"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "fenomenos-de-transporte",
+    "nombre": "Fenómenos de Transporte",
+    "semestre": 5,
+    "enfasis": [
+      "control-industrial",
+      "mecatronica"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [
+      "ecuaciones-diferenciales",
+      "termodinamica-clasica-y-estadistica"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "base-de-datos-y-programacion-web",
+    "nombre": "Base de Datos y Programación Web",
+    "semestre": 5,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Informática",
+    "requisitos": [
+      "estructura-de-datos-y-programacion-web"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "biologia-aplicada-a-la-ingenieria",
+    "nombre": "Biología Aplicada a la Ingeniería",
+    "semestre": 5,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "quimica-organica-e-inorganica"
+    ],
+    "requisitosEspeciales": [
+      "Nota: [OCR] Prerrequisito reconstruido por consistencia del plan; verificar contra el PDF original."
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "electronica-digital-ii",
+    "nombre": "Electrónica Digital II",
+    "semestre": 6,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "electronica-digital-i"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "sistemas-de-control-discreto",
+    "nombre": "Sistemas de Control Discreto",
+    "semestre": 6,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "sistemas-de-control-continuo"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "sensores-y-actuadores",
+    "nombre": "Sensores y Actuadores",
+    "semestre": 6,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "electronica-digital-i",
+      "electronica-ii",
+      "metrologia-cientifica-e-industrial",
+      "termodinamica-clasica-y-estadistica"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "convertidores-de-potencia",
+    "nombre": "Convertidores de Potencia",
+    "semestre": 6,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "electronica-ii",
+      "calculo-avanzado"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "maquinas-electricas",
+    "nombre": "Máquinas Eléctricas",
+    "semestre": 6,
+    "enfasis": [
+      "control-industrial",
+      "mecatronica"
+    ],
+    "area": "Manufactura",
+    "requisitos": [
+      "electricidad-y-magnetismo",
+      "analisis-de-circuitos-electricos-ii"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "instrumentacion-y-control-industrial",
+    "nombre": "Instrumentación y Control Industrial",
+    "semestre": 6,
+    "enfasis": [
+      "control-industrial"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "metrologia-cientifica-e-industrial",
+      "sistemas-de-control-continuo"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "mecanica-de-materiales",
+    "nombre": "Mecánica de Materiales",
+    "semestre": 6,
+    "enfasis": [
+      "mecatronica"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [
+      "ecuaciones-diferenciales",
+      "fundamentos-de-mecanica"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "protocolos-de-comunicacion",
+    "nombre": "Protocolos de Comunicación",
+    "semestre": 6,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "analisis-de-senales",
+    "nombre": "Análisis de Señales",
+    "semestre": 6,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "calculo-avanzado",
+      "estadistica-y-probabilidad"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "anatomia-y-fisiologia-aplicada-a-la-ingenieria",
+    "nombre": "Anatomía y Fisiología Aplicada a la Ingeniería",
+    "semestre": 6,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "biologia-aplicada-a-la-ingenieria"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "sistemas-digitales",
+    "nombre": "Sistemas Digitales",
+    "semestre": 7,
+    "enfasis": [
+      "control-industrial",
+      "mecatronica",
+      "electronica-medica"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "sistemas-de-control-discreto",
+      "electronica-digital-ii",
+      "sensores-y-actuadores",
+      "estructura-de-datos-y-entornos-de-programacion"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "sistemas-electricos",
+    "nombre": "Sistemas Eléctricos",
+    "semestre": 7,
+    "enfasis": [
+      "control-industrial"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "instrumentacion-y-control-industrial"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "controladores-programables",
+    "nombre": "Controladores Programables",
+    "semestre": 7,
+    "enfasis": [
+      "control-industrial",
+      "mecatronica"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "sistemas-de-control-discreto",
+      "sensores-y-actuadores",
+      "estructura-de-datos-y-entornos-de-programacion",
+      "electronica-digital-ii"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "neumatica",
+    "nombre": "Neumática",
+    "semestre": 7,
+    "enfasis": [
+      "control-industrial"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "sensores-y-actuadores",
+      "fenomenos-de-transporte"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "redes-y-protocolos-de-comunicacion-ci",
+    "nombre": "Redes y Protocolos de Comunicación",
+    "semestre": 7,
+    "enfasis": [
+      "control-industrial"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "instrumentacion-y-control-industrial"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "redes-y-protocolos-de-comunicacion-mec",
+    "nombre": "Redes y Protocolos de Comunicación",
+    "semestre": 7,
+    "enfasis": [
+      "mecatronica"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [],
+    "requisitosEspeciales": [
+      "Nota: [OCR] En la orientación Mecatrónica esta materia figura sin correlativa en el PDF (a diferencia de Control Industrial)."
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "prevision-y-seguridad-en-el-trabajo",
+    "nombre": "Previsión y Seguridad en el Trabajo",
+    "semestre": 7,
+    "enfasis": [
+      "control-industrial",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "mecanica-clasica",
+    "nombre": "Mecánica Clásica",
+    "semestre": 7,
+    "enfasis": [
+      "mecatronica"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [
+      "ecuaciones-diferenciales",
+      "fundamentos-de-mecanica"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "resistencia-de-materiales",
+    "nombre": "Resistencia de Materiales",
+    "semestre": 7,
+    "enfasis": [
+      "mecatronica"
+    ],
+    "area": "Ciencias Básicas",
+    "requisitos": [
+      "mecanica-de-materiales"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "comunicaciones-moviles",
+    "nombre": "Comunicaciones Móviles",
+    "semestre": 7,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "sistemas-de-control-discreto",
+      "electronica-digital-ii",
+      "sensores-y-actuadores",
+      "estructura-de-datos-y-programacion-web"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "redes-de-datos",
+    "nombre": "Redes de Datos",
+    "semestre": 7,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "protocolos-de-comunicacion"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "computacion-en-la-nube",
+    "nombre": "Computación en la Nube",
+    "semestre": 7,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Informática",
+    "requisitos": [
+      "base-de-datos-y-programacion-web"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "comunicaciones-opticas",
+    "nombre": "Comunicaciones Ópticas",
+    "semestre": 7,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "protocolos-de-comunicacion",
+      "analisis-de-senales"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "biomecanica-de-fluidos",
+    "nombre": "Biomecánica de Fluidos",
+    "semestre": 7,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "anatomia-y-fisiologia-aplicada-a-la-ingenieria"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "fundamentos-de-biomateriales",
+    "nombre": "Fundamentos de Biomateriales",
+    "semestre": 7,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "conductores-y-semiconductores",
+      "biologia-aplicada-a-la-ingenieria"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "instrumentacion-biomedica",
+    "nombre": "Instrumentación Biomédica",
+    "semestre": 7,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "convertidores-de-potencia",
+      "sensores-y-actuadores",
+      "anatomia-y-fisiologia-aplicada-a-la-ingenieria"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "instrumentacion-de-laboratorios-clinicos",
+    "nombre": "Instrumentación de Laboratorios Clínicos",
+    "semestre": 7,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "convertidores-de-potencia",
+      "anatomia-y-fisiologia-aplicada-a-la-ingenieria",
+      "metrologia-cientifica-e-industrial"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "bioseguridad",
+    "nombre": "Bioseguridad",
+    "semestre": 7,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "anatomia-y-fisiologia-aplicada-a-la-ingenieria",
+      "metrologia-cientifica-e-industrial"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "sistemas-embebidos",
+    "nombre": "Sistemas Embebidos",
+    "semestre": 8,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "convertidores-de-potencia",
+      "sistemas-digitales",
+      "metodos-numericos"
+    ],
+    "requisitosEspeciales": [
+      "Nota: [OCR] En Teleprocesamiento el PDF repite este mismo prerrequisito aunque 'Sistemas Digitales' no forma parte de esa orientación; se conserva tal cual figura en el documento."
+    ],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "electricidad-de-potencia",
+    "nombre": "Electricidad de Potencia",
+    "semestre": 8,
+    "enfasis": [
+      "control-industrial"
+    ],
+    "area": "Electrónica",
+    "requisitos": [
+      "sistemas-electricos",
+      "convertidores-de-potencia",
+      "metodos-numericos"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "controladores-programables-avanzados",
+    "nombre": "Controladores Programables Avanzados",
+    "semestre": 8,
+    "enfasis": [
+      "control-industrial",
+      "mecatronica"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "sistemas-digitales",
+      "controladores-programables",
+      "maquinas-electricas"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "metodos-de-manufactura-industrial-ci",
+    "nombre": "Métodos de Manufactura Industrial",
+    "semestre": 8,
+    "enfasis": [
+      "control-industrial"
+    ],
+    "area": "Manufactura",
+    "requisitos": [
+      "prevision-y-seguridad-en-el-trabajo",
+      "sensores-y-actuadores"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "metodos-de-manufactura-industrial-mec",
+    "nombre": "Métodos de Manufactura Industrial",
+    "semestre": 8,
+    "enfasis": [
+      "mecatronica"
+    ],
+    "area": "Manufactura",
+    "requisitos": [],
+    "requisitosEspeciales": [
+      "Nota: [OCR] En Mecatrónica el PDF no indica correlativa para esta materia (a diferencia de Control Industrial)."
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "planeamiento-y-control-de-la-produccion",
+    "nombre": "Planeamiento y Control de la Producción",
+    "semestre": 8,
+    "enfasis": [
+      "control-industrial",
+      "mecatronica"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "controladores-programables"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "derecho",
+    "nombre": "Derecho",
+    "semestre": 8,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "elementos-de-maquina",
+    "nombre": "Elementos de Máquina",
+    "semestre": 8,
+    "enfasis": [
+      "mecatronica"
+    ],
+    "area": "Manufactura",
+    "requisitos": [
+      "metodos-numericos",
+      "resistencia-de-materiales",
+      "mecanica-clasica",
+      "fenomenos-de-transporte"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "centros-de-datos",
+    "nombre": "Centros de Datos",
+    "semestre": 8,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "comunicaciones-moviles"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "sistemas-de-radioenlaces",
+    "nombre": "Sistemas de Radioenlaces",
+    "semestre": 8,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "comunicaciones-moviles"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "redes-inalambricas",
+    "nombre": "Redes Inalámbricas",
+    "semestre": 8,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "redes-de-datos",
+      "comunicaciones-opticas"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "electiva-i-tel",
+    "nombre": "Electiva I",
+    "semestre": 8,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "procesamiento-digital-de-senales-e-imagenes-biomedicas",
+    "nombre": "Procesamiento Digital de Señales e Imágenes Biomédicas",
+    "semestre": 8,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "sistemas-digitales",
+      "instrumentacion-biomedica"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "equipamientos-de-diagnostico-por-imagenes",
+    "nombre": "Equipamientos de Diagnóstico por Imágenes",
+    "semestre": 8,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "instrumentacion-biomedica",
+      "bioseguridad"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "equipamientos-de-diagnostico-y-monitoreo",
+    "nombre": "Equipamientos de Diagnóstico y Monitoreo",
+    "semestre": 8,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "biomecanica-de-fluidos",
+      "instrumentacion-biomedica",
+      "bioseguridad"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "ingenieria-hospitalaria",
+    "nombre": "Ingeniería Hospitalaria",
+    "semestre": 8,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "maquinas-electricas",
+      "fundamentos-de-biomateriales",
+      "instrumentacion-biomedica",
+      "bioseguridad"
+    ],
+    "requisitosEspeciales": [
+      "Nota: [OCR] 'Máquinas Eléctricas' no se dicta en Electrónica Médica; se conserva la lectura más cercana al texto del PDF, verificar."
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "organizacion-y-servicios-industriales",
+    "nombre": "Organización y Servicios Industriales",
+    "semestre": 9,
+    "enfasis": [
+      "control-industrial"
+    ],
+    "area": "Formación General",
+    "requisitos": [
+      "planeamiento-y-control-de-la-produccion",
+      "neumatica"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "sistemas-de-supervision-y-control",
+    "nombre": "Sistemas de Supervisión y Control",
+    "semestre": 9,
+    "enfasis": [
+      "control-industrial",
+      "mecatronica"
+    ],
+    "area": "Control",
+    "requisitos": [
+      "controladores-programables-avanzados",
+      "redes-y-protocolos-de-comunicacion-ci"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "electiva-i-ci1",
+    "nombre": "Electiva I",
+    "semestre": 9,
+    "enfasis": [
+      "control-industrial"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [
+      "Haber aprobado 194 créditos"
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "electiva-ii-ci2",
+    "nombre": "Electiva II",
+    "semestre": 9,
+    "enfasis": [
+      "control-industrial"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [
+      "Haber aprobado 194 créditos"
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "procesos-de-manufactura",
+    "nombre": "Procesos de Manufactura",
+    "semestre": 9,
+    "enfasis": [
+      "mecatronica"
+    ],
+    "area": "Manufactura",
+    "requisitos": [
+      "metodos-de-manufactura-industrial-mec"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "robotica",
+    "nombre": "Robótica",
+    "semestre": 9,
+    "enfasis": [
+      "mecatronica"
+    ],
+    "area": "Manufactura",
+    "requisitos": [
+      "sistemas-embebidos",
+      "elementos-de-maquina",
+      "metodos-de-manufactura-industrial-mec"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "diseno-y-manufactura-asistida-por-computador",
+    "nombre": "Diseño y Manufactura Asistida por Computador",
+    "semestre": 9,
+    "enfasis": [
+      "mecatronica"
+    ],
+    "area": "Manufactura",
+    "requisitos": [
+      "metodos-de-manufactura-industrial-mec"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "redes-wan",
+    "nombre": "Redes WAN",
+    "semestre": 9,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "redes-inalambricas",
+      "centros-de-datos"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "procesamiento-y-distribucion-de-audio-y-video",
+    "nombre": "Procesamiento y Distribución de Audio y Video",
+    "semestre": 9,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Telecomunicaciones",
+    "requisitos": [
+      "sistemas-de-radioenlaces",
+      "centros-de-datos",
+      "comunicaciones-opticas"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "electiva-ii-tel2",
+    "nombre": "Electiva II",
+    "semestre": 9,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [
+      "Haber aprobado 194 créditos"
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "electiva-iii-tel3",
+    "nombre": "Electiva III",
+    "semestre": 9,
+    "enfasis": [
+      "teleprocesamiento"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [
+      "Haber aprobado 194 créditos"
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "ingenieria-clinica",
+    "nombre": "Ingeniería Clínica",
+    "semestre": 9,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "equipamientos-de-diagnostico-y-monitoreo",
+      "equipamientos-de-diagnostico-por-imagenes",
+      "ingenieria-hospitalaria"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "equipamientos-de-terapia-y-rehabilitacion",
+    "nombre": "Equipamientos de Terapia y Rehabilitación",
+    "semestre": 9,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Electrónica Médica",
+    "requisitos": [
+      "equipamientos-de-diagnostico-y-monitoreo",
+      "ingenieria-hospitalaria"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "informatica-medica",
+    "nombre": "Informática Médica",
+    "semestre": 9,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Informática",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 6
+  },
+  {
+    "id": "electiva-i-med1",
+    "nombre": "Electiva I",
+    "semestre": 9,
+    "enfasis": [
+      "electronica-medica"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [
+      "Haber aprobado 194 créditos"
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "anteproyecto-de-trabajo-de-grado",
+    "nombre": "Anteproyecto de Trabajo de Grado",
+    "semestre": 9,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Trabajo de Grado",
+    "requisitos": [
+      "sistemas-embebidos"
+    ],
+    "requisitosEspeciales": [
+      "Haber aprobado 226 créditos"
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "emprendimientos-en-ti",
+    "nombre": "Emprendimientos en TI",
+    "semestre": 10,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "optativa-iii",
+    "nombre": "Optativa III",
+    "semestre": 10,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "trabajo-de-grado",
+    "nombre": "Trabajo de Grado",
+    "semestre": 10,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Trabajo de Grado",
+    "requisitos": [
+      "anteproyecto-de-trabajo-de-grado"
+    ],
+    "requisitosEspeciales": [],
+    "cargaHoraria": 9
+  },
+  {
+    "id": "pasantia-profesional-supervisada",
+    "nombre": "Pasantía Profesional Supervisada",
+    "semestre": 10,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Trabajo de Grado",
+    "requisitos": [
+      "sistemas-embebidos"
+    ],
+    "requisitosEspeciales": [
+      "Haber aprobado 226 créditos"
+    ],
+    "cargaHoraria": 5
+  },
+  {
+    "id": "extension-universitaria",
+    "nombre": "Extensión Universitaria",
+    "semestre": 10,
+    "enfasis": [
+      "control-industrial",
+      "electronica-medica",
+      "mecatronica",
+      "teleprocesamiento"
+    ],
+    "area": "Formación General",
+    "requisitos": [],
+    "requisitosEspeciales": [
+      "Según Reglamento de Extensión Universitaria de la UNA"
+    ],
+    "cargaHoraria": 1
+  }
+]

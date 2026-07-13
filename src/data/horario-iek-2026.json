@@ -1,0 +1,6388 @@
+[
+  {
+    "materia": "Administración y Recursos Humanos",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "18:00:00",
+      "aula": "C03"
+    },
+    "parcial2": {
+      "dia": "Mie 10/06/26",
+      "hora": "15:00:00",
+      "aula": "I02"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "18:00:00",
+      "aula": "C03"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00",
+      "aula": "C03"
+    }
+  },
+  {
+    "materia": "Administración y Recursos Humanos",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "10",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "18:00:00",
+      "aula": "C03"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00",
+      "aula": "C03"
+    }
+  },
+  {
+    "materia": "Álgebra",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "08:00:00",
+      "aula": "A59"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "08:00",
+      "aula": "A59"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "08:00",
+      "aula": "A59"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "08:00",
+      "aula": "A59"
+    }
+  },
+  {
+    "materia": "Álgebra",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "08:00",
+      "aula": "A55"
+    }
+  },
+  {
+    "materia": "Álgebra",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "18:00:00",
+      "aula": "A55"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "18:00:00",
+      "aula": "A55"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "A55"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "A55"
+    }
+  },
+  {
+    "materia": "Algoritmo",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "08:00",
+      "aula": "Lab HPC"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "08:00",
+      "aula": "Lab HPC"
+    },
+    "final1": {
+      "dia": "Sab 27/06/26",
+      "hora": "08:00",
+      "aula": "Lab HPC"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 04/07/26",
+      "hora": "08:00",
+      "aula": "Lab HPC"
+    }
+  },
+  {
+    "materia": "Algoritmo",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "08:00",
+      "aula": "Lab MS\nLab SO"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "08:00",
+      "aula": "Lab MS\nLab SO"
+    },
+    "final1": {
+      "dia": "Sab 27/06/26",
+      "hora": "08:00",
+      "aula": "Lab MS\nLab SO"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 04/07/26",
+      "hora": "08:00",
+      "aula": "Lab M\nLab SO"
+    }
+  },
+  {
+    "materia": "Algoritmo",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "15:00:00",
+      "aula": "Lab AL"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "15:00:00",
+      "aula": "Lab AL"
+    },
+    "final1": {
+      "dia": "Sab 27/06/26",
+      "hora": "08:00",
+      "aula": "Lab AL"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Sab 04/07/26",
+      "hora": "08:00",
+      "aula": "Lab AL"
+    }
+  },
+  {
+    "materia": "Algoritmo",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Mar 07/04/26",
+      "hora": "19:30:00",
+      "aula": "Lab BD"
+    },
+    "parcial2": {
+      "dia": "Mar 26/05/26",
+      "hora": "19:30:00",
+      "aula": "Lab BD"
+    },
+    "final1": {
+      "dia": "Sab 27/06/26",
+      "hora": "14:30:00",
+      "aula": "Lab MS"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00"
+    },
+    "final2": {
+      "dia": "Sab 04/07/26",
+      "hora": "14:30:00",
+      "aula": "Lab MS"
+    }
+  },
+  {
+    "materia": "Algoritmo",
+    "seccion": "NB",
+    "turno": "N",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Mar 07/04/26",
+      "hora": "19:30:00",
+      "aula": "Lab HPC\nLab MS"
+    },
+    "parcial2": {
+      "dia": "Mar 26/05/26",
+      "hora": "19:30:00",
+      "aula": "Lab HPC"
+    },
+    "final1": {
+      "dia": "Sab 27/06/26",
+      "hora": "14:30:00",
+      "aula": "Lab BD"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00"
+    },
+    "final2": {
+      "dia": "Sab 04/07/26",
+      "hora": "14:30:00",
+      "aula": "Lab BD"
+    }
+  },
+  {
+    "materia": "Anteproyecto de Trabajo de Grado",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    }
+  },
+  {
+    "materia": "Anteproyecto de Trabajo de Grado",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "9",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "18:00:00",
+      "aula": "F36"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "18:00:00",
+      "aula": "F36"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "F16"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "F16"
+    }
+  },
+  {
+    "materia": "Arquitectura de Microcomputadoras",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "9",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "I09"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "I09"
+    }
+  },
+  {
+    "materia": "Automatización Industrial",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "18:00:00",
+      "aula": "F25"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00",
+      "aula": "F25"
+    }
+  },
+  {
+    "materia": "Biología I",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "6",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "F14"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "F14"
+    }
+  },
+  {
+    "materia": "Biología II",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "F14"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "F14"
+    }
+  },
+  {
+    "materia": "Bioseguridad",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    },
+    "revision1": {
+      "dia": "Jue 02/07/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    }
+  },
+  {
+    "materia": "Cálculo I",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "08:00",
+      "aula": "A59"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "08:00",
+      "aula": "C11"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "08:00",
+      "aula": "A50"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "08:00",
+      "aula": "A50"
+    }
+  },
+  {
+    "materia": "Cálculo I",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "08:00",
+      "aula": "A54"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "08:00",
+      "aula": "C12"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "08:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Cálculo I",
+    "seccion": "MK",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "08:00",
+      "aula": "A52"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "08:00",
+      "aula": "I01"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "08:00",
+      "aula": "A52"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "08:00",
+      "aula": "A52"
+    }
+  },
+  {
+    "materia": "Cálculo I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "A55"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "A55"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Cálculo I",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "A56"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "A56"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "A52"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "A52"
+    }
+  },
+  {
+    "materia": "Cálculo I",
+    "seccion": "TS",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "I01"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "I01"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "A53"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "A53"
+    }
+  },
+  {
+    "materia": "Cálculo I",
+    "seccion": "TT",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "I03"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "I03"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "A54"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "A54"
+    }
+  },
+  {
+    "materia": "Cálculo I",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "19:30:00",
+      "aula": "A55"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "19:30:00",
+      "aula": "A55"
+    }
+  },
+  {
+    "materia": "Cálculo II",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "08:00",
+      "aula": "I04"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "08:00",
+      "aula": "A56"
+    }
+  },
+  {
+    "materia": "Cálculo II",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "08:00",
+      "aula": "I02"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "08:00",
+      "aula": "A57"
+    }
+  },
+  {
+    "materia": "Cálculo II",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "A57"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "A57"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "A57"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "A57"
+    }
+  },
+  {
+    "materia": "Cálculo II",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "19:30:00",
+      "aula": "A57"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "19:30:00",
+      "aula": "A57"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "19:30:00",
+      "aula": "A57"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "19:30:00",
+      "aula": "A57"
+    }
+  },
+  {
+    "materia": "Cálculo II",
+    "seccion": "NB",
+    "turno": "N",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    }
+  },
+  {
+    "materia": "Cálculo II",
+    "seccion": "NC",
+    "turno": "N",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "19:30:00",
+      "aula": "A54"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "19:30:00",
+      "aula": "A55"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "19:30:00",
+      "aula": "A58"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "19:30:00",
+      "aula": "A58"
+    }
+  },
+  {
+    "materia": "Cálculo III",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "08:00",
+      "aula": "A58"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "08:00",
+      "aula": "A58"
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "08:00",
+      "aula": "A58"
+    },
+    "revision1": {
+      "dia": "Jue 02/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "08:00",
+      "aula": "A58"
+    }
+  },
+  {
+    "materia": "Cálculo III",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "08:00",
+      "aula": "A59"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "08:00",
+      "aula": "A59"
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "08:00",
+      "aula": "A59"
+    },
+    "revision1": {
+      "dia": "Jue 02/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "08:00",
+      "aula": "A59"
+    }
+  },
+  {
+    "materia": "Cálculo III",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "15:00:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "15:00:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "15:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Jue 02/07/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "15:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Cálculo III",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "15:00:00",
+      "aula": "A52"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "15:00:00",
+      "aula": "A52"
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "15:00",
+      "aula": "A52"
+    },
+    "revision1": {
+      "dia": "Jue 02/07/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "15:00",
+      "aula": "A52"
+    }
+  },
+  {
+    "materia": "Cálculo III",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "19:30:00",
+      "aula": "A59"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "19:30:00",
+      "aula": "A59"
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "19:30",
+      "aula": "A59"
+    },
+    "revision1": {
+      "dia": "Jue 02/07/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "19:30",
+      "aula": "A59"
+    }
+  },
+  {
+    "materia": "Cálculo IV (Cálculo Vectorial)",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "A58"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "A58"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "A56"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "A56"
+    }
+  },
+  {
+    "materia": "Cálculo IV (Cálculo Vectorial)",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "19:30:00",
+      "aula": "A59"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "19:30:00",
+      "aula": "A59"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "19:30:00",
+      "aula": "A59"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "19:30:00",
+      "aula": "A59"
+    }
+  },
+  {
+    "materia": "Cálculo V (Variable Compleja)",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "08:00",
+      "aula": "A53"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "08:00",
+      "aula": "I03"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "08:00",
+      "aula": "A53"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "08:00",
+      "aula": "A53"
+    }
+  },
+  {
+    "materia": "Cálculo V (Variable Compleja)",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "A59"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "A59"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "A58"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "A58"
+    }
+  },
+  {
+    "materia": "Cálculo V (Variable Compleja)",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "A54"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "A54"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "A59"
+    },
+    "revision1": {
+      "dia": "Mie 24/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "A59"
+    }
+  },
+  {
+    "materia": "Cálculo VI (Transformadas de Laplace y Fourier)",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "19:30",
+      "aula": "A. Magna"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "19:30",
+      "aula": "I01"
+    }
+  },
+  {
+    "materia": "Cálculo VI (Transformadas de Laplace y Fourier)",
+    "seccion": "NB",
+    "turno": "N",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "19:30:00",
+      "aula": "A55"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "19:30:00",
+      "aula": "A55"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "19:30",
+      "aula": "A. Magna"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "19:30",
+      "aula": "I02"
+    }
+  },
+  {
+    "materia": "Cálculo VI (Transformadas de Laplace y Fourier)",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "19:30",
+      "aula": "A. Magna"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "19:30",
+      "aula": "I02"
+    }
+  },
+  {
+    "materia": "Circuitos Eléctricos I",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "A55"
+    }
+  },
+  {
+    "materia": "Circuitos Eléctricos I",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    }
+  },
+  {
+    "materia": "Circuitos Eléctricos I",
+    "seccion": "NB",
+    "turno": "N",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    }
+  },
+  {
+    "materia": "Circuitos Eléctricos II",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "A53"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "A53"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "A53"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "A53"
+    }
+  },
+  {
+    "materia": "Circuitos Eléctricos II",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "18:00:00",
+      "aula": "C11"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "18:00:00",
+      "aula": "C11"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "C11"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "C11"
+    }
+  },
+  {
+    "materia": "Comunicación Oral y Escrita",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mar 07/04/26",
+      "hora": "08:00",
+      "aula": "F17"
+    },
+    "parcial2": {
+      "dia": "Mar 26/05/26",
+      "hora": "08:00",
+      "aula": "F17"
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "08:00",
+      "aula": "F17"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "08:00",
+      "aula": "F17"
+    }
+  },
+  {
+    "materia": "Comunicación Oral y Escrita",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "18:00:00",
+      "aula": "F13"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "18:00:00",
+      "aula": "F13"
+    }
+  },
+  {
+    "materia": "Comunicación Oral y Escrita",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "15:00:00",
+      "aula": "C09"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "15:00:00",
+      "aula": "C09"
+    }
+  },
+  {
+    "materia": "Comunicación por Satélite",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "9",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "F11"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "F11"
+    }
+  },
+  {
+    "materia": "Comunicaciones Opticas",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "CI,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "15:00:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "15:00:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Control Automático I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "F17"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "F17"
+    }
+  },
+  {
+    "materia": "Control Automático II",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "8",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Mar 07/04/26",
+      "hora": "18:00:00",
+      "aula": "F29"
+    },
+    "parcial2": {
+      "dia": "Mar 26/05/26",
+      "hora": "18:00:00",
+      "aula": "F29"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "F17"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "F17"
+    }
+  },
+  {
+    "materia": "Control Avanzado",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "9",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "I05"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "I05"
+    }
+  },
+  {
+    "materia": "Controladores Programables I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    }
+  },
+  {
+    "materia": "Controladores Programables II",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    }
+  },
+  {
+    "materia": "Derecho",
+    "seccion": "NC",
+    "turno": "N",
+    "semGrupo": "9",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    },
+    "revision1": {
+      "dia": "Vie 10/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    }
+  },
+  {
+    "materia": "Derecho",
+    "seccion": "ND",
+    "turno": "N",
+    "semGrupo": "9",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    },
+    "revision1": {
+      "dia": "Vie 10/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    }
+  },
+  {
+    "materia": "Derecho",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "9",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "08:00",
+      "aula": "C10"
+    },
+    "revision1": {
+      "dia": "Vie 10/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "08:00",
+      "aula": "C10"
+    }
+  },
+  {
+    "materia": "Derecho",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "9",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    },
+    "revision1": {
+      "dia": "Vie 10/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "C04"
+    }
+  },
+  {
+    "materia": "Derecho",
+    "seccion": "NB",
+    "turno": "N",
+    "semGrupo": "9",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "C10"
+    },
+    "revision1": {
+      "dia": "Vie 10/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "C10"
+    }
+  },
+  {
+    "materia": "Desarrollo del Emprendedorismo",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 11/04/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "parcial2": {
+      "dia": "Sab 30/05/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "final1": {
+      "dia": "Sab 27/06/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 04/07/26",
+      "hora": "08:00",
+      "aula": "E01"
+    }
+  },
+  {
+    "materia": "Diagnóstico por imágenes",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "15:00:00",
+      "aula": "F11"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "15:00:00",
+      "aula": "F11"
+    }
+  },
+  {
+    "materia": "Dibujo Técnico",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "C12"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "C12"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "C12"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "C12"
+    }
+  },
+  {
+    "materia": "Dibujo Técnico",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    }
+  },
+  {
+    "materia": "Dibujo Técnico",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "18:00:00",
+      "aula": "C11"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "18:00:00",
+      "aula": "C11"
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "18:00:00",
+      "aula": "C11"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "18:00:00",
+      "aula": "C11"
+    }
+  },
+  {
+    "materia": "Dibujo Técnico Mecánico",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "5",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "18:00:00",
+      "aula": "F36"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "18:00:00",
+      "aula": "F36"
+    }
+  },
+  {
+    "materia": "Diseño Asistido por Computadora",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "Lab MS\nLab SO"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "Lab MS\nLab SO"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "lab MS\nLabSO"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "Lab M\nLab SO"
+    }
+  },
+  {
+    "materia": "Diseño Asistido por Computadora",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "Lab BD\nLab IA"
+    }
+  },
+  {
+    "materia": "Diseño Asistido por Computadora",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "18:00:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "18:00:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "18:00:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "18:00:00",
+      "aula": "Lab BD\nLab IA"
+    }
+  },
+  {
+    "materia": "Diseño Asistido por Computadora",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "18:00:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "18:00:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "18:00:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "18:00:00",
+      "aula": "Lab BD\nLab IA"
+    }
+  },
+  {
+    "materia": "Diseño de Elementos de Máquinas",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "7",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "08:00",
+      "aula": "F18"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "08:00",
+      "aula": "F18"
+    }
+  },
+  {
+    "materia": "Diseño y Manufactura Asistido por Computadora",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "8",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "15:00:00",
+      "aula": "Lab MS"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "15:00:00",
+      "aula": "Lab MS"
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "15:00:00",
+      "aula": "Lab MS"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "15:00:00",
+      "aula": "Lab MS"
+    }
+  },
+  {
+    "materia": "Economía y Finanzas",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Economía y Finanzas",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Economía y Finanzas",
+    "seccion": "TS",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "18:00:00",
+      "aula": "C03"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "18:00:00",
+      "aula": "C03"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    }
+  },
+  {
+    "materia": "Economía y Finanzas",
+    "seccion": "TS",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "18:00:00",
+      "aula": "C03"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "18:00:00",
+      "aula": "C03"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    }
+  },
+  {
+    "materia": "Economía y Finanzas",
+    "seccion": "TT",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "18:00:00",
+      "aula": "C01"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "18:00:00",
+      "aula": "C01"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    }
+  },
+  {
+    "materia": "Economía y Finanzas",
+    "seccion": "TT",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "18:00:00",
+      "aula": "C01"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "18:00:00",
+      "aula": "C01"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    }
+  },
+  {
+    "materia": "Electrónica Aplicada",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "5",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "08:00",
+      "aula": "E01"
+    }
+  },
+  {
+    "materia": "Electrónica Digital",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "6",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    }
+  },
+  {
+    "materia": "Electrónica Digital",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "6",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "18:00:00",
+      "aula": "A54"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "18:00:00",
+      "aula": "A54"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "E04"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "E04"
+    }
+  },
+  {
+    "materia": "Electrónica Digital I",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "F16"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "F16"
+    }
+  },
+  {
+    "materia": "Electrónica Digital II",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "08:00",
+      "aula": "F16"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "08:00",
+      "aula": "F16"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "F16"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "F16"
+    }
+  },
+  {
+    "materia": "Electrónica I",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "F25"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "F25"
+    }
+  },
+  {
+    "materia": "Electrónica I",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "08:00",
+      "aula": "E01"
+    }
+  },
+  {
+    "materia": "Electrónica I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "15:00:00",
+      "aula": "A54"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "15:00:00",
+      "aula": "A54"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "15:00:00",
+      "aula": "A54"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "15:00:00",
+      "aula": "A54"
+    }
+  },
+  {
+    "materia": "Electrónica II",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Mar 14/04/26",
+      "hora": "15:00:00",
+      "aula": "C02"
+    },
+    "parcial2": {
+      "dia": "Mar 02/06/26",
+      "hora": "15:00:00",
+      "aula": "C02"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "15:00:00",
+      "aula": "A53"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "15:00:00",
+      "aula": "A53"
+    }
+  },
+  {
+    "materia": "Electrónica III",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Mar 07/04/26",
+      "hora": "15:00:00",
+      "aula": "C03"
+    },
+    "parcial2": {
+      "dia": "Mar 26/05/26",
+      "hora": "15:00:00",
+      "aula": "C03"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "15:00:00",
+      "aula": "A53"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "15:00:00",
+      "aula": "A53"
+    }
+  },
+  {
+    "materia": "Electrónica Médica I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "15:00:00",
+      "aula": "F11"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "15:00:00",
+      "aula": "F11"
+    }
+  },
+  {
+    "materia": "Electrónica Médica II",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "15:00:00",
+      "aula": "F05"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "14:00:00",
+      "aula": "F05"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "15:00:00",
+      "aula": "F05"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "15:00:00",
+      "aula": "F05"
+    }
+  },
+  {
+    "materia": "Electrónica Médica III",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    }
+  },
+  {
+    "materia": "Elementos de Máquinas",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00:00",
+      "aula": "A58"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "A58"
+    }
+  },
+  {
+    "materia": "Estadística",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "08:00",
+      "aula": "A56"
+    }
+  },
+  {
+    "materia": "Estadística",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "revision1": {
+      "dia": "Lun 06/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "08:00",
+      "aula": "A57"
+    }
+  },
+  {
+    "materia": "Estadística",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    }
+  },
+  {
+    "materia": "Estadística",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Estadística",
+    "seccion": "TT",
+    "turno": "T",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "18:00:00",
+      "aula": "A53"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "18:00:00",
+      "aula": "A53"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    }
+  },
+  {
+    "materia": "Evaluación de Proyectos",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "15:00:00",
+      "aula": "C01"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "15:00:00",
+      "aula": "C01"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "C01"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "C01"
+    }
+  },
+  {
+    "materia": "Física I",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Vie 29/05/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "08:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Física I",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "parcial2": {
+      "dia": "Vie 29/05/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "08:00",
+      "aula": "A50"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "08:00",
+      "aula": "A50"
+    }
+  },
+  {
+    "materia": "Física I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "15:00:00",
+      "aula": "A55"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "15:45:00",
+      "aula": "I02"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "15:00:00",
+      "aula": "A55"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "15:00:00",
+      "aula": "A55"
+    }
+  },
+  {
+    "materia": "Física I",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "19:30:00",
+      "aula": "A56"
+    }
+  },
+  {
+    "materia": "Física I",
+    "seccion": "NB",
+    "turno": "N",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "19:30:00",
+      "aula": "A58"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "19:30:00",
+      "aula": "A58"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "19:30:00",
+      "aula": "A58"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "19:30:00",
+      "aula": "A58"
+    }
+  },
+  {
+    "materia": "Física I",
+    "seccion": "NC",
+    "turno": "N",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "19:30:00",
+      "aula": "A54"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "19:30:00",
+      "aula": "A54"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "19:30:00",
+      "aula": "A55"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "19:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "19:30:00",
+      "aula": "A55"
+    }
+  },
+  {
+    "materia": "Física II",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mar 14/04/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Mar 02/06/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "08:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Física II",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mar 14/04/26",
+      "hora": "08:00",
+      "aula": "A52"
+    },
+    "parcial2": {
+      "dia": "Mar 02/06/26",
+      "hora": "08:00",
+      "aula": "A52"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "08:00",
+      "aula": "A52"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "08:00",
+      "aula": "A52"
+    }
+  },
+  {
+    "materia": "Física II",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mar 14/04/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "parcial2": {
+      "dia": "Mar 02/06/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    }
+  },
+  {
+    "materia": "Física II",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mar 14/04/26",
+      "hora": "18:00:00",
+      "aula": "A53"
+    },
+    "parcial2": {
+      "dia": "Mar 02/06/26",
+      "hora": "18:00:00",
+      "aula": "A53"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "A53"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "A53"
+    }
+  },
+  {
+    "materia": "Física II",
+    "seccion": "TS",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mar 14/04/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Mar 02/06/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Física II",
+    "seccion": "TT",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mar 14/04/26",
+      "hora": "18:00:00",
+      "aula": "A54"
+    },
+    "parcial2": {
+      "dia": "Mar 02/06/26",
+      "hora": "18:00:00",
+      "aula": "A54"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "A54"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "A54"
+    }
+  },
+  {
+    "materia": "Física III",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "08:00",
+      "aula": "A54"
+    },
+    "parcial2": {
+      "dia": "Vie 29/05/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    }
+  },
+  {
+    "materia": "Física III",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "08:00",
+      "aula": "A53"
+    },
+    "parcial2": {
+      "dia": "Vie 29/05/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    }
+  },
+  {
+    "materia": "Física III",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "15:00:00",
+      "aula": "A50"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "17:30:00",
+      "aula": "A50"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "15:00:00",
+      "aula": "A50"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "15:00:00",
+      "aula": "A50"
+    }
+  },
+  {
+    "materia": "Física IV",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "08:00",
+      "aula": "A54"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "08:00",
+      "aula": "A54"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "08:00",
+      "aula": "A54"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "08:00",
+      "aula": "A54"
+    }
+  },
+  {
+    "materia": "Física IV",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "08:00",
+      "aula": "A53"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "08:00",
+      "aula": "A53"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "08:00",
+      "aula": "A53"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "08:00",
+      "aula": "A53"
+    }
+  },
+  {
+    "materia": "Física IV",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "revision1": {
+      "dia": "Jue 02/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    }
+  },
+  {
+    "materia": "Física IV",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Jue 02/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Física V",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "parcial2": {
+      "dia": "Vie 29/05/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "08:00",
+      "aula": "A55"
+    }
+  },
+  {
+    "materia": "Física V",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "4",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "15:00:00",
+      "aula": "A. Magna"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "16:45:00",
+      "aula": "A. Magna"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "15:00:00",
+      "aula": "A. Magna"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "15:00:00",
+      "aula": "A. Magna"
+    }
+  },
+  {
+    "materia": "Física VI",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "08:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Física VI",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "5",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "18:00:00",
+      "aula": "A52"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Física VII",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Mar 14/04/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "parcial2": {
+      "dia": "Mar 02/06/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "08:00",
+      "aula": "A57"
+    }
+  },
+  {
+    "materia": "Física VII",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "A50"
+    }
+  },
+  {
+    "materia": "Geometría Analítica y Vectores",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "08:00",
+      "aula": "A59"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "08:00",
+      "aula": "A59"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "08:00",
+      "aula": "A59"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "08:00",
+      "aula": "A59"
+    }
+  },
+  {
+    "materia": "Geometría Analítica y Vectores",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "08:00",
+      "aula": "A58"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "08:00",
+      "aula": "A58"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "08:00",
+      "aula": "A58"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "08:00",
+      "aula": "A58"
+    }
+  },
+  {
+    "materia": "Geometría Analítica y Vectores",
+    "seccion": "MK",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "08:00",
+      "aula": "A57"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "08:00",
+      "aula": "A57"
+    }
+  },
+  {
+    "materia": "Geometría Analítica y Vectores",
+    "seccion": "ML",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "08:00",
+      "aula": "A56"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "08:00",
+      "aula": "A56"
+    }
+  },
+  {
+    "materia": "Geometría Analítica y Vectores",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "18:00:00",
+      "aula": "A55"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "18:00:00",
+      "aula": "A55"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "A55"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "A55"
+    }
+  },
+  {
+    "materia": "Geometría Analítica y Vectores",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "18:00:00",
+      "aula": "A56"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "18:00:00",
+      "aula": "A56"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "A56"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "A56"
+    }
+  },
+  {
+    "materia": "Geometría Analítica y Vectores",
+    "seccion": "TS",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "18:00:00",
+      "aula": "A58"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "18:00:00",
+      "aula": "A58"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "A58"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "A58"
+    }
+  },
+  {
+    "materia": "Geometría Analítica y Vectores",
+    "seccion": "TT",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Vie 17/04/26",
+      "hora": "18:00:00",
+      "aula": "A59"
+    },
+    "parcial2": {
+      "dia": "Vie 05/06/26",
+      "hora": "18:00:00",
+      "aula": "A59"
+    },
+    "final1": {
+      "dia": "Vie 26/06/26",
+      "hora": "18:00:00",
+      "aula": "A59"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 10/07/26",
+      "hora": "18:00:00",
+      "aula": "A59"
+    }
+  },
+  {
+    "materia": "Idioma I",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "08:00",
+      "aula": "C04"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "08:00",
+      "aula": "C04"
+    },
+    "final1": {
+      "dia": "Jue 18/06/26",
+      "hora": "08:00",
+      "aula": "C04"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 02/07/26",
+      "hora": "08:00",
+      "aula": "C04"
+    }
+  },
+  {
+    "materia": "Idioma I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "A52"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "A52"
+    },
+    "final1": {
+      "dia": "Jue 18/06/26",
+      "hora": "15:00:00",
+      "aula": "I01"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 02/07/26",
+      "hora": "15:00:00",
+      "aula": "I01"
+    }
+  },
+  {
+    "materia": "Idioma I",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "A50"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "A50"
+    },
+    "final1": {
+      "dia": "Jue 18/06/26",
+      "hora": "15:00:00",
+      "aula": "I03"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 02/07/26",
+      "hora": "15:00:00",
+      "aula": "I03"
+    }
+  },
+  {
+    "materia": "Idioma I",
+    "seccion": "TS",
+    "turno": "T",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Jue 18/06/26",
+      "hora": "15:00:00",
+      "aula": "I02"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 02/07/26",
+      "hora": "15:00:00",
+      "aula": "I02"
+    }
+  },
+  {
+    "materia": "Idioma II",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "08:00",
+      "aula": "A51"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "08:00",
+      "aula": "A51"
+    }
+  },
+  {
+    "materia": "Idioma II",
+    "seccion": "ML",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "08:00",
+      "aula": "A50"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "08:00",
+      "aula": "A50"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "08:00",
+      "aula": "A50"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "08:00",
+      "aula": "A50"
+    }
+  },
+  {
+    "materia": "Informática Aplicada",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "1",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "E01"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "Lab HPC"
+    }
+  },
+  {
+    "materia": "Ingeniería de Materiales",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "18:00:00",
+      "aula": "C02"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "18:00:00",
+      "aula": "C02"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "C02"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "C02"
+    }
+  },
+  {
+    "materia": "Instalaciones Eléctricas I",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "18:00:00",
+      "aula": "F31"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "18:00:00",
+      "aula": "F31"
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "18:00:00",
+      "aula": "F17"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "18:00:00",
+      "aula": "F17"
+    }
+  },
+  {
+    "materia": "Instalaciones Eléctricas II",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "18:00:00",
+      "aula": "F38"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "18:00:00",
+      "aula": "F38"
+    }
+  },
+  {
+    "materia": "Instrumentación y Control Industrial",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "F13"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "F13"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00:00",
+      "aula": "F13"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "F13"
+    }
+  },
+  {
+    "materia": "Inteligencia Artificial",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "18:00:00",
+      "aula": "F31"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "18:00:00",
+      "aula": "F31"
+    }
+  },
+  {
+    "materia": "Manufactura con Máquinas Convencionales",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "15:00:00",
+      "aula": "F18"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "15:00:00",
+      "aula": "F18"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "15:00:00",
+      "aula": "F18"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "15:00:00",
+      "aula": "F18"
+    }
+  },
+  {
+    "materia": "Máquinas a Control Numérico Computarizado",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "15:00:00",
+      "aula": "F14"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "15:00:00",
+      "aula": "F14"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "15:00:00",
+      "aula": "F14"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "15:00:00",
+      "aula": "F14"
+    }
+  },
+  {
+    "materia": "Máquinas Eléctricas",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "6",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Mar 07/04/26",
+      "hora": "15:00:00",
+      "aula": "A51"
+    },
+    "parcial2": {
+      "dia": "Mar 26/05/26",
+      "hora": "15:00:00",
+      "aula": "A51"
+    },
+    "final1": {
+      "dia": "Mar 16/06/26",
+      "hora": "15:00:00",
+      "aula": "I04"
+    },
+    "revision1": {
+      "dia": "Vie 26/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Mar 07/07/26",
+      "hora": "15:00:00",
+      "aula": "I04"
+    }
+  },
+  {
+    "materia": "Mecánica",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "7",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "08:00",
+      "aula": "F11"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "08:00",
+      "aula": "F11"
+    }
+  },
+  {
+    "materia": "Mecánica de Fluidos",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "6",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    }
+  },
+  {
+    "materia": "Mecánica de Fluidos",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "6",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "18:00:00",
+      "aula": "C12"
+    }
+  },
+  {
+    "materia": "Metodología de la Investigación",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "15:00:00",
+      "aula": "C11"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "15:00:00",
+      "aula": "C11"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "15:00:00",
+      "aula": "C11"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "15:00:00",
+      "aula": "C11"
+    }
+  },
+  {
+    "materia": "Metodología de la Investigación",
+    "seccion": "TS",
+    "turno": "T",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "15:00:00",
+      "aula": "C12"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "15:00:00",
+      "aula": "C12"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "15:00:00",
+      "aula": "C12"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "15:00:00",
+      "aula": "C12"
+    }
+  },
+  {
+    "materia": "Metodología de la Investigación",
+    "seccion": "NB",
+    "turno": "N",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "19:30:00",
+      "aula": "C02"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "19:30:00",
+      "aula": "C02"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "19:30:00",
+      "aula": "C02"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "19:30:00",
+      "aula": "C02"
+    }
+  },
+  {
+    "materia": "Metodología de la Investigación",
+    "seccion": "NC",
+    "turno": "N",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Mie 15/04/26",
+      "hora": "19:30:00",
+      "aula": "C01"
+    },
+    "parcial2": {
+      "dia": "Mie 03/06/26",
+      "hora": "19:30:00",
+      "aula": "C01"
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "19:30:00",
+      "aula": "C01"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "19:30:00",
+      "aula": "C01"
+    }
+  },
+  {
+    "materia": "Metodología de la Investigación",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "15:00:00",
+      "aula": "C01"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "15:00:00",
+      "aula": "C01"
+    }
+  },
+  {
+    "materia": "Metodología de la Investigación",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 24/06/26",
+      "hora": "19:30:00",
+      "aula": "C03"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 08/07/26",
+      "hora": "19:30:00",
+      "aula": "C03"
+    }
+  },
+  {
+    "materia": "Métodos de los Elementos Finitos",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "F37"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "F37"
+    }
+  },
+  {
+    "materia": "Microcontroladores",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    }
+  },
+  {
+    "materia": "Microondas",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "8",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "Jue 16/04/26",
+      "hora": "08:00",
+      "aula": "F13"
+    },
+    "parcial2": {
+      "dia": "Jue 04/06/26",
+      "hora": "08:00",
+      "aula": "F13"
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "08:00",
+      "aula": "F13"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "08:00",
+      "aula": "F13"
+    }
+  },
+  {
+    "materia": "Modelado de Sistemas Físicos",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "18:00:00",
+      "aula": "F38"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00",
+      "aula": "F38"
+    }
+  },
+  {
+    "materia": "Modulación I",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "7",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    }
+  },
+  {
+    "materia": "Modulación II",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "8",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    },
+    "parcial2": {
+      "dia": "Lun 08/06/26",
+      "hora": "13:45:00",
+      "aula": "F18"
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    },
+    "revision1": {
+      "dia": "Sab 04/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "18:00:00",
+      "aula": "F18"
+    }
+  },
+  {
+    "materia": "Neumática e Hidráulica Industrial",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    }
+  },
+  {
+    "materia": "Optica",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "15:00:00",
+      "aula": "F17"
+    }
+  },
+  {
+    "materia": "Organización Hospitalaria",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "F36"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "F36"
+    }
+  },
+  {
+    "materia": "Planeamiento y Control de la Producción",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "15:00:00",
+      "aula": "I03"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "14:00:00",
+      "aula": "I04"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "15:00:00",
+      "aula": "I03"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "15:00:00",
+      "aula": "I03"
+    }
+  },
+  {
+    "materia": "Principios de Electrónica",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "3",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "08:00",
+      "aula": "E03"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "08:00",
+      "aula": "E03"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "08:00",
+      "aula": "E03"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "08:00",
+      "aula": "E03"
+    }
+  },
+  {
+    "materia": "Principios de Metrología Industrial",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "6",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "A58"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "A58"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00:00",
+      "aula": "A58"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "A58"
+    }
+  },
+  {
+    "materia": "Principios de Sensores y Actuadores",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "F35"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "F35"
+    }
+  },
+  {
+    "materia": "Programación",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "08:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "08:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "final1": {
+      "dia": "Sab 27/06/26",
+      "hora": "08:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 04/07/26",
+      "hora": "08:00",
+      "aula": "Lab BD\nLab IA"
+    }
+  },
+  {
+    "materia": "Programación",
+    "seccion": "MJ",
+    "turno": "M",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "08:00",
+      "aula": "Lab AL"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "08:00",
+      "aula": "Lab AL"
+    },
+    "final1": {
+      "dia": "Sab 27/06/26",
+      "hora": "08:00",
+      "aula": "Lab AL"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Sab 04/07/26",
+      "hora": "08:00",
+      "aula": "Lab AL"
+    }
+  },
+  {
+    "materia": "Programación",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,MEC,TI",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "19:30:00",
+      "aula": "Lab BD\nLab IA"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "19:30:00",
+      "aula": "Lab HPC"
+    },
+    "final1": {
+      "dia": "Sab 27/06/26",
+      "hora": "14:30:00",
+      "aula": "Lab HPC"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00"
+    },
+    "final2": {
+      "dia": "Sab 04/07/26",
+      "hora": "14:30:00",
+      "aula": "Lab HPC"
+    }
+  },
+  {
+    "materia": "Protocolos de Comunicación I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00:00",
+      "aula": "F11"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "F11"
+    }
+  },
+  {
+    "materia": "Protocolos de Comunicación II",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "8",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "Sab 18/04/26",
+      "hora": "08:00",
+      "aula": "F14"
+    },
+    "parcial2": {
+      "dia": "Sab 06/06/26",
+      "hora": "08:00",
+      "aula": "F14"
+    },
+    "final1": {
+      "dia": "Sab 20/06/26",
+      "hora": "08:00",
+      "aula": "F14"
+    },
+    "revision1": {
+      "dia": "Mar 30/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Sab 11/07/26",
+      "hora": "08:00",
+      "aula": "F14"
+    }
+  },
+  {
+    "materia": "Proyecto de Sistemas Mecatrónicos II",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "18:00:00",
+      "aula": "F34"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00",
+      "aula": "F34"
+    }
+  },
+  {
+    "materia": "Proyecto de Trabajo de Grado",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "revision1": {
+      "dia": "",
+      "hora": ""
+    },
+    "final2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    }
+  },
+  {
+    "materia": "Proyecto de Trabajo de Grado",
+    "seccion": "TS",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "revision1": {
+      "dia": "",
+      "hora": ""
+    },
+    "final2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    }
+  },
+  {
+    "materia": "Proyecto de Trabajo de Grado",
+    "seccion": "TT",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "revision1": {
+      "dia": "",
+      "hora": ""
+    },
+    "final2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    }
+  },
+  {
+    "materia": "Proyecto de Trabajo de Grado",
+    "seccion": "TU",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "revision1": {
+      "dia": "",
+      "hora": ""
+    },
+    "final2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    }
+  },
+  {
+    "materia": "Proyectos de Sistemas Mecatrónicos I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "parcial2": {
+      "dia": "Mar 09/06/26",
+      "hora": "15:45:00",
+      "aula": "F33"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00",
+      "aula": "F33"
+    }
+  },
+  {
+    "materia": "Química",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "08:00",
+      "aula": "A. Magna"
+    }
+  },
+  {
+    "materia": "Química",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "15:00:00",
+      "aula": "A. Magna"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "15:00:00",
+      "aula": "A. Magna"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "15:00",
+      "aula": "A. Magna"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "15:00",
+      "aula": "A. Magna"
+    }
+  },
+  {
+    "materia": "Química",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "2",
+    "enfasis": "-- --",
+    "parcial1": {
+      "dia": "Jue 09/04/26",
+      "hora": "15:00:00",
+      "aula": "A. Magna"
+    },
+    "parcial2": {
+      "dia": "Jue 28/05/26",
+      "hora": "15:00:00",
+      "aula": "A. Magna"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "15:00",
+      "aula": "A. Magna"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "15:00",
+      "aula": "A. Magna"
+    }
+  },
+  {
+    "materia": "Química Clínica y Técnica de Laboratorio",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "F07"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "F07"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "15:00:00",
+      "aula": "F07"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "15:00:00",
+      "aula": "F07"
+    }
+  },
+  {
+    "materia": "Redes de Datos I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    }
+  },
+  {
+    "materia": "Redes de Datos II",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    }
+  },
+  {
+    "materia": "Reología",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "7",
+    "enfasis": "EM",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Jue 25/06/26",
+      "hora": "08:00",
+      "aula": "F16"
+    },
+    "revision1": {
+      "dia": "Jue 02/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Jue 09/07/26",
+      "hora": "08:00",
+      "aula": "F16"
+    }
+  },
+  {
+    "materia": "Robótica",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "18:00:00",
+      "aula": "Lab MS"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "18:00:00",
+      "aula": "Lab MS"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "18:00:00",
+      "aula": "Lab MS"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "18:00:00",
+      "aula": "Lab MS"
+    }
+  },
+  {
+    "materia": "Simulación de Sistemas Dinámicos",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "18:00:00",
+      "aula": "F35"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "18:00:00",
+      "aula": "F3"
+    }
+  },
+  {
+    "materia": "Sistema de Manufactura Flexible",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "15:00:00",
+      "aula": "F16"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "15:00:00",
+      "aula": "F16"
+    }
+  },
+  {
+    "materia": "Sistema de Mejoramiento Ambiental",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "10",
+    "enfasis": "MEC",
+    "parcial1": {
+      "dia": "Lun 13/04/26",
+      "hora": "15:00:00",
+      "aula": "A53"
+    },
+    "parcial2": {
+      "dia": "Lun 01/06/26",
+      "hora": "15:00:00",
+      "aula": "A53"
+    },
+    "final1": {
+      "dia": "Mar 30/06/26",
+      "hora": "15:00:00",
+      "aula": "F18"
+    },
+    "revision1": {
+      "dia": "Mie 08/07/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Lun 13/07/26",
+      "hora": "15:00:00",
+      "aula": "F18"
+    }
+  },
+  {
+    "materia": "Sistemas de Control I",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "08:00",
+      "aula": "C04"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "08:00",
+      "aula": "A55"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "08:00",
+      "aula": "A55"
+    }
+  },
+  {
+    "materia": "Sistemas de Control I",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Lun 06/04/26",
+      "hora": "18:00:00",
+      "aula": "C01"
+    },
+    "parcial2": {
+      "dia": "Lun 25/05/26",
+      "hora": "18:00:00",
+      "aula": "Lab HPC"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "18:00:00",
+      "aula": "Lab HPC"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "18:00:00",
+      "aula": "E02"
+    }
+  },
+  {
+    "materia": "Sistemas de Control I",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "6",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    }
+  },
+  {
+    "materia": "Sistemas de Control II",
+    "seccion": "",
+    "turno": "N",
+    "semGrupo": "7",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Mar 07/04/26",
+      "hora": "18:00:00",
+      "aula": "A57"
+    },
+    "parcial2": {
+      "dia": "Mar 26/05/26",
+      "hora": "18:00:00",
+      "aula": "A57"
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "18:00:00",
+      "aula": "E01"
+    }
+  },
+  {
+    "materia": "Sistemas de Control II",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "18:00:00",
+      "aula": "Lab HPC"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "18:00:00",
+      "aula": "E02"
+    }
+  },
+  {
+    "materia": "Sistemas de Potencia I",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "Vie 10/04/26",
+      "hora": "18:00:00",
+      "aula": "F40"
+    },
+    "parcial2": {
+      "dia": "Jue 11/06/26",
+      "hora": "18:30:00",
+      "aula": "C04"
+    },
+    "final1": {
+      "dia": "Vie 19/06/26",
+      "hora": "18:00:00",
+      "aula": "F40"
+    },
+    "revision1": {
+      "dia": "Lun 29/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Vie 03/07/26",
+      "hora": "18:00:00",
+      "aula": "F40"
+    }
+  },
+  {
+    "materia": "Sistemas de Transmisión y Recepción de Radio",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "F11"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "F11"
+    }
+  },
+  {
+    "materia": "Sistemas de Transmisión y Recepción de Televisión",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "TI",
+    "parcial1": {
+      "dia": "Mie 08/04/26",
+      "hora": "18:00:00",
+      "aula": "F11"
+    },
+    "parcial2": {
+      "dia": "Mie 27/05/26",
+      "hora": "18:00:00",
+      "aula": "F11"
+    },
+    "final1": {
+      "dia": "Mie 17/06/26",
+      "hora": "18:00:00",
+      "aula": "F11"
+    },
+    "revision1": {
+      "dia": "Sab 27/06/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mie 01/07/26",
+      "hora": "18:00:00",
+      "aula": "F11"
+    }
+  },
+  {
+    "materia": "Sistemas Digitales I",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "7",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    }
+  },
+  {
+    "materia": "Sistemas Digitales II",
+    "seccion": "TR",
+    "turno": "T",
+    "semGrupo": "8",
+    "enfasis": "CI,EM,TI",
+    "parcial1": {
+      "dia": "Mar 14/04/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    },
+    "parcial2": {
+      "dia": "Mar 02/06/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    },
+    "final1": {
+      "dia": "Lun 29/06/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    },
+    "revision1": {
+      "dia": "Jue 09/07/26",
+      "hora": "14:00:00"
+    },
+    "final2": {
+      "dia": "Mie 15/07/26",
+      "hora": "15:00:00",
+      "aula": "F13"
+    }
+  },
+  {
+    "materia": "Sistemas Informáticos para Automatización y Control Industrial",
+    "seccion": "TQ",
+    "turno": "T",
+    "semGrupo": "9",
+    "enfasis": "CI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Lun 15/06/26",
+      "hora": "18:00:00",
+      "aula": "F40"
+    },
+    "revision1": {
+      "dia": "Jue 25/06/26",
+      "hora": "17:00:00"
+    },
+    "final2": {
+      "dia": "Lun 06/07/26",
+      "hora": "18:00:00",
+      "aula": "F40"
+    }
+  },
+  {
+    "materia": "Sistemas Operativos de Microcomputadoras",
+    "seccion": "MI",
+    "turno": "M",
+    "semGrupo": "7",
+    "enfasis": "CI,TI",
+    "parcial1": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "parcial2": {
+      "dia": "",
+      "hora": "",
+      "aula": ""
+    },
+    "final1": {
+      "dia": "Mar 23/06/26",
+      "hora": "08:00",
+      "aula": "F11"
+    },
+    "revision1": {
+      "dia": "Vie 03/07/26",
+      "hora": "10:30:00"
+    },
+    "final2": {
+      "dia": "Mar 14/07/26",
+      "hora": "08:00",
+      "aula": "F11"
+    }
+  }
+]
