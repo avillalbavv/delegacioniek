@@ -29,3 +29,4 @@
 - Ordenados los avisos por tipo y, dentro de cada tipo, desde la publicación más reciente a la más antigua.
 - Adaptado el centro de notificaciones a pantallas móviles, con cierre exterior, botón de cierre y soporte para Escape.
 - Corregida la detección de oferta para variantes de nombres del Excel y reforzada la preferencia de turno del generador de horarios.
+- Corregido el modo claro del mapa interactivo, incluyendo selector de énfasis, grafo, tabla, controles y modal de materias.

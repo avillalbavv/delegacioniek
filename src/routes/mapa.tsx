@@ -62,6 +62,87 @@ html.light .iek-mapa-root {
   --m-input-bg: rgba(15,23,42,0.05);
 }
 
+html.light .iek-mapa-selector {
+  background:oklch(0.96 0.015 255 / 0.96);
+  color:#141a30;
+}
+html.light .iek-mapa-enfasis-card {
+  border-color:rgba(15,23,42,0.13);
+  box-shadow:0 12px 32px -24px rgba(15,23,42,0.35);
+}
+html.light .iek-mapa-enfasis-card::before {
+  background:linear-gradient(90deg,transparent,rgba(15,23,42,0.12),transparent);
+}
+html.light .iek-mapa-enfasis-card:hover {
+  box-shadow:0 24px 54px -26px rgba(15,23,42,0.38);
+}
+html.light .iek-mapa-enfasis-bar {
+  background:rgba(15,23,42,0.035);
+  border-color:rgba(15,23,42,0.11);
+}
+html.light .iek-mapa-root .m-toolbar select option {
+  background:#fff;
+  color:#141a30;
+}
+html.light .iek-mapa-root .m-node.state-aprobada .m-nname,
+html.light .iek-mapa-root .m-stat-card.ok .m-val,
+html.light .iek-mapa-root .m-pill.aprobada {
+  color:#047857;
+}
+html.light .iek-mapa-root .m-stat-card.warn .m-val,
+html.light .iek-mapa-root .m-pill.cursando,
+html.light .iek-mapa-root .m-disclaimer svg {
+  color:#a16207;
+}
+html.light .iek-mapa-root .m-stat-card.lock .m-val,
+html.light .iek-mapa-root .m-pill.bloqueada {
+  color:#475569;
+}
+html.light .iek-mapa-root .m-section-title svg,
+html.light .iek-mapa-root .m-req-card h4 svg {
+  color:#0891b2;
+}
+
+html.light .iek-mapa-modal-overlay {
+  background:rgba(15,23,42,0.28);
+}
+html.light .iek-mapa-modal {
+  --m-modal-muted:#64748b;
+  --m-modal-ok:#047857;
+  --m-modal-accent:#0891b2;
+  background:linear-gradient(160deg,rgba(255,255,255,0.99),rgba(241,245,249,0.99));
+  border-color:rgba(15,23,42,0.14);
+  box-shadow:0 24px 70px -28px rgba(15,23,42,0.45);
+  color:#334155;
+}
+html.light .iek-mapa-modal .m-close {
+  background:rgba(15,23,42,0.05);
+  border-color:rgba(15,23,42,0.12);
+  color:#475569;
+}
+html.light .iek-mapa-modal .m-close:hover {
+  color:#0f172a;
+  background:rgba(15,23,42,0.1);
+}
+html.light .iek-mapa-modal h2 { color:#141a30; }
+html.light .iek-mapa-modal .m-block h5,
+html.light .iek-mapa-modal .m-req-list .empty { color:#64748b; }
+html.light .iek-mapa-modal .m-req-list li,
+html.light .iek-mapa-modal .m-status-btn {
+  background:rgba(15,23,42,0.035);
+  border-color:rgba(15,23,42,0.11);
+  color:#475569;
+}
+html.light .iek-mapa-modal .m-req-list li:hover,
+html.light .iek-mapa-modal .m-status-btn:hover { background:rgba(15,23,42,0.075); }
+html.light .iek-mapa-modal .m-status-btn.sel-cursando.active { color:#854d0e; }
+html.light .iek-mapa-modal .m-status-btn.sel-aprobada.active { color:#047857; }
+html.light .iek-mapa-modal .m-status-btn.sel-pendiente.active {
+  background:rgba(100,116,139,0.16);
+  color:#334155;
+}
+html.light .iek-mapa-modal .m-special-note { color:#92400e; }
+
 /* Selector overlay */
 .iek-mapa-selector {
   position:fixed;inset:0;z-index:150;
@@ -237,7 +318,7 @@ html.light .iek-mapa-root {
 /* Modal */
 .iek-mapa-modal-overlay{position:fixed;inset:0;background:rgba(3,6,16,0.7);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200;padding:18px;}
 .iek-mapa-modal-overlay.open{display:flex;}
-.iek-mapa-modal{width:min(520px,100%);max-height:88vh;overflow:auto;background:linear-gradient(160deg,rgba(20,28,52,0.97),rgba(10,15,30,0.98));border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:26px;box-shadow:0 20px 60px -20px rgba(0,0,0,0.7);position:relative;}
+.iek-mapa-modal{--m-modal-muted:#6c7798;--m-modal-ok:#34d399;--m-modal-accent:#22d3ee;width:min(520px,100%);max-height:88vh;overflow:auto;background:linear-gradient(160deg,rgba(20,28,52,0.97),rgba(10,15,30,0.98));border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:26px;box-shadow:0 20px 60px -20px rgba(0,0,0,0.7);position:relative;}
 .iek-mapa-modal .m-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:10px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#a8b3d1;transition:.15s;}
 .iek-mapa-modal .m-close:hover{color:#eef2ff;background:rgba(255,255,255,0.12);}
 .iek-mapa-modal h2{margin:4px 0 4px;font-size:21px;color:#eef2ff;padding-right:40px;font-family:"Space Grotesk",system-ui,sans-serif;}
@@ -504,7 +585,7 @@ function MapaInteractivoPage() {
         box.appendChild(div);
       });
       const sep = document.createElement("div");
-      sep.style.cssText = "width:1px;background:rgba(255,255,255,0.08);margin:0 4px";
+      sep.style.cssText = "width:1px;background:rgba(var(--m-white),0.08);margin:0 4px";
       box.appendChild(sep);
       [
         { label: "Aprobada", color: "#34d399" },
@@ -763,7 +844,7 @@ function MapaInteractivoPage() {
             if (!r) return;
             const li = document.createElement("li");
             const ok = isAprobada(rid);
-            li.innerHTML = `<svg class="m-check" viewBox="0 0 24 24" fill="none" stroke="${ok ? "#34d399" : "#6c7798"}" stroke-width="2">${ok ? '<path d="M20 6L9 17l-5-5"/>' : '<circle cx="12" cy="12" r="9"/>'}</svg> ${r.nombre}`;
+            li.innerHTML = `<svg class="m-check" viewBox="0 0 24 24" fill="none" stroke="${ok ? "var(--m-modal-ok)" : "var(--m-modal-muted)"}" stroke-width="2">${ok ? '<path d="M20 6L9 17l-5-5"/>' : '<circle cx="12" cy="12" r="9"/>'}</svg> ${r.nombre}`;
             li.onclick = () => openModal(rid);
             reqList.appendChild(li);
           });
@@ -794,7 +875,7 @@ function MapaInteractivoPage() {
             if (!u) return;
             const li = document.createElement("li");
             li.style.display = "flex";
-            li.innerHTML = `<svg class="m-check" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> ${u.nombre}<span style="color:#6c7798;margin-left:auto">Sem. ${u.semestre}</span>`;
+            li.innerHTML = `<svg class="m-check" viewBox="0 0 24 24" fill="none" stroke="var(--m-modal-accent)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> ${u.nombre}<span style="color:var(--m-modal-muted);margin-left:auto">Sem. ${u.semestre}</span>`;
             li.onclick = () => openModal(uid);
             unlockList.appendChild(li);
           });
