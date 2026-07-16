@@ -1,5 +1,6 @@
 import type { ClaseInfo, Docente, ExamenInfo, Seccion } from "./poliplanner.ts";
 import { normalizeAcademicName } from "./search.ts";
+import * as ExcelJS from "exceljs";
 import type { CellValue } from "exceljs";
 
 type Cell = string | number | boolean | Date | null | undefined;
@@ -235,7 +236,6 @@ export async function parseScheduleFile(file: File): Promise<Seccion[]> {
     });
     sections.push(...parseScheduleRows(rows));
   } else {
-    const ExcelJS = await import("exceljs");
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.load(await file.arrayBuffer());
     workbook.eachSheet((sheet) => {
