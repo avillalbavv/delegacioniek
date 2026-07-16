@@ -98,6 +98,7 @@ export async function saveAdminRow(table: string, row: Record<string, unknown>) 
   const payload = {
     ...row,
     updated_by: user.id,
+    updated_at: new Date().toISOString(),
     ...(!isUpdate ? { created_by: user.id } : {}),
   };
   const query = isUpdate

@@ -19,6 +19,8 @@
 - Añadida comparación entre revisiones con identificadores estables y avisos solo para secciones
   afectadas.
 - Añadida eliminación protegida de versiones de horario, restauración automática y auditoría.
+- Conectadas las publicaciones de Excel, avisos y calendario con notificaciones globales sin
+  duplicados.
 - Conectada la revisión activa de horarios con Planificador, Dónde rindo, calendario y asistencia.
 - Reparadas políticas RLS para publicar avisos, eventos, exámenes, recursos y horarios.
 - Añadidas notificaciones por cambios en la fuente académica y auditoría de operaciones.

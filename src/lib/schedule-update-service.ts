@@ -89,36 +89,17 @@ export async function checkScheduleUpdates(): Promise<ScheduleRevision | null> {
   await hydratePublishedScheduleData();
   const acknowledged = Number(localStorage.getItem(ACK_KEY) || 0);
   if (revision.revision === acknowledged) return null;
-  let selection: { materiaIds: string[]; secciones: Record<string, string> } = {
-    materiaIds: [],
-    secciones: {},
-  };
-  try {
-    const parsed = JSON.parse(localStorage.getItem("poliplanner:seleccion:v2") || "{}");
-    selection = {
-      materiaIds: Array.isArray(parsed.materiaIds) ? parsed.materiaIds : [],
-      secciones: parsed.secciones && typeof parsed.secciones === "object" ? parsed.secciones : {},
-    };
-  } catch {
-    // Sin selección válida: el aviso general igualmente puede mostrarse.
-  }
-  const chosenSections = new Set(Object.values(selection.secciones));
-  const affected =
-    revision.affects_all ||
-    revision.affected_subject_ids.some((id) => selection.materiaIds.includes(id)) ||
-    revision.affected_section_ids.some((id) => chosenSections.has(id));
-  if (affected)
-    upsertNotification({
-      id: `schedule-revision:${revision.id}`,
-      type: "schedule-update",
-      title: "Se actualizaron los horarios",
-      message: `${revision.change_summary} Revisá tus materias, fechas, aulas y exámenes.`,
-      priority: "high",
-      createdAt: revision.published_at,
-      actionUrl: "/poliplanner",
-    });
+  upsertNotification({
+    id: `schedule-revision:${revision.id}`,
+    type: "schedule-update",
+    title: "Se actualizaron los horarios",
+    message: `${revision.change_summary} Revisá tus materias, fechas, aulas y exámenes.`,
+    priority: "high",
+    createdAt: revision.published_at,
+    actionUrl: "/poliplanner",
+  });
   writeLocalState(ACK_KEY, String(revision.revision));
-  return affected ? revision : null;
+  return revision;
 }
 
 export async function publishScheduleRevision(
@@ -176,7 +157,7 @@ export async function publishScheduleRevision(
       file_path: path,
       checksum,
       change_summary: summary.trim(),
-      affects_all: delta.affectsAll,
+      affects_all: true,
       affected_subject_ids: delta.affectedSubjectIds,
       affected_section_ids: delta.affectedSectionIds,
       published_by: userData.user.id,

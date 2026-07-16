@@ -4,12 +4,45 @@ import {
   loadNotifications,
   markAllNotificationsRead,
   markNotificationRead,
+  syncOfficialNotifications,
 } from "@/lib/notification-service";
+import { checkScheduleUpdates } from "@/lib/schedule-update-service";
+import { CLOUD_STATE_RESTORED_EVENT, LOCAL_STATE_CHANGED_EVENT } from "@/lib/user-state";
 export function NotificationBell() {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState(() => loadNotifications());
   const rootRef = useRef<HTMLDivElement>(null);
   const unread = items.filter((n) => !n.readAt).length;
+
+  useEffect(() => {
+    let cancelled = false;
+    async function refresh() {
+      try {
+        await Promise.all([syncOfficialNotifications(), checkScheduleUpdates()]);
+        if (!cancelled) setItems(loadNotifications());
+      } catch {
+        // La campana conserva los últimos datos disponibles cuando no hay conexión.
+      }
+    }
+    function refreshLocal() {
+      if (!cancelled) setItems(loadNotifications());
+    }
+    function refreshWhenVisible() {
+      if (document.visibilityState === "visible") void refresh();
+    }
+    void refresh();
+    const timer = window.setInterval(() => void refresh(), 2 * 60 * 1000);
+    window.addEventListener(LOCAL_STATE_CHANGED_EVENT, refreshLocal);
+    window.addEventListener(CLOUD_STATE_RESTORED_EVENT, refreshLocal);
+    document.addEventListener("visibilitychange", refreshWhenVisible);
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+      window.removeEventListener(LOCAL_STATE_CHANGED_EVENT, refreshLocal);
+      window.removeEventListener(CLOUD_STATE_RESTORED_EVENT, refreshLocal);
+      document.removeEventListener("visibilitychange", refreshWhenVisible);
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -83,7 +116,7 @@ export function NotificationBell() {
             </div>
           </div>
           <div className="mt-2 max-h-[calc(100dvh-10rem)] space-y-2 overflow-y-auto overscroll-contain sm:max-h-96">
-            {items.slice(0, 10).map((n) => (
+            {items.map((n) => (
               <article
                 key={n.id}
                 className={`rounded-xl border p-3 text-sm ${n.readAt ? "border-border opacity-70" : "border-primary/30 bg-primary/5"}`}

@@ -27,6 +27,7 @@ Respaldá la base y ejecutá en SQL Editor, respetando este orden:
 6. `202607160001_schedule_dataset_publication.sql`
 7. `202607160002_contact_messages.sql`
 8. `202607160003_schedule_revision_deletion.sql`
+9. `202607160004_official_notification_updates.sql`
 
 Después de aplicar cambios de esquema, podés forzar la recarga de PostgREST con:
 
@@ -43,6 +44,7 @@ Las migraciones crean, entre otras entidades:
 - notificaciones y semestres archivados;
 - revisiones versionadas de horarios;
 - eliminación y restauración segura de revisiones por el superadministrador;
+- avisos globales versionados por cambios en horarios, comunicados y calendario;
 - mensajes de contacto con límite anti-spam y bandeja administrativa;
 - funciones administrativas y registro de auditoría.
 
