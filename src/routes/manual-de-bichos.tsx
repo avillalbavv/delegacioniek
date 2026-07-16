@@ -1,14 +1,13 @@
-/**
- * /manual-de-bichos — Manual de Nuevos Ingresantes
- *
- * Sección nueva. Por ahora sin contenido (BICHOS = [] en src/data/bichos.ts):
- * la estructura, el diseño, la navegación, el buscador y los filtros por
- * categoría ya están armados para que, cuando se cargue contenido real,
- * funcione sin tener que tocar este componente.
- */
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Bug, Search, ChevronRight, Sparkles } from "lucide-react";
+import {
+  BookOpenCheck,
+  ChevronDown,
+  ChevronRight,
+  CircleAlert,
+  ExternalLink,
+  Search,
+} from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SiteNavbar } from "@/components/SiteNavbar";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -24,8 +23,12 @@ function ManualBichosPage() {
 
   const resultados = useMemo(() => {
     const q = query.toLowerCase().trim();
-    return BICHOS.filter(b => {
-      const matchQ = !q || b.titulo.toLowerCase().includes(q) || b.resumen.toLowerCase().includes(q);
+    return BICHOS.filter((b) => {
+      const texto = [b.titulo, b.resumen, b.detalle, b.importante, ...(b.pasos ?? [])]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      const matchQ = !q || texto.includes(q);
       const matchCat = categoria === "todas" || b.categoria === categoria;
       return matchQ && matchCat;
     });
@@ -40,7 +43,9 @@ function ManualBichosPage() {
           <div className="mx-auto max-w-6xl px-6">
             <Reveal className="max-w-3xl">
               <div className="mb-4 flex items-center gap-2 text-xs text-muted-foreground">
-                <Link to="/" className="transition-colors hover:text-foreground">Inicio</Link>
+                <Link to="/" className="transition-colors hover:text-foreground">
+                  Inicio
+                </Link>
                 <ChevronRight className="h-3 w-3" />
                 <span className="text-foreground">Manual de Nuevos Ingresantes</span>
               </div>
@@ -48,9 +53,12 @@ function ManualBichosPage() {
                 Manual de <span className="text-gradient">Nuevos Ingresantes</span>
               </h1>
               <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-                Guías y tips prácticos sobre las materias y trámites más complicados de la carrera,
-                escritos por estudiantes para estudiantes.
+                Información oficial de la FP-UNA explicada en lenguaje claro: inscripción,
+                evaluación, trámites, servicios y reglas que necesitás conocer desde el primer día.
               </p>
+              <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+                <BookOpenCheck className="h-4 w-4" /> {BICHOS.length} guías con fuentes oficiales
+              </div>
             </Reveal>
           </div>
         </section>
@@ -65,8 +73,8 @@ function ManualBichosPage() {
                   <input
                     type="text"
                     value={query}
-                    onChange={e => setQuery(e.target.value)}
-                    placeholder="Buscar por materia o tema…"
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Buscar inscripción, asistencia, homologación…"
                     aria-label="Buscar en el Manual de Nuevos Ingresantes"
                     className="w-full rounded-2xl border border-border bg-card py-4 pl-12 pr-4 text-base text-foreground placeholder:text-muted-foreground transition focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/20"
                   />
@@ -75,17 +83,21 @@ function ManualBichosPage() {
                   <button
                     onClick={() => setCategoria("todas")}
                     className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                      categoria === "todas" ? "bg-primary text-primary-foreground" : "border border-border bg-card text-muted-foreground hover:text-foreground"
+                      categoria === "todas"
+                        ? "bg-primary text-primary-foreground"
+                        : "border border-border bg-card text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     Todas
                   </button>
-                  {CATEGORIAS.map(c => (
+                  {CATEGORIAS.map((c) => (
                     <button
                       key={c}
                       onClick={() => setCategoria(c)}
                       className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                        categoria === c ? "text-white" : "border border-border bg-card text-muted-foreground hover:text-foreground"
+                        categoria === c
+                          ? "text-white"
+                          : "border border-border bg-card text-muted-foreground hover:text-foreground"
                       }`}
                       style={categoria === c ? { background: CATEGORIA_COLOR[c] } : undefined}
                     >
@@ -98,20 +110,84 @@ function ManualBichosPage() {
 
             {/* ── CONTENIDO ── */}
             {resultados.length > 0 ? (
-              <div className="grid gap-4 stagger is-visible sm:grid-cols-2 lg:grid-cols-3">
-                {resultados.map(b => (
-                  <article key={b.id} className="card-hover rounded-2xl border border-border bg-card p-5">
-                    <span
-                      className="mb-3 inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
-                      style={{ background: `${CATEGORIA_COLOR[b.categoria]}20`, color: CATEGORIA_COLOR[b.categoria] }}
-                    >
-                      {CATEGORIA_LABEL[b.categoria]}
-                    </span>
-                    <h3 className="font-display font-semibold text-foreground">{b.titulo}</h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{b.resumen}</p>
-                    {b.materiaRelacionada && (
-                      <p className="mt-3 text-xs text-muted-foreground/70">Relacionado: {b.materiaRelacionada}</p>
-                    )}
+              <div className="grid items-start gap-4 stagger is-visible sm:grid-cols-2">
+                {resultados.map((b) => (
+                  <article
+                    key={b.id}
+                    className="overflow-hidden rounded-2xl border border-border bg-card"
+                  >
+                    <div className="p-5">
+                      <div className="mb-3 flex items-center justify-between gap-3">
+                        <span
+                          className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                          style={{
+                            background: `${CATEGORIA_COLOR[b.categoria]}20`,
+                            color: CATEGORIA_COLOR[b.categoria],
+                          }}
+                        >
+                          {CATEGORIA_LABEL[b.categoria]}
+                        </span>
+                        <span className="text-[10px] text-muted-foreground">
+                          Verificado {b.verificadoEl}
+                        </span>
+                      </div>
+                      <h2 className="font-display text-lg font-semibold text-foreground">
+                        {b.titulo}
+                      </h2>
+                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                        {b.resumen}
+                      </p>
+                    </div>
+                    <details className="group border-t border-border">
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-3 text-sm font-semibold text-primary transition hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+                        Ver guía completa
+                        <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="space-y-5 border-t border-border px-5 py-5 text-sm">
+                        <p className="leading-relaxed text-muted-foreground">{b.detalle}</p>
+                        {(b.pasos?.length ?? 0) > 0 && (
+                          <div>
+                            <h3 className="font-semibold text-foreground">Qué hacer</h3>
+                            <ol className="mt-2 space-y-2">
+                              {b.pasos?.map((paso, index) => (
+                                <li key={paso} className="flex gap-3 text-muted-foreground">
+                                  <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary/10 text-[10px] font-bold text-primary">
+                                    {index + 1}
+                                  </span>
+                                  <span className="leading-relaxed">{paso}</span>
+                                </li>
+                              ))}
+                            </ol>
+                          </div>
+                        )}
+                        {b.importante && (
+                          <div className="flex gap-3 rounded-xl border border-amber-500/25 bg-amber-500/10 p-3 text-amber-900 dark:text-amber-100">
+                            <CircleAlert className="mt-0.5 h-4 w-4 shrink-0" />
+                            <p className="leading-relaxed">
+                              <strong>Importante:</strong> {b.importante}
+                            </p>
+                          </div>
+                        )}
+                        <div>
+                          <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                            Fuentes oficiales
+                          </h3>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {b.fuentes.map((fuente) => (
+                              <a
+                                key={fuente.url}
+                                href={fuente.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-xs font-medium text-foreground transition hover:border-primary/40 hover:text-primary"
+                              >
+                                {fuente.titulo} <ExternalLink className="h-3.5 w-3.5" />
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </details>
                   </article>
                 ))}
               </div>
@@ -119,15 +195,14 @@ function ManualBichosPage() {
               <Reveal>
                 <div className="flex flex-col items-center gap-4 rounded-3xl border border-dashed border-border px-6 py-20 text-center">
                   <div className="grid h-16 w-16 place-items-center rounded-2xl bg-primary/10 ring-1 ring-primary/20">
-                    <Bug className="h-8 w-8 text-primary" />
+                    <Search className="h-8 w-8 text-primary" />
                   </div>
                   <div>
-                    <p className="flex items-center justify-center gap-1.5 text-base font-medium text-foreground">
-                      <Sparkles className="h-4 w-4 text-primary" /> Muy pronto
+                    <p className="text-base font-medium text-foreground">
+                      No encontramos esa información
                     </p>
                     <p className="mx-auto mt-2 max-w-sm text-sm text-muted-foreground">
-                      Todavía no cargamos contenido acá, pero la sección ya está lista. Pronto vas a
-                      encontrar guías sobre las materias y trámites más complicados de la carrera.
+                      Probá con otro término o seleccioná una categoría diferente.
                     </p>
                   </div>
                 </div>

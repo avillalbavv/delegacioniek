@@ -184,10 +184,9 @@ export function overlapMinutes(a: TimeRange, b: TimeRange): number {
   return Math.max(0, Math.min(a.end, b.end) - Math.max(a.start, b.start));
 }
 
-/** Art. 5.c del Reglamento Académico FP-UNA 2026: se permite inscribirse con
- * hasta 30 minutos de solapamiento de horario entre asignaturas — por eso
- * un solapamiento de ≤30 min NO se marca como choque bloqueante. */
-export const SOLAPAMIENTO_PERMITIDO_MIN = 30;
+/** Art. 5.c del Reglamento Académico FP-UNA: la inscripción requiere que no
+ * exista superposición entre los horarios de clases o evaluaciones. */
+export const SOLAPAMIENTO_PERMITIDO_MIN = 0;
 
 /* ───────────────────────── Layout de solapamientos (vista semanal) ───────────────────────── */
 
@@ -260,10 +259,7 @@ export interface ScheduleConflict {
   overlapMin: number;
 }
 
-/** Detecta solapamientos de horario de clases entre las secciones elegidas
- * que EXCEDEN los 30 minutos permitidos por el Art. 5.c del Reglamento
- * Académico 2026 — los solapamientos de hasta 30 min están permitidos y no
- * se marcan como choque. */
+/** Detecta cualquier solapamiento de clases entre las secciones elegidas. */
 export function findScheduleConflicts(secciones: Seccion[]): ScheduleConflict[] {
   const conflicts: ScheduleConflict[] = [];
   for (let i = 0; i < secciones.length; i++) {
@@ -421,7 +417,10 @@ export function esSeccionSoloExamen(section: Pick<Seccion, "materia">): boolean 
 
 /** Nombre apto para mostrar, sin la marca operativa del Excel. */
 export function nombreMateriaVisible(nombre: string): string {
-  return nombre.replace(/\s*\(\s*\*+\s*\)\s*/g, " ").replace(/\s{2,}/g, " ").trim();
+  return nombre
+    .replace(/\s*\(\s*\*+\s*\)\s*/g, " ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
 }
 
 /** Todas las secciones ofertadas este período para una materia de la malla curricular. */
@@ -445,7 +444,7 @@ export function seccionesCursablesPorMateriaMalla(nombreMalla: string, plan = "2
   const cacheKey = `${plan}::${nombreMalla}`;
   if (seccionesCursablesCache.has(cacheKey)) return seccionesCursablesCache.get(cacheKey)!;
   const result = seccionesPorMateriaMalla(nombreMalla, plan).filter(
-    section => !esSeccionSoloExamen(section) && section.clases.length > 0,
+    (section) => !esSeccionSoloExamen(section) && section.clases.length > 0,
   );
   seccionesCursablesCache.set(cacheKey, result);
   return result;
@@ -453,11 +452,13 @@ export function seccionesCursablesPorMateriaMalla(nombreMalla: string, plan = "2
 
 /** Departamentos informados por el Excel para una materia. */
 export function departamentosPorMateriaMalla(nombreMalla: string, plan = "2008"): string[] {
-  return [...new Set(
-    seccionesPorMateriaMalla(nombreMalla, plan)
-      .map(section => section.departamento?.trim())
-      .filter((value): value is string => Boolean(value)),
-  )].sort((a, b) => a.localeCompare(b, "es"));
+  return [
+    ...new Set(
+      seccionesPorMateriaMalla(nombreMalla, plan)
+        .map((section) => section.departamento?.trim())
+        .filter((value): value is string => Boolean(value)),
+    ),
+  ].sort((a, b) => a.localeCompare(b, "es"));
 }
 
 /** Resumen corto del horario semanal de una sección, ej: "Lu 10:00-12:15 · Mi 10:00-12:15" */

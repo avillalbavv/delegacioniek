@@ -32,9 +32,11 @@ import {
   listExamenes,
   nombreMateriaVisible,
   parseFechaExamen,
+  loadSelection,
   TURNO_LABEL,
   TURNO_COLOR,
 } from "@/lib/poliplanner";
+import { academicNamesMatch } from "@/lib/academic-offer-matcher";
 import { normalizeSearch, searchRank, searchVariants } from "@/lib/search";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { supabase } from "@/lib/supabase";
@@ -117,7 +119,7 @@ function AulaCard({ seccion }: { seccion: Seccion }) {
   const enf = ENFASIS_SHORT[seccion.enfasis] ?? (seccion.enfasis || "Plan Básico");
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const examenesConDatos = EXAM_ORDER.filter(tipo => {
+  const examenesConDatos = EXAM_ORDER.filter((tipo) => {
     const info = seccion.examenes[tipo];
     const date = parseFechaExamen(info?.dia || "");
     return Boolean(info && (info.dia || info.aula) && date && date >= today);
@@ -195,60 +197,131 @@ function AulaCard({ seccion }: { seccion: Seccion }) {
 }
 
 interface CalendarExam {
-  id: string; title: string; date: Date; time: string; room: string; detail: string; official: boolean;
+  id: string;
+  title: string;
+  date: Date;
+  time: string;
+  room: string;
+  detail: string;
+  official: boolean;
 }
-const dateKey = (date: Date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+const dateKey = (date: Date) =>
+  `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 
 function ExamCalendar({ events }: { events: CalendarExam[] }) {
-  const firstMonth = events[0]?.date ?? new Date();
-  const [month, setMonth] = useState(() => new Date(firstMonth.getFullYear(), firstMonth.getMonth(), 1));
+  const firstEvent = events[0];
+  const firstMonth = firstEvent?.date ?? new Date();
+  const [month, setMonth] = useState(
+    () => new Date(firstMonth.getFullYear(), firstMonth.getMonth(), 1),
+  );
+  useEffect(() => {
+    if (!firstEvent) return;
+    setMonth(new Date(firstEvent.date.getFullYear(), firstEvent.date.getMonth(), 1));
+  }, [firstEvent]);
   const first = new Date(month.getFullYear(), month.getMonth(), 1);
   const gridStart = new Date(first);
   gridStart.setDate(first.getDate() - first.getDay());
   const days = Array.from({ length: 42 }, (_, index) => {
-    const date = new Date(gridStart); date.setDate(gridStart.getDate() + index); return date;
+    const date = new Date(gridStart);
+    date.setDate(gridStart.getDate() + index);
+    return date;
   });
   const grouped = useMemo(() => {
     const map = new Map<string, CalendarExam[]>();
-    for (const event of events) map.set(dateKey(event.date), [...(map.get(dateKey(event.date)) || []), event]);
+    for (const event of events)
+      map.set(dateKey(event.date), [...(map.get(dateKey(event.date)) || []), event]);
     return map;
   }, [events]);
-  const move = (delta: number) => setMonth(current => new Date(current.getFullYear(), current.getMonth() + delta, 1));
+  const move = (delta: number) =>
+    setMonth((current) => new Date(current.getFullYear(), current.getMonth() + delta, 1));
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-card">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-4">
         <div>
-          <h2 className="font-display text-lg font-semibold capitalize text-foreground">{month.toLocaleDateString("es-PY", { month: "long", year: "numeric" })}</h2>
-          <p className="text-xs text-muted-foreground">Solo se muestran fechas vigentes y confirmadas en la fuente disponible.</p>
+          <h2 className="font-display text-lg font-semibold capitalize text-foreground">
+            {month.toLocaleDateString("es-PY", { month: "long", year: "numeric" })}
+          </h2>
+          <p className="text-xs text-muted-foreground">
+            Solo aparecen exámenes de las secciones guardadas en tu horario.
+          </p>
         </div>
         <div className="flex items-center gap-1">
-          <button onClick={() => move(-1)} aria-label="Mes anterior" className="rounded-lg border border-border p-2 text-muted-foreground hover:text-foreground"><ChevronLeft className="h-4 w-4" /></button>
-          <button onClick={() => setMonth(new Date(new Date().getFullYear(), new Date().getMonth(), 1))} className="rounded-lg border border-border px-3 py-2 text-xs font-medium text-foreground">Hoy</button>
-          <button onClick={() => move(1)} aria-label="Mes siguiente" className="rounded-lg border border-border p-2 text-muted-foreground hover:text-foreground"><ChevronRight className="h-4 w-4" /></button>
+          <button
+            onClick={() => move(-1)}
+            aria-label="Mes anterior"
+            className="rounded-lg border border-border p-2 text-muted-foreground hover:text-foreground"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            onClick={() => setMonth(new Date(new Date().getFullYear(), new Date().getMonth(), 1))}
+            className="rounded-lg border border-border px-3 py-2 text-xs font-medium text-foreground"
+          >
+            Hoy
+          </button>
+          <button
+            onClick={() => move(1)}
+            aria-label="Mes siguiente"
+            className="rounded-lg border border-border p-2 text-muted-foreground hover:text-foreground"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
         </div>
       </div>
-      <div className="overflow-x-auto"><div className="min-w-[760px]">
-        <div className="grid grid-cols-7 border-b border-border bg-muted/30 text-center text-xs font-semibold text-muted-foreground">
-          {["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"].map(day => <div key={day} className="p-2">{day}</div>)}
-        </div>
-        <div className="grid grid-cols-7">
-          {days.map(date => {
-            const dayEvents = grouped.get(dateKey(date)) || [];
-            const outside = date.getMonth() !== month.getMonth();
-            const isToday = dateKey(date) === dateKey(new Date());
-            return <div key={dateKey(date)} className={`min-h-28 border-b border-r border-border p-2 ${outside ? "bg-muted/15 text-muted-foreground/50" : "text-foreground"}`}>
-              <span className={`grid h-6 w-6 place-items-center rounded-full text-xs ${isToday ? "bg-primary font-bold text-primary-foreground" : ""}`}>{date.getDate()}</span>
-              <div className="mt-1 space-y-1">
-                {dayEvents.slice(0, 3).map(event => <div key={event.id} title={`${event.title} · ${event.detail}`} className={`rounded-md px-2 py-1 text-[10px] leading-tight ${event.official ? "bg-primary text-primary-foreground" : "bg-amber-500/15 text-amber-800 dark:text-amber-200"}`}>
-                  <b className="block truncate">{event.title}</b><span className="block truncate">{event.time || "Hora pendiente"} · {event.room || "Aula pendiente"}</span>
-                </div>)}
-                {dayEvents.length > 3 && <p className="px-1 text-[10px] text-muted-foreground">+{dayEvents.length - 3} exámenes</p>}
+      <div className="overflow-x-auto">
+        <div className="min-w-[760px]">
+          <div className="grid grid-cols-7 border-b border-border bg-muted/30 text-center text-xs font-semibold text-muted-foreground">
+            {["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"].map((day) => (
+              <div key={day} className="p-2">
+                {day}
               </div>
-            </div>;
-          })}
+            ))}
+          </div>
+          <div className="grid grid-cols-7">
+            {days.map((date) => {
+              const dayEvents = grouped.get(dateKey(date)) || [];
+              const outside = date.getMonth() !== month.getMonth();
+              const isToday = dateKey(date) === dateKey(new Date());
+              return (
+                <div
+                  key={dateKey(date)}
+                  className={`min-h-28 border-b border-r border-border p-2 ${outside ? "bg-muted/15 text-muted-foreground/50" : "text-foreground"}`}
+                >
+                  <span
+                    className={`grid h-6 w-6 place-items-center rounded-full text-xs ${isToday ? "bg-primary font-bold text-primary-foreground" : ""}`}
+                  >
+                    {date.getDate()}
+                  </span>
+                  <div className="mt-1 space-y-1">
+                    {dayEvents.slice(0, 3).map((event) => (
+                      <div
+                        key={event.id}
+                        title={`${event.title} · ${event.detail}`}
+                        className={`rounded-md px-2 py-1 text-[10px] leading-tight ${event.official ? "bg-primary text-primary-foreground" : "bg-amber-500/15 text-amber-800 dark:text-amber-200"}`}
+                      >
+                        <b className="block truncate">{event.title}</b>
+                        <span className="block truncate">
+                          {event.time || "Hora pendiente"} · {event.room || "Aula pendiente"}
+                        </span>
+                      </div>
+                    ))}
+                    {dayEvents.length > 3 && (
+                      <p className="px-1 text-[10px] text-muted-foreground">
+                        +{dayEvents.length - 3} exámenes
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div></div>
-      {!events.length && <p className="p-8 text-center text-sm text-muted-foreground">No se encontraron exámenes próximos.</p>}
+      </div>
+      {!events.length && (
+        <p className="p-8 text-center text-sm text-muted-foreground">
+          No se encontraron exámenes próximos.
+        </p>
+      )}
     </div>
   );
 }
@@ -256,6 +329,7 @@ function ExamCalendar({ events }: { events: CalendarExam[] }) {
 function AulasPage() {
   const [view, setView] = useState<"list" | "calendar">("list");
   const [query, setQuery] = useState("");
+  const [scheduledSectionIds, setScheduledSectionIds] = useState<string[]>([]);
   const [examenesDelegacion, setExamenesDelegacion] = useState<
     {
       id: string;
@@ -269,6 +343,13 @@ function AulasPage() {
   >([]);
   const debouncedQuery = useDebouncedValue(query, 180);
   const isSearching = query.trim() !== "" && query !== debouncedQuery;
+
+  useEffect(() => {
+    const refresh = () => setScheduledSectionIds(Object.values(loadSelection().secciones));
+    refresh();
+    window.addEventListener("storage", refresh);
+    return () => window.removeEventListener("storage", refresh);
+  }, []);
 
   useEffect(() => {
     if (!supabase) return;
@@ -339,6 +420,10 @@ function AulasPage() {
   // resultados de golpe degradaría la fluidez sin aportar valor real —
   // se muestran los primeros N y se invita a refinar la búsqueda.
   const resultados = resultadosCompletos.slice(0, RESULTADOS_MAX);
+  const scheduledSections = useMemo(() => {
+    const ids = new Set(scheduledSectionIds);
+    return DATA.filter((section) => ids.has(section.id));
+  }, [scheduledSectionIds]);
 
   const buscandoPorDocente = useMemo(() => {
     const q = normalizeSearch(debouncedQuery);
@@ -359,8 +444,9 @@ function AulasPage() {
   const queryActivo = query.trim();
   const examenesPublicados = useMemo(() => {
     const normalized = normalizeSearch(debouncedQuery);
-    const today = new Date(); today.setHours(0, 0, 0, 0);
-    const upcoming = examenesDelegacion.filter(examen => new Date(examen.exam_at) >= today);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const upcoming = examenesDelegacion.filter((examen) => new Date(examen.exam_at) >= today);
     if (!normalized) return upcoming.slice(0, 6);
     return upcoming.filter((examen) =>
       normalizeSearch(
@@ -370,27 +456,52 @@ function AulasPage() {
   }, [debouncedQuery, examenesDelegacion]);
 
   const calendarEvents = useMemo(() => {
-    const today = new Date(); today.setHours(0, 0, 0, 0);
-    const sections = debouncedQuery.trim() ? resultadosCompletos : DATA;
-    const staticEvents: CalendarExam[] = listExamenes(sections).filter(entry => entry.fecha >= today).map(entry => ({
-      id: `excel-${entry.seccion.id}-${entry.tipo}-${dateKey(entry.fecha)}`,
-      title: nombreMateriaVisible(entry.seccion.materia), date: entry.fecha,
-      time: entry.info.hora || "", room: entry.info.aula || "",
-      detail: `${examenLabel(entry.tipo)} · Sección ${entry.seccion.seccion}${entry.seccion.departamento ? ` · Dpto. ${entry.seccion.departamento}` : ""}`,
-      official: false,
-    }));
-    const delegationEvents: CalendarExam[] = examenesPublicados.map(entry => ({
-      id: `delegacion-${entry.id}`, title: entry.subject_name, date: new Date(entry.exam_at),
-      time: new Date(entry.exam_at).toLocaleTimeString("es-PY", { hour: "2-digit", minute: "2-digit" }),
-      room: entry.room || "", detail: `Publicado por la Delegación${entry.section ? ` · Sección ${entry.section}` : ""}`, official: true,
-    })).filter(entry => !Number.isNaN(entry.date.getTime()) && entry.date >= today);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const staticEvents: CalendarExam[] = listExamenes(scheduledSections)
+      .filter(
+        (entry) => entry.fecha >= today && entry.tipo !== "revision1" && entry.tipo !== "revision2",
+      )
+      .map((entry) => ({
+        id: `excel-${entry.seccion.id}-${entry.tipo}-${dateKey(entry.fecha)}`,
+        title: nombreMateriaVisible(entry.seccion.materia),
+        date: entry.fecha,
+        time: entry.info.hora || "",
+        room: entry.info.aula || "",
+        detail: `${examenLabel(entry.tipo)} · Sección ${entry.seccion.seccion}${entry.seccion.departamento ? ` · Dpto. ${entry.seccion.departamento}` : ""}`,
+        official: false,
+      }));
+    const delegationEvents: CalendarExam[] = examenesDelegacion
+      .filter((entry) =>
+        scheduledSections.some((section) => {
+          const sameSubject = academicNamesMatch(section.materia, entry.subject_name);
+          const sameSection =
+            !entry.section || normalizeSearch(entry.section) === normalizeSearch(section.seccion);
+          return sameSubject && sameSection;
+        }),
+      )
+      .map((entry) => ({
+        id: `delegacion-${entry.id}`,
+        title: entry.subject_name,
+        date: new Date(entry.exam_at),
+        time: new Date(entry.exam_at).toLocaleTimeString("es-PY", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        room: entry.room || "",
+        detail: `Publicado por la Delegación${entry.section ? ` · Sección ${entry.section}` : ""}`,
+        official: true,
+      }))
+      .filter((entry) => !Number.isNaN(entry.date.getTime()) && entry.date >= today);
     const unique = new Map<string, CalendarExam>();
     for (const entry of [...delegationEvents, ...staticEvents]) {
       const signature = `${normalizeSearch(entry.title)}::${dateKey(entry.date)}::${entry.time}::${entry.room}`;
       if (!unique.has(signature) || entry.official) unique.set(signature, entry);
     }
-    return [...unique.values()].sort((a, b) => a.date.getTime() - b.date.getTime() || a.title.localeCompare(b.title, "es"));
-  }, [debouncedQuery, resultadosCompletos, examenesPublicados]);
+    return [...unique.values()].sort(
+      (a, b) => a.date.getTime() - b.date.getTime() || a.title.localeCompare(b.title, "es"),
+    );
+  }, [scheduledSections, examenesDelegacion]);
 
   return (
     <div className="min-h-screen">
@@ -459,15 +570,38 @@ function AulasPage() {
             <Reveal>
               <div className="mb-8 grid gap-3 sm:grid-cols-[1fr_auto]">
                 <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4">
-                  <p className="text-sm font-semibold text-foreground">¿Dónde me inscribo para rendir?</p>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">La inscripción de grado se realiza en el sistema oficial de la FP-UNA. Verificá convocatoria y plazo antes de confirmar.</p>
-                  <a href="https://inscripciones.pol.una.py/" target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline">
+                  <p className="text-sm font-semibold text-foreground">
+                    ¿Dónde me inscribo para rendir?
+                  </p>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    La inscripción de grado se realiza en el sistema oficial de la FP-UNA. Verificá
+                    convocatoria y plazo antes de confirmar.
+                  </p>
+                  <a
+                    href="https://inscripciones.pol.una.py/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+                  >
                     Abrir Inscripciones de Grado <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 </div>
-                <div className="flex h-fit rounded-xl border border-border bg-card p-1" aria-label="Vista de exámenes">
-                  <button onClick={() => setView("list")} className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium ${view === "list" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}><List className="h-3.5 w-3.5" /> Lista</button>
-                  <button onClick={() => setView("calendar")} className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium ${view === "calendar" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}><CalendarDays className="h-3.5 w-3.5" /> Calendario</button>
+                <div
+                  className="flex h-fit rounded-xl border border-border bg-card p-1"
+                  aria-label="Vista de exámenes"
+                >
+                  <button
+                    onClick={() => setView("list")}
+                    className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium ${view === "list" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
+                  >
+                    <List className="h-3.5 w-3.5" /> Lista
+                  </button>
+                  <button
+                    onClick={() => setView("calendar")}
+                    className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium ${view === "calendar" ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}
+                  >
+                    <CalendarDays className="h-3.5 w-3.5" /> Calendario
+                  </button>
                 </div>
               </div>
             </Reveal>
@@ -510,7 +644,28 @@ function AulasPage() {
 
             {/* ── RESULTADOS ── */}
             {view === "calendar" ? (
-              <Reveal><ExamCalendar events={calendarEvents} /></Reveal>
+              <Reveal>
+                {scheduledSections.length > 0 ? (
+                  <ExamCalendar events={calendarEvents} />
+                ) : (
+                  <div className="rounded-2xl border border-dashed border-border bg-card px-6 py-14 text-center">
+                    <CalendarDays className="mx-auto h-10 w-10 text-primary/50" />
+                    <h2 className="mt-4 font-display text-lg font-semibold text-foreground">
+                      Tu calendario todavía está vacío
+                    </h2>
+                    <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
+                      Seleccioná y guardá las secciones que cursás. Acá aparecerán únicamente sus
+                      próximos exámenes.
+                    </p>
+                    <Link
+                      to="/poliplanner"
+                      className="mt-5 inline-flex rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground"
+                    >
+                      Armar mi horario
+                    </Link>
+                  </div>
+                )}
+              </Reveal>
             ) : resultados.length > 0 ? (
               <Reveal>
                 <p className="mb-4 text-xs text-muted-foreground">

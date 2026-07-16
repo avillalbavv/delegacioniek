@@ -30,6 +30,8 @@ import {
   Lock,
   X,
   CalendarCheck2,
+  Clock3,
+  MapPin,
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -684,7 +686,10 @@ function MateriaChip({
     () => seccionesCursablesPorMateriaMalla(materia.nombre).length > 0,
     [materia.nombre],
   );
-  const departamentos = useMemo(() => departamentosPorMateriaMalla(materia.nombre), [materia.nombre]);
+  const departamentos = useMemo(
+    () => departamentosPorMateriaMalla(materia.nombre),
+    [materia.nombre],
+  );
 
   return (
     <button
@@ -737,7 +742,10 @@ function SectionCard({
 }) {
   const [search, setSearch] = useState("");
   const color = colorForMateria(materia.nombre);
-  const secciones = useMemo(() => seccionesCursablesPorMateriaMalla(materia.nombre), [materia.nombre]);
+  const secciones = useMemo(
+    () => seccionesCursablesPorMateriaMalla(materia.nombre),
+    [materia.nombre],
+  );
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
@@ -921,7 +929,7 @@ function ConflictBanner({ conflicts }: { conflicts: ScheduleConflict[] }) {
               <span className="font-medium">{c.a.seccion.materia}</span> ({c.a.clase.hora}) se
               superpone con <span className="font-medium">{c.b.seccion.materia}</span> (
               {c.b.clase.hora}) el <span className="font-medium">{c.dia}</span> — {c.overlapMin} min
-              de solapamiento (el reglamento permite hasta 30).
+              de solapamiento. El reglamento no permite superposición de horarios.
             </li>
           ))}
         </ul>
@@ -934,7 +942,9 @@ function ConflictBanner({ conflicts }: { conflicts: ScheduleConflict[] }) {
 
 const DAY_START = 7 * 60;
 const DAY_END = 22 * 60;
-const PX_PER_MIN = 1;
+const PX_PER_MIN = 0.92;
+const TIME_COLUMN_WIDTH = 72;
+const DAY_COLUMN_WIDTH = 184;
 
 function WeeklyCalendar({
   secciones,
@@ -965,17 +975,19 @@ function WeeklyCalendar({
   return (
     <Reveal>
       <div className="pp-panel overflow-x-auto overscroll-x-contain rounded-2xl [scrollbar-gutter:stable]">
-        <div style={{ minWidth: `${64 + dias.length * 128}px` }}>
+        <div style={{ minWidth: `${TIME_COLUMN_WIDTH + dias.length * DAY_COLUMN_WIDTH}px` }}>
           {/* Header de días — sticky, estilo Google Calendar */}
           <div
             className="sticky top-0 z-10 grid border-b border-border bg-card"
-            style={{ gridTemplateColumns: `64px repeat(${dias.length}, minmax(128px, 1fr))` }}
+            style={{
+              gridTemplateColumns: `${TIME_COLUMN_WIDTH}px repeat(${dias.length}, minmax(${DAY_COLUMN_WIDTH}px, 1fr))`,
+            }}
           >
             <div className="border-r border-border/50" />
             {dias.map((d) => (
               <div
                 key={d}
-                className="border-r border-border/50 py-2.5 text-center text-xs font-semibold text-foreground last:border-r-0"
+                className="border-r border-border/50 bg-muted/20 py-3 text-center text-xs font-bold uppercase tracking-wide text-foreground last:border-r-0"
               >
                 {d}
               </div>
@@ -984,7 +996,7 @@ function WeeklyCalendar({
           <div
             className="relative grid"
             style={{
-              gridTemplateColumns: `64px repeat(${dias.length}, minmax(128px, 1fr))`,
+              gridTemplateColumns: `${TIME_COLUMN_WIDTH}px repeat(${dias.length}, minmax(${DAY_COLUMN_WIDTH}px, 1fr))`,
               height: (DAY_END - DAY_START) * PX_PER_MIN,
             }}
           >
@@ -1025,9 +1037,16 @@ function WeeklyCalendar({
                       style={{ top: (h * 60 - DAY_START) * PX_PER_MIN }}
                     />
                   ))}
+                  {hours.slice(0, -1).map((h) => (
+                    <div
+                      key={`${h}-half`}
+                      className="absolute w-full border-t border-dashed border-border/20"
+                      style={{ top: (h * 60 + 30 - DAY_START) * PX_PER_MIN }}
+                    />
+                  ))}
                   {eventos.map(({ item: { s, c, idx }, start, end, col, cols }) => {
                     const top = Math.max(0, (start - DAY_START) * PX_PER_MIN);
-                    const height = Math.max(40, (end - start) * PX_PER_MIN);
+                    const height = Math.max(54, (end - start) * PX_PER_MIN);
                     const color = colorForMateria(s.materia);
                     const isConflict = conflictKeys.has(s.id + c.dia + c.hora);
                     const gap = 3;
@@ -1036,14 +1055,15 @@ function WeeklyCalendar({
                       <div
                         key={s.id + idx}
                         title={`${s.materia} · Sección ${s.seccion} · ${docenteNombre(s.docente)} · ${c.hora}${c.aula ? " · " + c.aula : ""}`}
-                        className={`pp-block absolute overflow-hidden rounded-lg p-1.5 text-[10px] leading-tight ${isConflict ? "conflict-pulse ring-2 ring-red-400" : ""}`}
+                        className={`pp-block absolute overflow-hidden rounded-md p-2 text-[10px] leading-tight ${isConflict ? "conflict-pulse ring-2 ring-red-400" : ""}`}
                         style={{
                           top,
                           height,
                           left: `calc(${col * widthPct}% + ${gap / 2}px)`,
                           width: `calc(${widthPct}% - ${gap}px)`,
                           background: `${color}2e`,
-                          borderLeft: `3px solid ${color}`,
+                          border: `1px solid ${color}55`,
+                          borderLeft: `4px solid ${color}`,
                           boxShadow: "0 1px 3px rgba(0,0,0,0.12)",
                           zIndex: cols > 1 ? 5 : 1,
                         }}
@@ -1053,15 +1073,25 @@ function WeeklyCalendar({
                             <AlertTriangle className="h-2 w-2" /> choque
                           </span>
                         )}
-                        <p className="truncate font-semibold" style={{ color }}>
+                        <p
+                          className="line-clamp-2 pr-1 text-[11px] font-bold leading-tight"
+                          style={{ color }}
+                        >
                           {s.materia}
                         </p>
-                        <p className="truncate text-foreground/70">{c.hora}</p>
-                        {height > 48 && (
-                          <p className="truncate text-foreground/60">{docenteNombre(s.docente)}</p>
+                        <p className="mt-1 flex items-center gap-1 font-semibold tabular-nums text-foreground/80">
+                          <Clock3 className="h-3 w-3 shrink-0" /> {c.hora}
+                        </p>
+                        {height > 66 && (
+                          <p className="mt-1 flex items-center gap-1 truncate text-foreground/65">
+                            <MapPin className="h-3 w-3 shrink-0" /> Sección {s.seccion} ·{" "}
+                            {c.aula || "Aula pendiente"}
+                          </p>
                         )}
-                        {height > 62 && c.aula && (
-                          <p className="truncate text-foreground/50">{c.aula}</p>
+                        {height > 92 && (
+                          <p className="mt-1 truncate text-foreground/55">
+                            {docenteNombre(s.docente)}
+                          </p>
                         )}
                       </div>
                     );

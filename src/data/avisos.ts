@@ -64,7 +64,7 @@ export const AVISOS: Aviso[] = [
     resumen:
       "La FP-UNA aprobó un Reglamento Académico nuevo que reemplaza al Reglamento de Cátedra de 2016. Entra en vigencia el segundo periodo académico 2026.",
     detalle:
-      "El Consejo Directivo de la FP-UNA aprobó el ajuste el 29/06/2026 y lo elevó al Consejo Superior Universitario para su homologación el 06/07/2026 — según el reglamento anterior, ese paso es el que le da vigencia formal. El propio texto fija su entrada en vigencia para el segundo periodo académico 2026 y deroga completamente el Reglamento de Cátedra 2016. Mirá el detalle completo en la sección Nuevo Reglamento 2026.",
+      "El Consejo Directivo de la FP-UNA aprobó el reglamento mediante la Resolución 25/15/68-00, Acta 1223 del 14/07/2025, y lo elevó al Consejo Superior Universitario para homologación. El texto fija su aplicación desde el segundo periodo académico 2026. Mirá el documento y el resumen en la sección Nuevo Reglamento 2026.",
     fecha: "2026-07-06",
     destacado: true,
   },
@@ -84,9 +84,9 @@ export const AVISOS: Aviso[] = [
     tipo: "comunicado",
     titulo: "Asistencia mínima única para todas las materias",
     resumen:
-      "70% de asistencia te da derecho a rendir desde la 1ª convocatoria; entre 50% y 70%, solo desde la 2ª; menos de 50%, sin derecho.",
+      "El Planeamiento de cada asignatura debe fijar la asistencia requerida y nunca puede establecer menos del 70%.",
     detalle:
-      "Antes cada cátedra definía su propio porcentaje mínimo en la Planilla de Cátedra. Ahora es un esquema fijo e igual para toda la Facultad. Las prácticas de laboratorio obligatorias siguen siendo aparte: 100% de asistencia, recuperable hasta el 25%. La Calculadora de Asistencia ya aplica este esquema automáticamente.",
+      "La Calculadora de Asistencia usa el piso reglamentario del 70%. Si el Planeamiento de una asignatura exige más, prevalece ese documento. Las prácticas obligatorias requieren 100% y admiten solicitar recuperación de hasta el 30% por etapa.",
     fecha: "2026-07-06",
     destacado: true,
   },
@@ -115,9 +115,9 @@ export const AVISOS: Aviso[] = [
     tipo: "noticia",
     titulo: "Otros cambios administrativos del reglamento 2026",
     resumen:
-      "Se permite hasta 30 minutos de solapamiento de horario, cambia el límite de asignaturas por periodo, y más.",
+      "No se permiten superposiciones de horario y el límite de asignaturas depende del año de aprobación del plan.",
     detalle:
-      "La malla 2026 se aplica únicamente a ingresantes 2026 y la malla 2008 continúa vigente para quienes pertenecen a ese plan. Se permite inscribirse con hasta 30 minutos de solapamiento de horario (Planificador IEK ya lo tiene en cuenta). El tope de estudiantes por sección baja de 55 a 50. El tribunal examinador pasa a tener 3 docentes en vez de 2.",
+      "El Art. 5 exige horarios de clases y evaluaciones sin superposición. Los planes aprobados desde 2025 admiten hasta 6 asignaturas y los anteriores hasta 8, sin contar asignaturas con derecho a final. El tribunal examinador queda integrado por 3 docentes.",
     fecha: "2026-07-06",
   },
   {
