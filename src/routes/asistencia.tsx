@@ -22,7 +22,7 @@ import {
   UMBRAL_PRIMERA_CONVOCATORIA, UMBRAL_SEGUNDA_CONVOCATORIA,
   nuevaMateria, calcularStats, simular, cargarMaterias, guardarMaterias,
 } from "@/lib/asistencia";
-import { DATA, groupByMateria } from "@/lib/poliplanner";
+import { DATA, esSeccionSoloExamen, groupByMateria } from "@/lib/poliplanner";
 import { normalizeSearch, searchRank } from "@/lib/search";
 
 export const Route = createFileRoute("/asistencia")({ component: AsistenciaPage });
@@ -175,7 +175,8 @@ function AsistenciaPage() {
 
 function MateriaCard({ materia, onClick }: { materia: Materia; onClick: () => void }) {
   const stats = useMemo(() => calcularStats(materia), [materia]);
-  const meta = SEMAFORO_META[stats.estado];
+  const hasRecords = stats.presentes + stats.faltasConsumidas > 0;
+  const meta = hasRecords ? SEMAFORO_META[stats.estado] : { label: "Sin registros", color: "#94a3b8", Icon: CalendarCheck2 };
 
   return (
     <button onClick={onClick} className="card-hover w-full rounded-2xl border border-border bg-card p-5 text-left">
@@ -194,7 +195,7 @@ function MateriaCard({ materia, onClick }: { materia: Materia; onClick: () => vo
       <div className="flex items-center justify-between text-xs text-muted-foreground">
         <span>{stats.porcentajeActual.toFixed(0)}% asistencia</span>
         <span>
-          {stats.derecho === "primera" ? "1ª convocatoria" : stats.derecho === "segunda" ? "2ª convocatoria" : "sin derecho"}
+          {!hasRecords ? "Marcá tu primera clase" : stats.derecho === "primera" ? "1ª convocatoria" : stats.derecho === "segunda" ? "2ª convocatoria" : "sin derecho"}
         </span>
       </div>
       {materia.practicasLab && (
@@ -220,7 +221,7 @@ function MateriaFormModal({ onClose, onSave }: { onClose: () => void; onSave: (d
   const sugerencias = useMemo(() => {
     const q = normalizeSearch(nombre);
     if (!q) return [];
-    return groupByMateria(DATA)
+    return groupByMateria(DATA.filter(section => !esSeccionSoloExamen(section)))
       .filter(m => normalizeSearch(m.materia).includes(q))
       .sort((a, b) => searchRank(a.materia, q) - searchRank(b.materia, q) || a.materia.localeCompare(b.materia, "es"))
       .slice(0, 6);
@@ -345,10 +346,12 @@ function MateriaDetalle({
 }) {
   const stats = useMemo(() => calcularStats(materia), [materia]);
   const sim = useMemo(() => simular(materia, stats), [materia, stats]);
-  const meta = SEMAFORO_META[stats.estado];
+  const hasRecords = stats.presentes + stats.faltasConsumidas > 0;
+  const meta = hasRecords ? SEMAFORO_META[stats.estado] : { label: "Sin registros", color: "#94a3b8", Icon: CalendarCheck2 };
 
   const alertas = useMemo(() => {
     const out: { tipo: "warn" | "danger"; texto: string }[] = [];
+    if (!hasRecords) return out;
     if (stats.derecho === "ninguna") out.push({ tipo: "danger", texto: "Tu asistencia bajó del 50%: no tenés derecho a rendir el examen final en esta materia (Art. 13.b.3)." });
     else if (stats.derecho === "segunda") out.push({ tipo: "warn", texto: "Tu asistencia está entre 50% y 70%: solo tenés derecho a rendir desde la 2ª convocatoria." });
     else if (stats.faltasRestantesPrimera === 1) out.push({ tipo: "warn", texto: "Te queda 1 sola ausencia más antes de perder el derecho a la 1ª convocatoria." });
@@ -361,7 +364,7 @@ function MateriaDetalle({
       out.push({ tipo: "danger", texto: `Prácticas de laboratorio: te faltan ${stats.labStats.requeridas - stats.labStats.cubiertas} de ${stats.labStats.requeridas}. Se exige 100% (recuperable hasta 25%).` });
     }
     return out;
-  }, [stats, sim]);
+  }, [stats, sim, hasRecords]);
 
   return (
     <div>
@@ -414,10 +417,10 @@ function MateriaDetalle({
               </div>
 
               <p className="text-4xl font-black tabular-nums" style={{ color: meta.color }}>{stats.porcentajeActual.toFixed(0)}%</p>
-              <p className="mb-4 text-xs text-muted-foreground">Asistencia actual</p>
+              <p className="mb-4 text-xs text-muted-foreground">{hasRecords ? "Asistencia calculada sobre las clases marcadas" : "Comienza en 0 % y se actualiza cuando marques una clase"}</p>
 
-              <BarraProgreso label={`Umbral 1ª convocatoria (${UMBRAL_PRIMERA_CONVOCATORIA}%)`} pct={Math.min(100, (stats.porcentajeActual / UMBRAL_PRIMERA_CONVOCATORIA) * 100)} color={stats.derecho === "primera" ? "#34d399" : "#f87171"} />
-              <BarraProgreso label={`Umbral 2ª convocatoria (${UMBRAL_SEGUNDA_CONVOCATORIA}%)`} pct={Math.min(100, (stats.porcentajeActual / UMBRAL_SEGUNDA_CONVOCATORIA) * 100)} color={stats.derecho !== "ninguna" ? "#3b82f6" : "#f87171"} />
+              <BarraProgreso label={`Umbral 1ª convocatoria (${UMBRAL_PRIMERA_CONVOCATORIA}%)`} pct={Math.min(100, (stats.porcentajeActual / UMBRAL_PRIMERA_CONVOCATORIA) * 100)} color={!hasRecords ? "#94a3b8" : stats.derecho === "primera" ? "#34d399" : "#f87171"} />
+              <BarraProgreso label={`Umbral 2ª convocatoria (${UMBRAL_SEGUNDA_CONVOCATORIA}%)`} pct={Math.min(100, (stats.porcentajeActual / UMBRAL_SEGUNDA_CONVOCATORIA) * 100)} color={!hasRecords ? "#94a3b8" : stats.derecho !== "ninguna" ? "#3b82f6" : "#f87171"} />
 
               <div className="mt-4 grid grid-cols-2 gap-3 border-t border-border pt-4 text-center">
                 <div><p className="text-lg font-bold text-foreground">{Math.max(0, stats.faltasRestantesPrimera)}</p><p className="text-[11px] text-muted-foreground">Faltas hasta perder 1ª conv.</p></div>

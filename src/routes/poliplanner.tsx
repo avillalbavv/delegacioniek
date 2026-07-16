@@ -51,7 +51,8 @@ import {
   DIAS,
   type Dia,
   type Seccion,
-  seccionesPorMateriaMalla,
+  seccionesCursablesPorMateriaMalla,
+  departamentosPorMateriaMalla,
   colorForMateria,
   parseHora,
   findScheduleConflicts,
@@ -149,7 +150,7 @@ function PoliPlannerPage() {
       if (
         materia &&
         selectedSection &&
-        seccionesPorMateriaMalla(materia.nombre).some((s) => s.id === selectedSection)
+        seccionesCursablesPorMateriaMalla(materia.nombre).some((s) => s.id === selectedSection)
       ) {
         cleanChoice[id] = selectedSection;
       }
@@ -234,7 +235,7 @@ function PoliPlannerPage() {
       .map((id) => {
         const m = mallaById.get(id);
         if (!m) return null;
-        const ofertadas = seccionesPorMateriaMalla(m.nombre);
+        const ofertadas = seccionesCursablesPorMateriaMalla(m.nombre);
         return ofertadas.find((s) => s.id === choice[id]) ?? null;
       })
       .filter((s): s is Seccion => Boolean(s));
@@ -680,9 +681,10 @@ function MateriaChip({
   onToggle: () => void;
 }) {
   const ofertada = useMemo(
-    () => seccionesPorMateriaMalla(materia.nombre).length > 0,
+    () => seccionesCursablesPorMateriaMalla(materia.nombre).length > 0,
     [materia.nombre],
   );
+  const departamentos = useMemo(() => departamentosPorMateriaMalla(materia.nombre), [materia.nombre]);
 
   return (
     <button
@@ -708,7 +710,7 @@ function MateriaChip({
       <span className="min-w-0 flex-1">
         <span className="block truncate leading-snug">{materia.nombre}</span>
         <span className="text-[11px] text-muted-foreground">
-          {materia.area}
+          {departamentos.length ? `Dpto. ${departamentos.join(" · ")}` : "Departamento pendiente"}
           {!ofertada ? " · no ofertada este período" : ""}
         </span>
       </span>
@@ -735,7 +737,7 @@ function SectionCard({
 }) {
   const [search, setSearch] = useState("");
   const color = colorForMateria(materia.nombre);
-  const secciones = useMemo(() => seccionesPorMateriaMalla(materia.nombre), [materia.nombre]);
+  const secciones = useMemo(() => seccionesCursablesPorMateriaMalla(materia.nombre), [materia.nombre]);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();

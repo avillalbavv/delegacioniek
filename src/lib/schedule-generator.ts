@@ -1,5 +1,6 @@
 import {
   DATA,
+  esSeccionSoloExamen,
   findScheduleConflicts,
   overlapMinutes,
   parseHora,
@@ -65,7 +66,7 @@ function metrics(sections: Seccion[], p: GeneratorPreferences) {
   };
 }
 function valid(section: Seccion, p: GeneratorPreferences) {
-  if (!section.clases.length) return false;
+  if (!section.clases.length || esSeccionSoloExamen(section)) return false;
   return !(p.blocked || []).some((b) =>
     section.clases.some((c) => {
       if (c.dia !== b.day) return false;

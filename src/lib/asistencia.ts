@@ -20,7 +20,7 @@
  * sincroniza con Supabase cuando el estudiante inicia sesión.
  */
 
-import { writeLocalState } from "./user-state";
+import { writeLocalState } from "./user-state.ts";
 
 /* ───────────────────────── Calendario académico ───────────────────────── */
 
@@ -157,7 +157,8 @@ export function calcularStats(m: Materia): MateriaStats {
   }
 
   const baseCalculable = presentes + faltasConsumidas; // "justificada" es neutral
-  const porcentajeActual = baseCalculable > 0 ? (presentes / baseCalculable) * 100 : 100;
+  // Sin clases marcadas comienza en 0 %; luego usa solo presente + ausente.
+  const porcentajeActual = baseCalculable > 0 ? (presentes / baseCalculable) * 100 : 0;
 
   // Umbrales fijos (Art. 13.b.3): cuántas faltas se pueden tener sobre el
   // total de clases del semestre sin bajar de cada piso de asistencia.
@@ -218,7 +219,7 @@ export function simular(m: Materia, stats: MateriaStats): Simulacion {
   // Clases consecutivas necesarias para volver a estar en el umbral del 70%,
   // asumiendo que a partir de ahora asiste a todas las que le quedan marcar.
   let clasesConsecutivasParaRecuperar70: number | null = null;
-  if (stats.porcentajeActual < UMBRAL_PRIMERA_CONVOCATORIA) {
+  if (stats.presentes + stats.faltasConsumidas > 0 && stats.porcentajeActual < UMBRAL_PRIMERA_CONVOCATORIA) {
     const p = UMBRAL_PRIMERA_CONVOCATORIA / 100;
     const P = stats.presentes, T = stats.presentes + stats.faltasConsumidas;
     const denom = 1 - p;

@@ -412,6 +412,17 @@ export function nombreOfertadoParaMalla(nombreMalla: string): string | null {
 }
 
 const seccionesPorMateriaCache = new Map<string, Seccion[]>();
+const seccionesCursablesCache = new Map<string, Seccion[]>();
+
+/** El Excel marca con asteriscos las mesas habilitadas únicamente para examen final. */
+export function esSeccionSoloExamen(section: Pick<Seccion, "materia">): boolean {
+  return /\*/.test(section.materia);
+}
+
+/** Nombre apto para mostrar, sin la marca operativa del Excel. */
+export function nombreMateriaVisible(nombre: string): string {
+  return nombre.replace(/\s*\(\s*\*+\s*\)\s*/g, " ").replace(/\s{2,}/g, " ").trim();
+}
 
 /** Todas las secciones ofertadas este período para una materia de la malla curricular. */
 export function seccionesPorMateriaMalla(nombreMalla: string, plan = "2008"): Seccion[] {
@@ -427,6 +438,26 @@ export function seccionesPorMateriaMalla(nombreMalla: string, plan = "2008"): Se
   );
   seccionesPorMateriaCache.set(cacheKey, result);
   return result;
+}
+
+/** Secciones con clases regulares; excluye explícitamente las mesas solo-final. */
+export function seccionesCursablesPorMateriaMalla(nombreMalla: string, plan = "2008"): Seccion[] {
+  const cacheKey = `${plan}::${nombreMalla}`;
+  if (seccionesCursablesCache.has(cacheKey)) return seccionesCursablesCache.get(cacheKey)!;
+  const result = seccionesPorMateriaMalla(nombreMalla, plan).filter(
+    section => !esSeccionSoloExamen(section) && section.clases.length > 0,
+  );
+  seccionesCursablesCache.set(cacheKey, result);
+  return result;
+}
+
+/** Departamentos informados por el Excel para una materia. */
+export function departamentosPorMateriaMalla(nombreMalla: string, plan = "2008"): string[] {
+  return [...new Set(
+    seccionesPorMateriaMalla(nombreMalla, plan)
+      .map(section => section.departamento?.trim())
+      .filter((value): value is string => Boolean(value)),
+  )].sort((a, b) => a.localeCompare(b, "es"));
 }
 
 /** Resumen corto del horario semanal de una sección, ej: "Lu 10:00-12:15 · Mi 10:00-12:15" */

@@ -125,7 +125,7 @@ export function buildAcademicRadar(now = new Date()): RadarSnapshot {
 
   for (const m of cargarMaterias()) {
     const stats = calcularStats(m);
-    if (stats.porcentajeActual < 70)
+    if (stats.presentes + stats.faltasConsumidas > 0 && stats.porcentajeActual < 70)
       push({
         type: "risk",
         priority: stats.porcentajeActual < 50 ? "critical" : "high",

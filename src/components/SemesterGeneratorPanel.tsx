@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Bot, Check, Clock3, LoaderCircle, Sparkles, TriangleAlert } from "lucide-react";
 import type { MateriaMalla } from "@/lib/malla-curricular";
-import { seccionesPorMateriaMalla } from "@/lib/poliplanner";
+import { esSeccionSoloExamen, seccionesCursablesPorMateriaMalla, seccionesPorMateriaMalla } from "@/lib/poliplanner";
 import { generateSemesterSchedules, type ScheduleProposal } from "@/lib/schedule-generator";
 import { shiftDistance } from "@/lib/schedule-preference";
 
@@ -20,7 +20,8 @@ export function SemesterGeneratorPanel({ materias, selectedIds, onApply }: Props
           return {
             materia,
             sections,
-            schedulableSections: sections.filter((section) => section.clases.length > 0),
+            schedulableSections: seccionesCursablesPorMateriaMalla(materia.nombre),
+            examOnlySections: sections.filter(esSeccionSoloExamen),
           };
         })
         .filter((entry) => entry.sections.length > 0),
@@ -36,7 +37,9 @@ export function SemesterGeneratorPanel({ materias, selectedIds, onApply }: Props
   const [proposals, setProposals] = useState<ScheduleProposal[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [hasGenerated, setHasGenerated] = useState(false);
+  const [analysisStep, setAnalysisStep] = useState(0);
   const generationTimer = useRef<number | null>(null);
+  const analysisTimer = useRef<number | null>(null);
 
   useEffect(() => {
     setSelected((current) =>
@@ -50,6 +53,7 @@ export function SemesterGeneratorPanel({ materias, selectedIds, onApply }: Props
   useEffect(
     () => () => {
       if (generationTimer.current) window.clearTimeout(generationTimer.current);
+      if (analysisTimer.current) window.clearInterval(analysisTimer.current);
     },
     [],
   );
@@ -100,9 +104,12 @@ export function SemesterGeneratorPanel({ materias, selectedIds, onApply }: Props
       })
       .filter((group) => group.length > 0);
     setIsGenerating(true);
+    setAnalysisStep(0);
     setHasGenerated(false);
     setProposals([]);
     if (generationTimer.current) window.clearTimeout(generationTimer.current);
+    if (analysisTimer.current) window.clearInterval(analysisTimer.current);
+    analysisTimer.current = window.setInterval(() => setAnalysisStep(step => Math.min(step + 1, 3)), 280);
     generationTimer.current = window.setTimeout(() => {
       setProposals(
         generateSemesterSchedules({
@@ -117,8 +124,10 @@ export function SemesterGeneratorPanel({ materias, selectedIds, onApply }: Props
       );
       setIsGenerating(false);
       setHasGenerated(true);
+      if (analysisTimer.current) window.clearInterval(analysisTimer.current);
+      analysisTimer.current = null;
       generationTimer.current = null;
-    }, 650);
+    }, 1150);
   }
 
   function apply(proposal: ScheduleProposal) {
@@ -177,7 +186,7 @@ export function SemesterGeneratorPanel({ materias, selectedIds, onApply }: Props
                   </button>
                 </div>
                 <div className="mt-1 space-y-1">
-                  {entries.map(({ materia, sections, schedulableSections }) => (
+                  {entries.map(({ materia, sections, schedulableSections, examOnlySections }) => (
                     <label
                       key={materia.id}
                       className={`flex gap-3 rounded-lg p-2 ${
@@ -203,7 +212,9 @@ export function SemesterGeneratorPanel({ materias, selectedIds, onApply }: Props
                         <small className="block text-muted-foreground">
                           {schedulableSections.length
                             ? `${schedulableSections.length} sección${schedulableSections.length === 1 ? "" : "es"} con horario`
-                            : `${sections.length} sección${sections.length === 1 ? "" : "es"} · horario pendiente de confirmación`}
+                            : examOnlySections.length === sections.length
+                              ? `${examOnlySections.length} mesa${examOnlySections.length === 1 ? "" : "s"} · solo examen final`
+                              : `${sections.length} sección${sections.length === 1 ? "" : "es"} · horario pendiente de confirmación`}
                         </small>
                       </span>
                     </label>
@@ -261,13 +272,25 @@ export function SemesterGeneratorPanel({ materias, selectedIds, onApply }: Props
       <section className="space-y-4">
         {isGenerating && (
           <div className="pp-panel rounded-2xl p-8 text-center" role="status" aria-live="polite">
-            <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-primary/10 text-primary motion-safe:animate-pulse">
-              <Bot className="h-7 w-7" />
+            <div className="relative mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-primary/10 text-primary">
+              <span className="absolute inset-0 rounded-2xl border border-primary/40 motion-safe:animate-ping" />
+              <Bot className="relative h-7 w-7 motion-safe:animate-pulse" />
             </div>
-            <h3 className="mt-4 font-display font-semibold">Asistente IEK trabajando</h3>
+            <h3 className="mt-4 font-display font-semibold">Análisis inteligente del horario</h3>
             <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-              Está intentando incluir todas tus materias, respetar el día libre, acercarse al turno
-              elegido y reducir las horas entre clases.
+              {[
+                "Leyendo las materias y secciones reales del periodo…",
+                "Comparando turnos y el día libre solicitado…",
+                "Descartando choques y secciones solo para examen…",
+                "Minimizando las horas libres entre clases…",
+              ][analysisStep]}
+            </p>
+            <div className="mx-auto mt-5 flex max-w-xs gap-1" aria-hidden="true">
+              {[0, 1, 2, 3].map(step => <span key={step}
+                className={`h-1.5 flex-1 rounded-full transition-colors ${step <= analysisStep ? "bg-primary" : "bg-foreground/10"}`} />)}
+            </div>
+            <p className="mt-3 text-[11px] text-muted-foreground/80">
+              Cálculo local y determinista; no comparte tus preferencias con servicios externos.
             </p>
           </div>
         )}

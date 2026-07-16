@@ -54,3 +54,8 @@ export function markNotificationRead(id: string) {
   );
   writeLocalState(KEY, JSON.stringify(next));
 }
+export function markAllNotificationsRead() {
+  const readAt = new Date().toISOString();
+  const next = loadNotifications().map(n => n.readAt ? n : { ...n, readAt });
+  writeLocalState(KEY, JSON.stringify(next));
+}

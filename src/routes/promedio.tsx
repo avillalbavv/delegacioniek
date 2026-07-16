@@ -13,7 +13,7 @@ import { Reveal } from "@/components/Reveal";
 import { SiteNavbar } from "@/components/SiteNavbar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { DATA, groupByMateria } from "@/lib/poliplanner";
+import { DATA, esSeccionSoloExamen, groupByMateria } from "@/lib/poliplanner";
 import { normalizeSearch, searchRank } from "@/lib/search";
 import { writeLocalState } from "@/lib/user-state";
 
@@ -28,10 +28,9 @@ const STORAGE_KEY = "iek-promedio-db-v2";
 
 function uniqueMaterias() {
   // Una fila por materia (sin duplicar por sección/turno), agrupadas por semestre.
-  const groups = groupByMateria(DATA);
+  const groups = groupByMateria(DATA.filter(m => !esSeccionSoloExamen(m)));
   return groups
-    .map(g => ({ id: g.id, materia: g.materia, semestre: g.semestre, plan: g.plan }))
-    .filter(m => !m.materia.includes("(*)")); // las "(*)" son registros de solo-examen, no materias a cursar
+    .map(g => ({ id: g.id, materia: g.materia, semestre: g.semestre, plan: g.plan }));
 }
 
 function semestreOrder(s: string): number {
