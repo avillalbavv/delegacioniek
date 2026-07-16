@@ -241,7 +241,6 @@ export function SiteNavbar() {
             <div className="hidden xl:block">
               <ThemeToggle />
             </div>
-            <MobileThemeSwitch />
             <a
               href="https://www.pol.una.py/carreras/iek/"
               target="_blank"
@@ -265,6 +264,10 @@ export function SiteNavbar() {
           <div className="mt-2 max-h-[75vh] animate-fade-in overflow-y-auto rounded-2xl border border-border bg-popover p-2 shadow-2xl xl:hidden">
             <div className="mb-1">
               <GlobalCommand menu onClose={() => setOpen(false)} />
+              <div className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground">
+                <span>Apariencia</span>
+                <MobileThemeSwitch />
+              </div>
               {auth.role !== "student" && (
                 <Link
                   to="/admin"
