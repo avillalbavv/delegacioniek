@@ -450,7 +450,7 @@ export function SemesterGeneratorPanel({ materias, selectedIds, onApply }: Props
               onClick={() => apply(proposal)}
               className="mt-4 inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
             >
-              <Check className="h-4 w-4" /> Usar esta propuesta
+              <Check className="h-4 w-4" /> Revisar y confirmar horario
             </button>
           </article>
         ))}

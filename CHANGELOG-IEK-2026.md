@@ -32,3 +32,4 @@
 - Corregido el modo claro del mapa interactivo, incluyendo selector de énfasis, grafo, tabla, controles y modal de materias.
 - Agrupado el asistente del planificador por semestre, con selección masiva, animación de análisis y un máximo de dos propuestas.
 - Priorizada la inclusión de todas las materias, el día libre, el turno más cercano y la reducción de horas libres, con explicaciones por cada preferencia que no pueda cumplirse.
+- Reubicada la confirmación debajo de la previsualización del horario; al aplicar una propuesta, el planificador desplaza la vista hasta la revisión final.

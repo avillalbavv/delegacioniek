@@ -9,7 +9,7 @@
  * (agenda por tipo + vista mensual).
  */
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CalendarRange,
   Search,
@@ -116,6 +116,8 @@ function PoliPlannerPage() {
   const [syncMsg, setSyncMsg] = useState<string | null>(null);
   const [plannerMode, setPlannerMode] = useState<"manual" | "smart">("manual");
   const [confirmedSignature, setConfirmedSignature] = useState("");
+  const [focusConfirmation, setFocusConfirmation] = useState(false);
+  const confirmationRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const sel = loadSelection();
@@ -275,6 +277,15 @@ function PoliPlannerPage() {
   const currentSignature = plannerSignature(enfasis, materiaIds, choice);
   const horarioConfirmado = Boolean(confirmedSignature && confirmedSignature === currentSignature);
 
+  useEffect(() => {
+    if (!focusConfirmation || plannerMode !== "manual" || chosenSecciones.length === 0) return;
+    const frame = window.requestAnimationFrame(() => {
+      confirmationRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      setFocusConfirmation(false);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [focusConfirmation, plannerMode, chosenSecciones.length]);
+
   return (
     <div className="min-h-screen">
       <SiteNavbar />
@@ -368,6 +379,7 @@ function PoliPlannerPage() {
               setChoice(sections);
               setPlannerMode("manual");
               setOpenSemestres([]);
+              setFocusConfirmation(true);
             }}
           />
         ) : (
@@ -394,7 +406,7 @@ function PoliPlannerPage() {
                   )}
                 </div>
                 <div className="ml-auto flex flex-wrap items-center gap-2">
-                  {horarioConfirmado ? (
+                  {horarioConfirmado && (
                     <>
                       <span className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/25 bg-emerald-500/10 px-3 py-2 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
                         <Check className="h-3.5 w-3.5" /> Horario confirmado
@@ -411,14 +423,6 @@ function PoliPlannerPage() {
                         <CalendarCheck2 className="h-3.5 w-3.5" /> Enviar a Asistencia
                       </button>
                     </>
-                  ) : (
-                    <button
-                      onClick={confirmarHorario}
-                      disabled={!materiaIds.length || pendientes > 0 || conflicts.length > 0}
-                      className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground disabled:cursor-not-allowed disabled:opacity-40"
-                    >
-                      <CalendarCheck2 className="h-4 w-4" /> Confirmar horario
-                    </button>
                   )}
                   {materiaIds.length > 0 && (
                     <button
@@ -431,15 +435,6 @@ function PoliPlannerPage() {
                   )}
                 </div>
               </div>
-              {!horarioConfirmado && materiaIds.length > 0 && (
-                <p className="mt-2 text-xs text-muted-foreground">
-                  {pendientes > 0
-                    ? `Elegí una sección para ${pendientes} materia${pendientes === 1 ? "" : "s"}.`
-                    : conflicts.length > 0
-                      ? "Resolvé los choques antes de confirmar."
-                      : "La vista es una previsualización. Confirmá para guardarla y habilitar sus acciones."}
-                </p>
-              )}
               {syncMsg && (
                 <div className="mt-2 flex items-center justify-between gap-3 rounded-xl border border-primary/30 bg-primary/5 px-4 py-2.5 text-xs text-foreground">
                   <span>{syncMsg}</span>
@@ -607,6 +602,52 @@ function PoliPlannerPage() {
                   )}
                 </div>
               </>
+            )}
+
+            {materiaIds.length > 0 && (
+              <Reveal className="pp-no-print">
+                <div
+                  ref={confirmationRef}
+                  id="confirmar-horario"
+                  className={`mt-8 rounded-2xl border p-5 sm:flex sm:items-center sm:justify-between sm:gap-6 ${
+                    horarioConfirmado
+                      ? "border-emerald-500/30 bg-emerald-500/10"
+                      : "border-primary/30 bg-primary/5"
+                  }`}
+                  aria-live="polite"
+                >
+                  <div>
+                    <div className="flex items-center gap-2">
+                      {horarioConfirmado ? (
+                        <Check className="h-5 w-5 text-emerald-600 dark:text-emerald-300" />
+                      ) : (
+                        <CalendarCheck2 className="h-5 w-5 text-primary" />
+                      )}
+                      <h2 className="font-display text-base font-semibold text-foreground">
+                        {horarioConfirmado ? "Horario confirmado" : "¿Este horario te sirve?"}
+                      </h2>
+                    </div>
+                    <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+                      {horarioConfirmado
+                        ? "Quedó guardado y ya está disponible para ¿Dónde rindo?, el calendario y la sincronización."
+                        : pendientes > 0
+                          ? `Todavía falta elegir una sección para ${pendientes} materia${pendientes === 1 ? "" : "s"}.`
+                          : conflicts.length > 0
+                            ? "Resolvé los choques señalados antes de confirmar."
+                            : "Revisá la distribución semanal y confirmá para guardar este horario como el vigente."}
+                    </p>
+                  </div>
+                  {!horarioConfirmado && (
+                    <button
+                      onClick={confirmarHorario}
+                      disabled={pendientes > 0 || conflicts.length > 0}
+                      className="mt-4 inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-40 sm:mt-0 sm:w-auto"
+                    >
+                      <CalendarCheck2 className="h-4 w-4" /> Confirmar horario
+                    </button>
+                  )}
+                </div>
+              </Reveal>
             )}
           </>
         )}
