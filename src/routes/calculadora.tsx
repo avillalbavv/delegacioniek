@@ -593,14 +593,27 @@ function CalculadoraPage() {
               <div className="mb-6 rounded-xl border border-primary/25 bg-primary/5 px-5 py-4">
                 <div className="flex items-start gap-3">
                   <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
-                  <div className="text-sm">
-                    <strong className="text-foreground">Ejemplo rápido:</strong>{" "}
-                    <span className="text-muted-foreground">
-                      con un PEP de <strong className="text-foreground">85,63</strong> y un examen
-                      final de <strong className="text-foreground">73</strong>, el rendimiento es
-                      0,4 × 73 + 0,6 × 85,63 = 80,578. Se redondea a 81 y corresponde a la{" "}
-                      <strong className="text-primary">nota 4</strong>.
-                    </span>
+                  <div className="min-w-0 text-sm">
+                    <strong className="text-foreground">Ejemplo de uso</strong>
+                    <ol className="mt-2 grid gap-2 text-muted-foreground sm:grid-cols-2">
+                      <li>
+                        <span className="font-semibold text-primary">1.</span> Escribí{" "}
+                        <strong className="text-foreground">80</strong> en el parcial de la Etapa 1.
+                      </li>
+                      <li>
+                        <span className="font-semibold text-primary">2.</span> Si no tuviste
+                        trabajos ni laboratorio, dejá sus actividades vacías.
+                      </li>
+                      <li>
+                        <span className="font-semibold text-primary">3.</span> Escribí{" "}
+                        <strong className="text-foreground">70</strong> en la Etapa 2: vas a ver un
+                        PEP de <strong className="text-foreground">75</strong>.
+                      </li>
+                      <li>
+                        <span className="font-semibold text-primary">4.</span> Si ya rendiste el
+                        final, cargá la nota en el campo opcional para ver tu resultado completo.
+                      </li>
+                    </ol>
                   </div>
                 </div>
               </div>
