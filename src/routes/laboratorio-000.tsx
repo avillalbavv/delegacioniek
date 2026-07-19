@@ -1,6 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ChevronLeft, Gamepad2, LoaderCircle, RotateCcw, ShieldCheck, Upload } from "lucide-react";
+import {
+  BookOpen,
+  ChevronLeft,
+  ExternalLink,
+  Gamepad2,
+  LoaderCircle,
+  Play,
+  RotateCcw,
+  ShieldCheck,
+  Upload,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { parseRomCatalog, type RomCatalogEntry } from "../lib/rom-catalog";
 
 export const Route = createFileRoute("/laboratorio-000")({ component: SecretGbaLab });
 
@@ -9,7 +20,7 @@ const MAX_ROM_BYTES = 32 * 1024 * 1024;
 const MIN_ROM_BYTES = 192;
 
 type Notice = { kind: "error" | "success" | "info"; text: string };
-type RomSession = { gameId: string; title: string; url: string };
+type RomSession = { gameId: string; title: string; url: string; local: boolean };
 
 declare global {
   interface Window {
@@ -37,11 +48,34 @@ function readAscii(bytes: Uint8Array, start: number, end: number) {
 function SecretGbaLab() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [session, setSession] = useState<RomSession | null>(null);
+  const [catalog, setCatalog] = useState<RomCatalogEntry[]>([]);
+  const [catalogLoading, setCatalogLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState<Notice>({
     kind: "info",
     text: "Elegí una copia legal en formato .gba. El archivo permanece únicamente en tu dispositivo.",
   });
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch("/roms/catalog.json", { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("Catalog unavailable");
+        return response.json();
+      })
+      .then((value: unknown) => setCatalog(parseRomCatalog(value)))
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setNotice({
+          kind: "error",
+          text: "El catálogo público no pudo cargarse. Todavía podés abrir una ROM local.",
+        });
+      })
+      .finally(() => setCatalogLoading(false));
+
+    return () => controller.abort();
+  }, []);
 
   useEffect(() => {
     if (!session) return;
@@ -79,7 +113,7 @@ function SecretGbaLab() {
 
     return () => {
       script.remove();
-      URL.revokeObjectURL(session.url);
+      if (session.local) URL.revokeObjectURL(session.url);
       delete window.EJS_ready;
       delete window.EJS_onGameStart;
     };
@@ -105,6 +139,7 @@ function SecretGbaLab() {
         title,
         gameId: `iek-gba-${code.toLowerCase()}`,
         url: URL.createObjectURL(file),
+        local: true,
       });
       setNotice({ kind: "info", text: "Cargando el núcleo mGBA y preparando el cartucho…" });
     } catch {
@@ -113,6 +148,17 @@ function SecretGbaLab() {
     } finally {
       if (fileInputRef.current) fileInputRef.current.value = "";
     }
+  }
+
+  function playCatalogRom(game: RomCatalogEntry) {
+    setBusy(true);
+    setSession({
+      title: game.title,
+      gameId: `iek-gba-${game.id}`,
+      url: game.rom,
+      local: false,
+    });
+    setNotice({ kind: "info", text: `Preparando ${game.title} con el núcleo mGBA…` });
   }
 
   return (
@@ -143,10 +189,89 @@ function SecretGbaLab() {
                 Módulo portátil <span className="text-red-400">GBA</span>
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-400">
-                Un rincón secreto para descansar entre parciales. Compatible con copias legales de
-                juegos de Game Boy Advance, incluido Pokémon Rojo Fuego.
+                Elegí un juego libre del catálogo o abrí una copia legal desde tu dispositivo.
               </p>
             </div>
+
+            {!session && (
+              <section className="mb-5" aria-labelledby="catalog-title">
+                <div className="mb-3 flex items-end justify-between gap-3">
+                  <div>
+                    <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
+                      <BookOpen className="h-4 w-4 text-red-400" />
+                      <h2 id="catalog-title">Biblioteca pública</h2>
+                    </div>
+                    <p className="mt-1 text-xs text-slate-500">
+                      Homebrew y juegos con permiso explícito de redistribución.
+                    </p>
+                  </div>
+                </div>
+
+                {catalogLoading ? (
+                  <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.035] p-4 text-xs text-slate-400">
+                    <LoaderCircle className="h-4 w-4 animate-spin" /> Cargando biblioteca…
+                  </div>
+                ) : catalog.length > 0 ? (
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {catalog.map((game) => (
+                      <article
+                        key={game.id}
+                        className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035] p-3"
+                      >
+                        <div className="flex gap-3">
+                          {game.cover ? (
+                            <img
+                              src={game.cover}
+                              alt=""
+                              className="h-20 w-20 rounded-xl object-cover [image-rendering:pixelated]"
+                            />
+                          ) : (
+                            <div className="grid h-20 w-20 shrink-0 place-items-center rounded-xl bg-red-400/10 text-red-300">
+                              <Gamepad2 className="h-7 w-7" />
+                            </div>
+                          )}
+                          <div className="min-w-0 flex-1">
+                            <h3 className="truncate text-sm font-bold text-slate-100">{game.title}</h3>
+                            <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">
+                              {game.description}
+                            </p>
+                            <p className="mt-1 truncate text-[10px] uppercase tracking-wider text-slate-600">
+                              {game.author}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="mt-3 flex items-center justify-between gap-2">
+                          <a
+                            href={game.licenseUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex min-w-0 items-center gap-1 truncate text-[10px] font-semibold text-slate-500 hover:text-slate-300"
+                          >
+                            {game.license} <ExternalLink className="h-3 w-3 shrink-0" />
+                          </a>
+                          <button
+                            type="button"
+                            onClick={() => playCatalogRom(game)}
+                            disabled={busy}
+                            className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-red-500 px-3 py-2 text-xs font-bold text-white transition hover:bg-red-400 disabled:opacity-50"
+                          >
+                            <Play className="h-3.5 w-3.5" /> Jugar
+                          </button>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="rounded-2xl border border-dashed border-white/10 bg-white/[0.02] p-5 text-center">
+                    <p className="text-sm font-semibold text-slate-300">La biblioteca está lista.</p>
+                    <p className="mt-1 text-xs leading-relaxed text-slate-500">
+                      Agregá ROMs redistribuibles en <code>public/roms/</code> y sus fichas en el
+                      catálogo JSON.
+                    </p>
+                  </div>
+                )}
+              </section>
+            )}
 
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#111521] p-3 shadow-[0_30px_100px_-30px_rgba(239,68,68,0.35)] sm:p-5">
               <div className="mb-3 flex items-center justify-between gap-3 px-1">
@@ -197,7 +322,7 @@ function SecretGbaLab() {
           <aside className="space-y-4 lg:sticky lg:top-8">
             <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
               <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
-                <Gamepad2 className="h-4 w-4 text-red-400" /> Cartucho
+                <Gamepad2 className="h-4 w-4 text-red-400" /> Mi ROM
               </div>
               <input
                 ref={fileInputRef}
@@ -213,7 +338,7 @@ function SecretGbaLab() {
                 className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-red-400/25 bg-red-400/10 px-3 py-3 text-sm font-bold text-red-200 transition hover:border-red-300/45 hover:bg-red-400/15 disabled:opacity-50"
               >
                 {busy ? <LoaderCircle className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
-                {session ? "Cambiar cartucho" : "Cargar archivo .gba"}
+                {session ? "Cambiar cartucho" : "Cargar mi ROM .gba"}
               </button>
               <p
                 role="status"
