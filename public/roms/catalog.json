@@ -56,17 +56,6 @@
       "cover": "/roms/chrono-trigger.webp"
     },
     {
-      "id": "sonic-the-hedgehog-2",
-      "title": "Sonic the Hedgehog 2",
-      "description": "Velocidad frenética en 16 bits que introdujo el icónico Spin Dash y al carismático Tails.",
-      "author": "Sega / Sonic Team",
-      "license": "Proprietary",
-      "licenseUrl": "https://www.sega.com",
-      "sourceUrl": "https://www.sonicthehedgehog.com",
-      "rom": "/roms/sonic-the-hedgehog-2.md",
-      "cover": "/roms/sonic-the-hedgehog-2.webp"
-    },
-    {
       "id": "metroid-fusion",
       "title": "Metroid Fusion",
       "description": "Una tensa atmósfera de supervivencia en el espacio donde Samus Aran debe enfrentar al peligroso Parásito X.",
