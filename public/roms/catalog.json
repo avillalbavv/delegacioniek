@@ -68,7 +68,7 @@
       "license": "Proprietary",
       "licenseUrl": "https://www.sega.com",
       "sourceUrl": "https://www.sonicthehedgehog.com",
-      "system": "md",
+      "system": "sega-md",
       "rom": "/roms/sonic-2.md",
       "cover": "/roms/sonic-2.webp"
     },
