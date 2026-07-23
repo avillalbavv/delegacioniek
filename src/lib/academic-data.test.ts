@@ -13,6 +13,8 @@ type AcademicRow = {
   enfasis: string;
   modoSeleccion?: string;
   docenteEsPlantel?: boolean;
+  soloExamenFinal?: boolean;
+  clases: { dia: string; hora: string; tipo?: string }[];
   laboratorio?: { grupo: string };
 };
 
@@ -20,8 +22,8 @@ const rows = JSON.parse(
   readFileSync(new URL("../data/poliplanner-horario-2026.json", import.meta.url), "utf8"),
 ) as AcademicRow[];
 
-test("la importación conserva 198 alternativas con identificadores únicos", () => {
-  assert.equal(rows.length, 198);
+test("la importación conserva 243 alternativas con identificadores únicos", () => {
+  assert.equal(rows.length, 243);
   assert.equal(new Set(rows.map((row) => row.id)).size, rows.length);
 });
 
@@ -53,20 +55,26 @@ test("los semestres académicos corregidos están en la fuente central", () => {
 });
 
 test("los planes del Excel no se reemplazan por un valor fijo", () => {
-  assert.deepEqual([...new Set(rows.map((row) => row.plan))].sort(), ["2008", "2026"]);
+  assert.deepEqual([...new Set(rows.map((row) => row.plan))].sort(), ["2008", "2009", "2026"]);
   const calculoTres = rows.filter((row) => row.materia === "Cálculo III");
   assert.deepEqual([...new Set(calculoTres.map((row) => row.plan))], ["2008"]);
 });
 
-test("la malla 2008 usa turnos, docentes oficiales y prácticas de laboratorio", () => {
-  const plan2008 = rows.filter((row) => row.plan === "2008");
-  assert.equal(plan2008.length, 187);
+test("la malla anterior usa secciones X/Y, turnos normalizados y laboratorios", () => {
+  const plan2008 = rows.filter((row) => row.plan === "2008" || row.plan === "2009");
+  assert.equal(plan2008.length, 232);
   assert.equal(
-    plan2008.every((row) => row.modoSeleccion === "turno"),
+    plan2008.every((row) => row.modoSeleccion === "seccion"),
     true,
   );
-  assert.ok(plan2008.filter((row) => row.docenteEsPlantel).length >= 180);
-  assert.equal(plan2008.filter((row) => row.laboratorio).length, 50);
+  assert.deepEqual([...new Set(plan2008.map((row) => row.seccion))].sort(), ["X", "Y"]);
+  assert.deepEqual([...new Set(plan2008.map((row) => row.turno))].sort(), ["M", "N", "T"]);
+  assert.ok(plan2008.filter((row) => row.docenteEsPlantel).length >= 220);
+  assert.equal(plan2008.filter((row) => row.laboratorio).length, 116);
+  assert.equal(
+    plan2008.filter((row) => row.soloExamenFinal).every((row) => row.clases.length === 0),
+    true,
+  );
 });
 
 test("la identidad académica compuesta no contiene duplicados", () => {
@@ -78,6 +86,7 @@ test("la identidad académica compuesta no contiene duplicados", () => {
       row.turno,
       String(row.semGrupo),
       row.enfasis,
+      row.laboratorio?.grupo || "",
     ].join("::"),
   );
   assert.equal(new Set(identities).size, identities.length);
@@ -86,8 +95,14 @@ test("la identidad académica compuesta no contiene duplicados", () => {
 test("la malla 2026 conserva parciales, finales y los dos grupos de laboratorio", () => {
   const plan2026 = rows.filter((row) => row.plan === "2026");
   assert.equal(plan2026.length, 11);
-  const mechanics = plan2026.filter((row) => row.materia === "Fundamentos de Mecánica");
-  assert.deepEqual(mechanics.map((row) => row.seccion).sort(), ["X · T1", "X · T2"]);
+  const mechanics = plan2026.filter(
+    (row) => normalizeAcademicName(row.materia) === "fundamentos de mecanica",
+  );
+  assert.deepEqual(
+    mechanics.map((row) => row.seccion),
+    ["X", "X"],
+  );
+  assert.deepEqual(mechanics.map((row) => row.laboratorio?.grupo).sort(), ["T1", "T2"]);
   const raw = mechanics as unknown as {
     clases: { dia: string; hora: string; tipo?: string }[];
     examenes: { parcial1?: { dia: string }; final1?: { dia: string } };

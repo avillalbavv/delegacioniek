@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Bot, Check, Clock3, LoaderCircle, Sparkles, TriangleAlert } from "lucide-react";
-import type { EnfasisId, MallaAcademicaId, MateriaMalla } from "@/lib/malla-curricular";
+import type { EnfasisId, MateriaMalla } from "@/lib/malla-curricular";
 import {
   etiquetaSeleccion,
   esSeccionSoloExamen,
@@ -14,20 +14,11 @@ interface Props {
   materias: MateriaMalla[];
   selectedIds: string[];
   plan: string;
-  mallaVersion: MallaAcademicaId;
   enfasis: EnfasisId;
   onApply: (materiaIds: string[], sections: Record<string, string>) => void;
 }
 
-export function SemesterGeneratorPanel({
-  materias,
-  selectedIds,
-  plan,
-  mallaVersion,
-  enfasis,
-  onApply,
-}: Props) {
-  const isPlan2026 = mallaVersion === "vigente-2026";
+export function SemesterGeneratorPanel({ materias, selectedIds, plan, enfasis, onApply }: Props) {
   const offered = useMemo(
     () =>
       materias
@@ -171,9 +162,8 @@ export function SemesterGeneratorPanel({
           <h2 className="font-display font-semibold">Asistente de horario</h2>
         </div>
         <p className="mt-2 text-sm text-muted-foreground">
-          Seleccioná las materias y tus preferencias. Se usarán únicamente las{" "}
-          {isPlan2026 ? "opciones y grupos de laboratorio" : "alternativas por turno"} reales del
-          periodo.
+          Seleccioná las materias y tus preferencias. Se usarán únicamente las secciones, turnos y
+          prácticas de laboratorio informados para el periodo.
         </p>
         <div className="mt-4 max-h-[28rem] space-y-3 overflow-auto pr-2">
           {offeredBySemester.map(({ semester, entries }) => {
@@ -226,15 +216,7 @@ export function SemesterGeneratorPanel({
                         {materia.nombre}
                         <small className="block text-muted-foreground">
                           {schedulableSections.length
-                            ? `${schedulableSections.length} ${
-                                isPlan2026
-                                  ? schedulableSections.length === 1
-                                    ? "opción"
-                                    : "opciones"
-                                  : schedulableSections.length === 1
-                                    ? "alternativa"
-                                    : "alternativas"
-                              } con horario`
+                            ? `${schedulableSections.length} alternativa${schedulableSections.length === 1 ? "" : "s"} con horario`
                             : examOnlySections.length === sections.length
                               ? `${examOnlySections.length} mesa${examOnlySections.length === 1 ? "" : "s"} · solo examen final`
                               : `${sections.length} alternativa${sections.length === 1 ? "" : "s"} · horario pendiente de confirmación`}

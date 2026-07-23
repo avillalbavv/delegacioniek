@@ -46,8 +46,11 @@ export interface Seccion {
   semGrupo: string | number;
   enfasis: string;
   docente: Docente;
+  docentesPosibles?: string[];
   docenteEsPlantel?: boolean;
   modoSeleccion?: "seccion" | "turno" | "opcion";
+  soloExamenFinal?: boolean;
+  requiereLaboratorio?: boolean;
   laboratorio?: {
     grupo: string;
     docente: string;
@@ -437,6 +440,12 @@ export function nombreOfertadoParaMalla(nombreMalla: string): string | null {
 const seccionesPorMateriaCache = new Map<string, Seccion[]>();
 const seccionesCursablesCache = new Map<string, Seccion[]>();
 
+/** La planilla de la malla anterior conserva una materia con Plan 2009. */
+function sectionMatchesMallaPlan(sectionPlan: string, requestedPlan: string): boolean {
+  if (requestedPlan === "2008") return sectionPlan === "2008" || sectionPlan === "2009";
+  return sectionPlan === requestedPlan;
+}
+
 const ENFASIS_EXCEL: Record<EnfasisId, string[]> = {
   "control-industrial": ["ci", "control industrial"],
   "electronica-medica": ["em", "electronica medica"],
@@ -455,9 +464,9 @@ export function seccionAplicaAEnfasis(section: Seccion, enfasis?: EnfasisId | nu
   );
 }
 
-/** Una sección es solo de examen cuando la fuente oficial no informa ningún horario de clase. */
-export function esSeccionSoloExamen(section: Pick<Seccion, "clases">): boolean {
-  return section.clases.length === 0;
+/** Una sección es solo de examen cuando tiene (*) o no informa ningún horario de clase. */
+export function esSeccionSoloExamen(section: Pick<Seccion, "clases" | "soloExamenFinal">): boolean {
+  return Boolean(section.soloExamenFinal) || section.clases.length === 0;
 }
 
 /** Nombre apto para mostrar, sin la marca operativa del Excel. */
@@ -478,7 +487,7 @@ export function seccionesPorMateriaMalla(
   if (seccionesPorMateriaCache.has(cacheKey)) return seccionesPorMateriaCache.get(cacheKey)!;
   const result = DATA.filter(
     (section) =>
-      section.plan === plan &&
+      sectionMatchesMallaPlan(section.plan, plan) &&
       academicNamesMatch(nombreMalla, section.materia) &&
       seccionAplicaAEnfasis(section, enfasis),
   ).sort(
@@ -521,30 +530,19 @@ export function departamentosPorMateriaMalla(
   ].sort((a, b) => a.localeCompare(b, "es"));
 }
 
-/** Etiqueta visible de una alternativa. La sección X/Y queda como dato interno. */
-export function etiquetaSeleccion(section: Seccion, alternatives: Seccion[] = []): string {
-  const mode =
-    section.modoSeleccion || (section.plan === "2026" ? ("opcion" as const) : ("seccion" as const));
-  if (mode === "turno") {
-    const shift = TURNO_LABEL[section.turno] || section.turno || "sin confirmar";
-    let label = `Turno ${shift}`;
-    if (section.laboratorio?.grupo) label += ` · laboratorio ${section.laboratorio.grupo}`;
-    const comparable = alternatives.filter(
-      (candidate) =>
-        candidate.turno === section.turno &&
-        (candidate.laboratorio?.grupo || "") === (section.laboratorio?.grupo || ""),
-    );
-    if (comparable.length > 1) {
-      const index = comparable.findIndex((candidate) => candidate.id === section.id);
-      if (index >= 0) label += ` · horario ${index + 1}`;
-    }
-    return label;
+/** Etiqueta visible: sección oficial X/Y, turno y grupo de laboratorio cuando corresponde. */
+export function etiquetaSeleccion(section: Seccion, _alternatives: Seccion[] = []): string {
+  const sectionName = section.seccion || "Sin sección";
+  const shift = TURNO_LABEL[section.turno] || section.turno;
+  let label = `Sección ${sectionName}`;
+  if (shift) label += ` · ${shift}`;
+  if (section.laboratorio?.grupo) {
+    label +=
+      section.laboratorio.grupo === "Único"
+        ? " · laboratorio"
+        : ` · laboratorio ${section.laboratorio.grupo}`;
   }
-  if (section.laboratorio?.grupo) return `Grupo de laboratorio ${section.laboratorio.grupo}`;
-  if (mode === "opcion") {
-    return alternatives.length === 1 ? "Opción única" : `Opción ${section.seccion}`;
-  }
-  return `Sección ${section.seccion}`;
+  return label;
 }
 
 /** Resumen corto del horario semanal de una sección, ej: "Lu 10:00-12:15 · Mi 10:00-12:15" */
