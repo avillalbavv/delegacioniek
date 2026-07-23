@@ -2,6 +2,7 @@ import { Outlet, Link, createRootRoute, useRouter } from "@tanstack/react-router
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AuthProvider } from "@/components/AuthProvider";
 import { ScheduleDataBootstrap } from "@/components/ScheduleDataBootstrap";
+import { refreshApplicationFiles } from "@/lib/app-recovery";
 
 function NotFoundComponent() {
   return (
@@ -46,6 +47,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Reintentar
+          </button>
+          <button
+            type="button"
+            onClick={() => void refreshApplicationFiles()}
+            className="inline-flex items-center justify-center rounded-md border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
+          >
+            Reparar y recargar
           </button>
           <a
             href="/"
