@@ -12,6 +12,26 @@ export interface AppNotification {
   actionUrl?: string;
 }
 const KEY = "iek-notifications:v1";
+
+function isAppNotification(value: unknown): value is AppNotification {
+  if (!value || typeof value !== "object") return false;
+  const item = value as Partial<AppNotification>;
+  return (
+    typeof item.id === "string" &&
+    typeof item.type === "string" &&
+    typeof item.title === "string" &&
+    typeof item.message === "string" &&
+    typeof item.priority === "string" &&
+    typeof item.createdAt === "string" &&
+    (item.readAt === undefined || typeof item.readAt === "string") &&
+    (item.actionUrl === undefined || typeof item.actionUrl === "string")
+  );
+}
+
+export function normalizeNotifications(value: unknown): AppNotification[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter(isAppNotification).slice(0, 100);
+}
 export function upsertNotifications(notifications: AppNotification[]): AppNotification[] {
   const existing = loadNotifications();
   const map = new Map(existing.map((item) => [item.id, item]));
@@ -34,7 +54,7 @@ export function upsertNotification(notification: AppNotification): AppNotificati
 export function loadNotifications(): AppNotification[] {
   if (typeof window === "undefined") return [];
   try {
-    return JSON.parse(localStorage.getItem(KEY) || "[]");
+    return normalizeNotifications(JSON.parse(localStorage.getItem(KEY) || "[]"));
   } catch {
     return [];
   }
