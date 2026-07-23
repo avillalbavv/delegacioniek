@@ -282,14 +282,16 @@ export interface ScheduleConflict {
 export function findScheduleConflicts(secciones: Seccion[]): ScheduleConflict[] {
   const conflicts: ScheduleConflict[] = [];
   for (let i = 0; i < secciones.length; i++) {
-    for (let j = i + 1; j < secciones.length; j++) {
+    for (let j = i; j < secciones.length; j++) {
       const a = secciones[i],
         b = secciones[j];
-      if (a.materiaId === b.materiaId) continue;
-      for (const ca of a.clases) {
+      for (let aIndex = 0; aIndex < a.clases.length; aIndex++) {
+        const ca = a.clases[aIndex];
         const ra = parseHora(ca.hora);
         if (!ra) continue;
-        for (const cb of b.clases) {
+        const bStart = i === j ? aIndex + 1 : 0;
+        for (let bIndex = bStart; bIndex < b.clases.length; bIndex++) {
+          const cb = b.clases[bIndex];
           if (ca.dia !== cb.dia) continue;
           const rb = parseHora(cb.hora);
           if (!rb) continue;
@@ -353,7 +355,11 @@ export interface ExamConflict {
   entries: ExamEntry[];
 }
 
-/** Agrupa exámenes que caen el mismo día (incluso con distinta hora, para avisar con anticipación). */
+/**
+ * Agrupa exámenes de materias distintas que comparten fecha. La planificación
+ * oficial no informa duración y los parciales no incluyen hora, por lo que el
+ * resultado es una advertencia preventiva, no una afirmación de solapamiento.
+ */
 export function findExamConflicts(examenes: ExamEntry[]): ExamConflict[] {
   const byDate = new Map<string, ExamEntry[]>();
   for (const e of examenes) {

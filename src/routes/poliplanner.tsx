@@ -564,6 +564,15 @@ function PoliPlannerPage() {
                       {conflicts.length === 1 ? "" : "s"}
                     </span>
                   )}
+                  {examConflicts.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setTab("examenes")}
+                      className="ml-1 flex items-center gap-1 rounded-full bg-red-400/15 px-2 py-0.5 text-xs font-medium text-red-500 transition hover:bg-red-400/25"
+                    >
+                      <AlertTriangle className="h-3 w-3" /> Revisar exámenes
+                    </button>
+                  )}
                 </div>
                 <div className="ml-auto flex flex-wrap items-center gap-2">
                   {horarioConfirmado && (
@@ -692,6 +701,14 @@ function PoliPlannerPage() {
                     elegís después el grupo de laboratorio con su propio horario. Los docentes se
                     muestran solo como referencia.
                   </p>
+                  <div className="mb-4 flex gap-2 rounded-xl border border-amber-500/25 bg-amber-500/10 px-3 py-2.5 text-xs text-amber-800 dark:text-amber-300">
+                    <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                    <span>
+                      El reglamento no permite ningún solapamiento entre clases, laboratorios o
+                      evaluaciones, aunque sea de un solo minuto. El planificador marcará cualquier
+                      conflicto detectado.
+                    </span>
+                  </div>
                   <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                     {materiaIds.map((id) => {
                       const m = mallaById.get(id);
@@ -1359,17 +1376,28 @@ function ConflictBanner({ conflicts }: { conflicts: ScheduleConflict[] }) {
     <Reveal>
       <div className="pp-no-print mb-6 rounded-2xl border border-red-400/30 bg-red-400/5 p-4">
         <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-red-500">
-          <AlertTriangle className="h-4 w-4" /> {conflicts.length} choque
+          <AlertTriangle className="h-4 w-4" /> Conflicto reglamentario · {conflicts.length} choque
           {conflicts.length === 1 ? "" : "s"} de horario detectado
           {conflicts.length === 1 ? "" : "s"}
         </div>
+        <p className="mb-2 text-xs text-red-500/90">
+          No se permite ningún solapamiento, aunque sea de un solo minuto. Cambiá una de las
+          opciones antes de confirmar.
+        </p>
         <ul className="space-y-1 text-xs text-red-500/90">
           {conflicts.map((c, i) => (
             <li key={i}>
-              <span className="font-medium">{c.a.seccion.materia}</span> ({c.a.clase.hora}) se
-              superpone con <span className="font-medium">{c.b.seccion.materia}</span> (
-              {c.b.clase.hora}) el <span className="font-medium">{c.dia}</span> — {c.overlapMin} min
-              de solapamiento. El reglamento no permite superposición de horarios.
+              <span className="font-medium">
+                {c.a.seccion.materia}
+                {c.a.clase.tipo === "laboratorio" ? " · Laboratorio" : ""}
+              </span>{" "}
+              ({c.a.clase.hora}) se superpone con{" "}
+              <span className="font-medium">
+                {c.b.seccion.materia}
+                {c.b.clase.tipo === "laboratorio" ? " · Laboratorio" : ""}
+              </span>{" "}
+              ({c.b.clase.hora}) el <span className="font-medium">{c.dia}</span> — {c.overlapMin}{" "}
+              min de solapamiento.
             </li>
           ))}
         </ul>
@@ -1716,9 +1744,15 @@ function ExamSection({
         {conflicts.length > 0 && (
           <div className="pp-no-print rounded-2xl border border-red-400/30 bg-red-400/5 p-4">
             <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-red-500">
-              <AlertTriangle className="h-4 w-4" /> {conflicts.length} fecha
-              {conflicts.length === 1 ? "" : "s"} con exámenes que coinciden
+              <AlertTriangle className="h-4 w-4" /> Posible conflicto de exámenes ·{" "}
+              {conflicts.length} fecha
+              {conflicts.length === 1 ? "" : "s"} para revisar
             </div>
+            <p className="mb-2 text-xs text-red-500/90">
+              El reglamento tampoco permite solapamientos entre evaluaciones. Estas materias
+              comparten fecha; revisá sus horas porque la planificación no informa la duración de
+              cada examen y los parciales pueden aparecer sin horario.
+            </p>
             <ul className="space-y-1 text-xs text-red-500/90">
               {conflicts.map((c, i) => (
                 <li key={i}>
@@ -1729,7 +1763,12 @@ function ExamSection({
                   })}
                   :{" "}
                   {c.entries
-                    .map((e) => `${e.seccion.materia} (${examenLabel(e.tipo)}, ${e.info.hora})`)
+                    .map(
+                      (e) =>
+                        `${e.seccion.materia} (${examenLabel(e.tipo)}, ${
+                          e.info.hora || "hora no informada"
+                        })`,
+                    )
                     .join(" y ")}
                   .
                 </li>
