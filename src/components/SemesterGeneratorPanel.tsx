@@ -4,6 +4,8 @@ import type { EnfasisId, MateriaMalla } from "@/lib/malla-curricular";
 import {
   etiquetaSeleccion,
   esSeccionSoloExamen,
+  separarOfertaLaboratorio,
+  separarOfertaTeorica,
   seccionesCursablesPorMateriaMalla,
   seccionesPorMateriaMalla,
 } from "@/lib/poliplanner";
@@ -15,7 +17,11 @@ interface Props {
   selectedIds: string[];
   plan: string;
   enfasis: EnfasisId;
-  onApply: (materiaIds: string[], sections: Record<string, string>) => void;
+  onApply: (
+    materiaIds: string[],
+    sections: Record<string, string>,
+    laboratories: Record<string, string>,
+  ) => void;
 }
 
 export function SemesterGeneratorPanel({ materias, selectedIds, plan, enfasis, onApply }: Props) {
@@ -148,10 +154,17 @@ export function SemesterGeneratorPanel({ materias, selectedIds, plan, enfasis, o
     const sections = Object.fromEntries(
       proposal.sections.flatMap((section) => {
         const mallaId = sectionToMalla.get(section.materiaId);
-        return mallaId ? [[mallaId, section.id]] : [];
+        return mallaId ? [[mallaId, separarOfertaTeorica(section).id]] : [];
       }),
     );
-    onApply(materiaIds, sections);
+    const laboratories = Object.fromEntries(
+      proposal.sections.flatMap((section) => {
+        const mallaId = sectionToMalla.get(section.materiaId);
+        const laboratory = separarOfertaLaboratorio(section);
+        return mallaId && laboratory ? [[mallaId, laboratory.id]] : [];
+      }),
+    );
+    onApply(materiaIds, sections, laboratories);
   }
 
   return (
@@ -440,21 +453,23 @@ export function SemesterGeneratorPanel({ materias, selectedIds, plan, enfasis, o
               );
             })()}
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-              {proposal.sections.map((section) => (
-                <li key={section.id} className="rounded-xl border border-border p-3 text-sm">
-                  <b>{section.materia}</b>
-                  <span className="block text-xs text-muted-foreground">
-                    {etiquetaSeleccion(
-                      section,
-                      offered.find((entry) =>
-                        entry.schedulableSections.some(
-                          (candidate) => candidate.materiaId === section.materiaId,
-                        ),
-                      )?.schedulableSections,
+              {proposal.sections.map((section) => {
+                const theory = separarOfertaTeorica(section);
+                const laboratory = separarOfertaLaboratorio(section);
+                return (
+                  <li key={section.id} className="rounded-xl border border-border p-3 text-sm">
+                    <b>{section.materia}</b>
+                    <span className="block text-xs text-muted-foreground">
+                      Teoría: {etiquetaSeleccion(theory)}
+                    </span>
+                    {laboratory && (
+                      <span className="block text-xs text-cyan-600 dark:text-cyan-300">
+                        {etiquetaSeleccion(laboratory)} · horario independiente
+                      </span>
                     )}
-                  </span>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
             <button
               onClick={() => apply(proposal)}

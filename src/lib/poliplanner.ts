@@ -49,6 +49,7 @@ export interface Seccion {
   docentesPosibles?: string[];
   docenteEsPlantel?: boolean;
   modoSeleccion?: "seccion" | "turno" | "opcion";
+  tipoOferta?: "teoria" | "laboratorio";
   soloExamenFinal?: boolean;
   requiereLaboratorio?: boolean;
   laboratorio?: {
@@ -91,6 +92,8 @@ export function replaceScheduleData(source: Seccion[]): void {
   nombreOfertadoCache.clear();
   seccionesPorMateriaCache.clear();
   seccionesCursablesCache.clear();
+  seccionesTeoricasCache.clear();
+  laboratoriosCache.clear();
 }
 
 /** Recupera la oferta incluida en la aplicación cuando no queda una revisión remota activa. */
@@ -376,7 +379,8 @@ export interface PlannerSelection {
   malla: "plan-2008" | "vigente-2026";
   enfasis: string | null;
   materiaIds: string[];
-  secciones: Record<string, string>; // materiaId de la malla -> seccion.id ofertada
+  secciones: Record<string, string>; // materiaId de la malla -> sección teórica
+  laboratorios: Record<string, string>; // materiaId de la malla -> práctica
 }
 
 export function loadSelection(): PlannerSelection {
@@ -385,6 +389,7 @@ export function loadSelection(): PlannerSelection {
     enfasis: null,
     materiaIds: [],
     secciones: {},
+    laboratorios: {},
   };
   if (typeof window === "undefined") return empty;
   try {
@@ -396,6 +401,8 @@ export function loadSelection(): PlannerSelection {
       enfasis: typeof parsed.enfasis === "string" ? parsed.enfasis : null,
       materiaIds: Array.isArray(parsed.materiaIds) ? parsed.materiaIds : [],
       secciones: typeof parsed.secciones === "object" && parsed.secciones ? parsed.secciones : {},
+      laboratorios:
+        typeof parsed.laboratorios === "object" && parsed.laboratorios ? parsed.laboratorios : {},
     };
   } catch {
     return empty;
@@ -439,6 +446,8 @@ export function nombreOfertadoParaMalla(nombreMalla: string): string | null {
 
 const seccionesPorMateriaCache = new Map<string, Seccion[]>();
 const seccionesCursablesCache = new Map<string, Seccion[]>();
+const seccionesTeoricasCache = new Map<string, Seccion[]>();
+const laboratoriosCache = new Map<string, Seccion[]>();
 
 /** La planilla de la malla anterior conserva una materia con Plan 2009. */
 function sectionMatchesMallaPlan(sectionPlan: string, requestedPlan: string): boolean {
@@ -515,6 +524,136 @@ export function seccionesCursablesPorMateriaMalla(
   return result;
 }
 
+function idDerivado(prefix: "teoria" | "laboratorio", key: string): string {
+  let hash = 2166136261;
+  for (let index = 0; index < key.length; index++) {
+    hash ^= key.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return `${prefix}-${(hash >>> 0).toString(36)}`;
+}
+
+function claveTeoria(section: Seccion): string {
+  return [
+    section.plan,
+    section.sourceRow ?? "",
+    normalizeAcademicName(section.materia),
+    section.seccion,
+    section.turno,
+    String(section.semGrupo),
+    normalizeAcademicName(section.enfasis),
+  ].join("::");
+}
+
+function claveLaboratorio(section: Seccion): string {
+  const clases = section.clases
+    .filter((clase) => clase.tipo === "laboratorio")
+    .map((clase) => `${clase.dia}:${clase.hora}:${clase.aula || ""}`)
+    .sort()
+    .join("|");
+  return [
+    section.plan,
+    normalizeAcademicName(section.materia),
+    section.laboratorio?.grupo || "Único",
+    normalizeAcademicName(section.laboratorio?.docente || ""),
+    clases,
+  ].join("::");
+}
+
+function docenteDesdeTexto(nombre: string): Docente {
+  const limpio = nombre.trim();
+  return {
+    titulo: "",
+    apellido: "",
+    nombre: limpio && normalizeAcademicName(limpio) !== "docente a confirmar" ? limpio : "",
+    correo: "",
+  };
+}
+
+/** Convierte una alternativa combinada del importador en su materia teórica. */
+export function separarOfertaTeorica(section: Seccion): Seccion {
+  const key = claveTeoria(section);
+  return {
+    ...section,
+    id: idDerivado("teoria", key),
+    tipoOferta: "teoria",
+    laboratorio: undefined,
+    clases: section.clases.filter((clase) => clase.tipo !== "laboratorio"),
+  };
+}
+
+/** Convierte una alternativa combinada del importador en una práctica independiente. */
+export function separarOfertaLaboratorio(section: Seccion): Seccion | null {
+  if (!section.laboratorio) return null;
+  const clases = section.clases.filter((clase) => clase.tipo === "laboratorio");
+  if (!clases.length) return null;
+  const key = claveLaboratorio(section);
+  const docenteLaboratorio = section.laboratorio.docente || "Docente a confirmar";
+  return {
+    ...section,
+    id: idDerivado("laboratorio", key),
+    seccion: "",
+    turno: "",
+    tipoOferta: "laboratorio",
+    docente: docenteDesdeTexto(docenteLaboratorio),
+    docentesPosibles:
+      normalizeAcademicName(docenteLaboratorio) === "docente a confirmar"
+        ? []
+        : [docenteLaboratorio],
+    docenteEsPlantel: false,
+    clases,
+    examenes: {},
+    mesaExaminadora: { presidente: "", miembro1: "", miembro2: "" },
+  };
+}
+
+/** Opciones teóricas únicas. Nunca incluyen horas de laboratorio. */
+export function seccionesTeoricasPorMateriaMalla(
+  nombreMalla: string,
+  plan = "2008",
+  enfasis?: EnfasisId | null,
+): Seccion[] {
+  const cacheKey = `${plan}::${enfasis || "todos"}::${nombreMalla}`;
+  if (seccionesTeoricasCache.has(cacheKey)) return seccionesTeoricasCache.get(cacheKey)!;
+  const unicas = new Map<string, Seccion>();
+  for (const section of seccionesCursablesPorMateriaMalla(nombreMalla, plan, enfasis)) {
+    const teoria = separarOfertaTeorica(section);
+    if (!teoria.clases.length) continue;
+    if (!unicas.has(teoria.id)) unicas.set(teoria.id, teoria);
+  }
+  const result = [...unicas.values()].sort(
+    (a, b) =>
+      a.turno.localeCompare(b.turno) ||
+      a.seccion.localeCompare(b.seccion, "es") ||
+      (a.sourceRow || 0) - (b.sourceRow || 0),
+  );
+  seccionesTeoricasCache.set(cacheKey, result);
+  return result;
+}
+
+/** Prácticas únicas de una materia. No incluyen teoría, sección X/Y ni exámenes. */
+export function laboratoriosPorMateriaMalla(
+  nombreMalla: string,
+  plan = "2008",
+  enfasis?: EnfasisId | null,
+): Seccion[] {
+  const cacheKey = `${plan}::${enfasis || "todos"}::${nombreMalla}`;
+  if (laboratoriosCache.has(cacheKey)) return laboratoriosCache.get(cacheKey)!;
+  const unicos = new Map<string, Seccion>();
+  for (const section of seccionesCursablesPorMateriaMalla(nombreMalla, plan, enfasis)) {
+    const laboratorio = separarOfertaLaboratorio(section);
+    if (laboratorio && !unicos.has(laboratorio.id)) unicos.set(laboratorio.id, laboratorio);
+  }
+  const result = [...unicos.values()].sort(
+    (a, b) =>
+      (a.laboratorio?.grupo || "").localeCompare(b.laboratorio?.grupo || "", "es", {
+        numeric: true,
+      }) || resumenHorario(a).localeCompare(resumenHorario(b), "es"),
+  );
+  laboratoriosCache.set(cacheKey, result);
+  return result;
+}
+
 /** Departamentos informados por el Excel para una materia. */
 export function departamentosPorMateriaMalla(
   nombreMalla: string,
@@ -532,6 +671,10 @@ export function departamentosPorMateriaMalla(
 
 /** Etiqueta visible: sección oficial X/Y, turno y grupo de laboratorio cuando corresponde. */
 export function etiquetaSeleccion(section: Seccion, _alternatives: Seccion[] = []): string {
+  if (section.tipoOferta === "laboratorio") {
+    const group = section.laboratorio?.grupo;
+    return group && group !== "Único" ? `Laboratorio ${group}` : "Laboratorio";
+  }
   const sectionName = section.seccion || "Sin sección";
   const shift = TURNO_LABEL[section.turno] || section.turno;
   let label = `Sección ${sectionName}`;

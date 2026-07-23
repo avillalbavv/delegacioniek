@@ -58,6 +58,10 @@ import {
   type Dia,
   type Seccion,
   seccionesCursablesPorMateriaMalla,
+  seccionesTeoricasPorMateriaMalla,
+  laboratoriosPorMateriaMalla,
+  separarOfertaTeorica,
+  separarOfertaLaboratorio,
   departamentosPorMateriaMalla,
   colorForMateria,
   parseHora,
@@ -91,12 +95,14 @@ function plannerSignature(
   enfasis: string | null,
   materiaIds: string[],
   sections: Record<string, string>,
+  laboratories: Record<string, string>,
 ): string {
   return JSON.stringify({
     malla,
     enfasis,
     materiaIds: [...materiaIds].sort(),
     sections: Object.entries(sections).sort(([a], [b]) => a.localeCompare(b)),
+    laboratories: Object.entries(laboratories).sort(([a], [b]) => a.localeCompare(b)),
   });
 }
 
@@ -119,6 +125,7 @@ function PoliPlannerPage() {
   const [enfasis, setEnfasis] = useState<EnfasisId | null>(null);
   const [materiaIds, setMateriaIds] = useState<string[]>([]);
   const [choice, setChoice] = useState<Record<string, string>>({}); // materiaId malla -> seccion.id
+  const [labChoice, setLabChoice] = useState<Record<string, string>>({});
   const [openSemestres, setOpenSemestres] = useState<string[]>(["1"]);
   const [tab, setTab] = useState<"horario" | "examenes">("horario");
   const [view, setView] = useState<"semanal" | "lista">("semanal");
@@ -137,9 +144,16 @@ function PoliPlannerPage() {
     if (sel.materiaIds.length) {
       setMateriaIds(sel.materiaIds);
       setChoice(sel.secciones);
+      setLabChoice(sel.laboratorios);
       setOpenSemestres([]);
       setConfirmedSignature(
-        plannerSignature(sel.malla, enfasisGuardado, sel.materiaIds, sel.secciones),
+        plannerSignature(
+          sel.malla,
+          enfasisGuardado,
+          sel.materiaIds,
+          sel.secciones,
+          sel.laboratorios,
+        ),
       );
     }
     setHydrated(true);
@@ -177,17 +191,32 @@ function PoliPlannerPage() {
       (id, index) => validIds.has(id) && materiaIds.indexOf(id) === index,
     );
     const cleanChoice: Record<string, string> = {};
+    const cleanLabChoice: Record<string, string> = {};
     for (const id of cleanIds) {
       const materia = mallaById.get(id);
+      if (!materia) continue;
+      const teorias = seccionesTeoricasPorMateriaMalla(materia.nombre, schedulePlan, enfasis);
+      const laboratorios = laboratoriosPorMateriaMalla(materia.nombre, schedulePlan, enfasis);
       const selectedSection = choice[id];
-      if (
-        materia &&
-        selectedSection &&
-        seccionesCursablesPorMateriaMalla(materia.nombre, schedulePlan, enfasis).some(
-          (s) => s.id === selectedSection,
-        )
-      ) {
-        cleanChoice[id] = selectedSection;
+      const selectedLab = labChoice[id];
+      const teoriaDirecta = teorias.find((section) => section.id === selectedSection);
+      const labDirecto = laboratorios.find((section) => section.id === selectedLab);
+      if (teoriaDirecta) cleanChoice[id] = teoriaDirecta.id;
+      if (labDirecto) cleanLabChoice[id] = labDirecto.id;
+
+      // Migra selecciones anteriores, donde teoría y laboratorio estaban unidos
+      // bajo el id de una sola alternativa.
+      if (!teoriaDirecta && selectedSection) {
+        const combinada = seccionesCursablesPorMateriaMalla(
+          materia.nombre,
+          schedulePlan,
+          enfasis,
+        ).find((section) => section.id === selectedSection);
+        if (combinada) {
+          cleanChoice[id] = separarOfertaTeorica(combinada).id;
+          const laboratorio = separarOfertaLaboratorio(combinada);
+          if (laboratorio && !selectedLab) cleanLabChoice[id] = laboratorio.id;
+        }
       }
     }
     if (
@@ -199,13 +228,18 @@ function PoliPlannerPage() {
     const currentEntries = Object.entries(choice).sort(([a], [b]) => a.localeCompare(b));
     const cleanEntries = Object.entries(cleanChoice).sort(([a], [b]) => a.localeCompare(b));
     if (JSON.stringify(currentEntries) !== JSON.stringify(cleanEntries)) setChoice(cleanChoice);
-  }, [hydrated, enfasis, mallaById, materiaIds, choice, schedulePlan]);
+    const currentLabEntries = Object.entries(labChoice).sort(([a], [b]) => a.localeCompare(b));
+    const cleanLabEntries = Object.entries(cleanLabChoice).sort(([a], [b]) => a.localeCompare(b));
+    if (JSON.stringify(currentLabEntries) !== JSON.stringify(cleanLabEntries))
+      setLabChoice(cleanLabChoice);
+  }, [hydrated, enfasis, mallaById, materiaIds, choice, labChoice, schedulePlan]);
 
   function elegirMalla(id: MallaAcademicaId) {
     if (id === mallaVersion) return;
     setMallaVersion(id);
     setMateriaIds([]);
     setChoice({});
+    setLabChoice({});
     setOpenSemestres(["1"]);
     setConfirmedSignature("");
   }
@@ -214,6 +248,7 @@ function PoliPlannerPage() {
     setEnfasis(id);
     setMateriaIds([]);
     setChoice({});
+    setLabChoice({});
     setOpenSemestres(["1"]);
   }
 
@@ -224,11 +259,17 @@ function PoliPlannerPage() {
     }
     const materia = mallaById.get(id);
     const options = materia
-      ? seccionesCursablesPorMateriaMalla(materia.nombre, schedulePlan, enfasis)
+      ? seccionesTeoricasPorMateriaMalla(materia.nombre, schedulePlan, enfasis)
+      : [];
+    const laboratoryOptions = materia
+      ? laboratoriosPorMateriaMalla(materia.nombre, schedulePlan, enfasis)
       : [];
     setMateriaIds((current) => [...current, id]);
     if (options.length === 1) {
       setChoice((current) => ({ ...current, [id]: options[0].id }));
+    }
+    if (laboratoryOptions.length === 1) {
+      setLabChoice((current) => ({ ...current, [id]: laboratoryOptions[0].id }));
     }
   }
 
@@ -239,10 +280,19 @@ function PoliPlannerPage() {
       delete c[id];
       return c;
     });
+    setLabChoice((prev) => {
+      const c = { ...prev };
+      delete c[id];
+      return c;
+    });
   }
 
   function chooseSection(materiaId: string, seccionId: string) {
     setChoice((prev) => ({ ...prev, [materiaId]: seccionId }));
+  }
+
+  function chooseLaboratory(materiaId: string, laboratoryId: string) {
+    setLabChoice((prev) => ({ ...prev, [materiaId]: laboratoryId }));
   }
 
   function limpiarTodo() {
@@ -250,7 +300,14 @@ function PoliPlannerPage() {
       return;
     setMateriaIds([]);
     setChoice({});
-    saveSelection({ malla: mallaVersion, enfasis, materiaIds: [], secciones: {} });
+    setLabChoice({});
+    saveSelection({
+      malla: mallaVersion,
+      enfasis,
+      materiaIds: [],
+      secciones: {},
+      laboratorios: {},
+    });
     setConfirmedSignature("");
   }
 
@@ -308,9 +365,15 @@ function PoliPlannerPage() {
 
   function confirmarHorario() {
     if (!enfasis || !materiaIds.length || pendientes > 0 || conflicts.length > 0) return;
-    const selection = { malla: mallaVersion, enfasis, materiaIds, secciones: choice };
+    const selection = {
+      malla: mallaVersion,
+      enfasis,
+      materiaIds,
+      secciones: choice,
+      laboratorios: labChoice,
+    };
     saveSelection(selection);
-    setConfirmedSignature(plannerSignature(mallaVersion, enfasis, materiaIds, choice));
+    setConfirmedSignature(plannerSignature(mallaVersion, enfasis, materiaIds, choice, labChoice));
     setSyncMsg(
       `Horario confirmado. ${importarHorarioEnAsistencia()} También está disponible para ¿Dónde rindo?, el calendario y la sincronización.`,
     );
@@ -320,22 +383,46 @@ function PoliPlannerPage() {
     setSyncMsg(importarHorarioEnAsistencia());
   }
 
-  const chosenSecciones: Seccion[] = useMemo(() => {
+  const chosenTeorias: Seccion[] = useMemo(() => {
     return materiaIds
       .map((id) => {
         const m = mallaById.get(id);
         if (!m) return null;
-        const ofertadas = seccionesCursablesPorMateriaMalla(m.nombre, schedulePlan, enfasis);
+        const ofertadas = seccionesTeoricasPorMateriaMalla(m.nombre, schedulePlan, enfasis);
         return ofertadas.find((s) => s.id === choice[id]) ?? null;
       })
       .filter((s): s is Seccion => Boolean(s));
   }, [materiaIds, choice, mallaById, schedulePlan, enfasis]);
 
+  const chosenLaboratorios: Seccion[] = useMemo(() => {
+    return materiaIds
+      .map((id) => {
+        const m = mallaById.get(id);
+        if (!m) return null;
+        const ofertados = laboratoriosPorMateriaMalla(m.nombre, schedulePlan, enfasis);
+        return ofertados.find((s) => s.id === labChoice[id]) ?? null;
+      })
+      .filter((s): s is Seccion => Boolean(s));
+  }, [materiaIds, labChoice, mallaById, schedulePlan, enfasis]);
+
+  const chosenSecciones = useMemo(
+    () => [...chosenTeorias, ...chosenLaboratorios],
+    [chosenTeorias, chosenLaboratorios],
+  );
+
   const conflicts = useMemo(() => findScheduleConflicts(chosenSecciones), [chosenSecciones]);
   const examenes = useMemo(() => listExamenes(chosenSecciones), [chosenSecciones]);
   const examConflicts = useMemo(() => findExamConflicts(examenes), [examenes]);
-  const pendientes = materiaIds.filter((id) => !choice[id]).length;
-  const currentSignature = plannerSignature(mallaVersion, enfasis, materiaIds, choice);
+  const pendientes = materiaIds.reduce((total, id) => {
+    const materia = mallaById.get(id);
+    if (!materia) return total;
+    const faltaTeoria = choice[id] ? 0 : 1;
+    const tieneLaboratorio =
+      laboratoriosPorMateriaMalla(materia.nombre, schedulePlan, enfasis).length > 0;
+    const faltaLaboratorio = tieneLaboratorio && !labChoice[id] ? 1 : 0;
+    return total + faltaTeoria + faltaLaboratorio;
+  }, 0);
+  const currentSignature = plannerSignature(mallaVersion, enfasis, materiaIds, choice, labChoice);
   const horarioConfirmado = Boolean(confirmedSignature && confirmedSignature === currentSignature);
 
   useEffect(() => {
@@ -445,9 +532,10 @@ function PoliPlannerPage() {
             selectedIds={materiaIds}
             plan={schedulePlan}
             enfasis={enfasis}
-            onApply={(ids, sections) => {
+            onApply={(ids, sections, laboratories) => {
               setMateriaIds(ids);
               setChoice(sections);
+              setLabChoice(laboratories);
               setPlannerMode("manual");
               setOpenSemestres([]);
               setFocusConfirmation(true);
@@ -466,7 +554,8 @@ function PoliPlannerPage() {
                   </span>
                   {pendientes > 0 && (
                     <span className="ml-1 rounded-full bg-amber-400/15 px-2 py-0.5 text-xs font-medium text-amber-500">
-                      {pendientes} sin {mallaVersion === "plan-2008" ? "turno" : "opción"}
+                      {pendientes} selección{pendientes === 1 ? "" : "es"} pendiente
+                      {pendientes === 1 ? "" : "s"}
                     </span>
                   )}
                   {conflicts.length > 0 && (
@@ -595,12 +684,13 @@ function PoliPlannerPage() {
                       5
                     </span>
                     <h2 className="font-display text-sm font-semibold text-foreground">
-                      Elegí la sección y el turno de cada materia
+                      Elegí teoría y laboratorio por separado
                     </h2>
                   </div>
                   <p className="mb-4 text-xs text-muted-foreground">
-                    Las secciones oficiales son X o Y. El plantel se muestra únicamente como
-                    referencia porque la inscripción no permite elegir docente.
+                    En teoría elegís la sección X/Y y el turno. Si la materia tiene prácticas,
+                    elegís después el grupo de laboratorio con su propio horario. Los docentes se
+                    muestran solo como referencia.
                   </p>
                   <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                     {materiaIds.map((id) => {
@@ -612,8 +702,10 @@ function PoliPlannerPage() {
                           materia={m}
                           plan={schedulePlan}
                           enfasis={enfasis}
-                          chosenId={choice[id]}
-                          onChoose={(secId) => chooseSection(id, secId)}
+                          chosenTheoryId={choice[id]}
+                          chosenLaboratoryId={labChoice[id]}
+                          onChooseTheory={(secId) => chooseSection(id, secId)}
+                          onChooseLaboratory={(laboratoryId) => chooseLaboratory(id, laboratoryId)}
                           onRemove={() => removeMateria(id)}
                           allChosen={chosenSecciones}
                           conflicts={conflicts}
@@ -955,8 +1047,10 @@ function SectionCard({
   materia,
   plan,
   enfasis,
-  chosenId,
-  onChoose,
+  chosenTheoryId,
+  chosenLaboratoryId,
+  onChooseTheory,
+  onChooseLaboratory,
   onRemove,
   allChosen,
   conflicts,
@@ -964,8 +1058,10 @@ function SectionCard({
   materia: MateriaMalla;
   plan: string;
   enfasis: EnfasisId;
-  chosenId: string | undefined;
-  onChoose: (id: string) => void;
+  chosenTheoryId: string | undefined;
+  chosenLaboratoryId: string | undefined;
+  onChooseTheory: (id: string) => void;
+  onChooseLaboratory: (id: string) => void;
   onRemove: () => void;
   allChosen: Seccion[];
   conflicts: ScheduleConflict[];
@@ -973,20 +1069,19 @@ function SectionCard({
   const [search, setSearch] = useState("");
   const color = colorForMateria(materia.nombre);
   const secciones = useMemo(
-    () => seccionesCursablesPorMateriaMalla(materia.nombre, plan, enfasis),
+    () => seccionesTeoricasPorMateriaMalla(materia.nombre, plan, enfasis),
+    [materia.nombre, plan, enfasis],
+  );
+  const laboratorios = useMemo(
+    () => laboratoriosPorMateriaMalla(materia.nombre, plan, enfasis),
     [materia.nombre, plan, enfasis],
   );
   const turnosDisponibles = new Set(secciones.map((section) => section.turno).filter(Boolean)).size;
   const seccionesDisponibles = [
     ...new Set(secciones.map((section) => section.seccion).filter(Boolean)),
   ];
-  const gruposLaboratorio = new Set(
-    secciones
-      .map((section) => section.laboratorio?.grupo)
-      .filter((group): group is string => Boolean(group)),
-  ).size;
 
-  const filtered = useMemo(() => {
+  const filteredTheory = useMemo(() => {
     const q = search.toLowerCase().trim();
     if (!q) return secciones;
     return secciones.filter(
@@ -994,9 +1089,21 @@ function SectionCard({
         s.seccion.toLowerCase().includes(q) ||
         (TURNO_LABEL[s.turno] || s.turno).toLowerCase().includes(q) ||
         docenteNombre(s.docente).toLowerCase().includes(q) ||
+        (s.docentesPosibles || []).some((docente) => docente.toLowerCase().includes(q)) ||
         resumenHorario(s).toLowerCase().includes(q),
     );
   }, [secciones, search]);
+
+  const filteredLaboratories = useMemo(() => {
+    const q = search.toLowerCase().trim();
+    if (!q) return laboratorios;
+    return laboratorios.filter(
+      (s) =>
+        (s.laboratorio?.grupo || "").toLowerCase().includes(q) ||
+        docenteNombre(s.docente).toLowerCase().includes(q) ||
+        resumenHorario(s).toLowerCase().includes(q),
+    );
+  }, [laboratorios, search]);
 
   function conflictFor(seccion: Seccion): ScheduleConflict | undefined {
     return conflicts.find(
@@ -1023,8 +1130,8 @@ function SectionCard({
             Sem. {materia.semestre} · Sección{seccionesDisponibles.length === 1 ? "" : "es"}{" "}
             {seccionesDisponibles.join("/")} · {turnosDisponibles} turno
             {turnosDisponibles === 1 ? "" : "s"}
-            {gruposLaboratorio > 0
-              ? ` · ${gruposLaboratorio} grupo${gruposLaboratorio === 1 ? "" : "s"} de laboratorio`
+            {laboratorios.length > 0
+              ? ` · ${laboratorios.length} práctica${laboratorios.length === 1 ? "" : "s"}`
               : ""}
           </p>
         </div>
@@ -1037,7 +1144,7 @@ function SectionCard({
         </button>
       </div>
 
-      {secciones.length > 4 && (
+      {secciones.length + laboratorios.length > 4 && (
         <div className="relative mb-2">
           <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
           <input
@@ -1049,77 +1156,152 @@ function SectionCard({
         </div>
       )}
 
-      <div className="max-h-64 space-y-2 overflow-y-auto pr-1">
-        {filtered.map((s) => {
-          const isChosen = s.id === chosenId;
-          const conflict = conflictFor(s);
-          return (
-            <button
-              key={s.id}
-              onClick={() => onChoose(s.id)}
-              className={`w-full rounded-xl border px-3 py-2.5 text-left text-xs transition-all ${
-                isChosen
-                  ? conflict
-                    ? "border-red-400/60 bg-red-400/10"
-                    : "border-primary/50 bg-primary/10"
-                  : "border-border bg-card hover:border-primary/30 hover:bg-foreground/5"
-              }`}
-            >
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-medium text-foreground">
-                  {etiquetaSeleccion(s, secciones)}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  {s.turno && (
-                    <span
-                      className="rounded-full px-1.5 py-0.5 text-[10px] font-medium"
-                      style={{
-                        background: `${TURNO_COLOR[s.turno] ?? "#94a3b8"}22`,
-                        color: TURNO_COLOR[s.turno] ?? "#94a3b8",
-                      }}
-                    >
-                      {TURNO_LABEL[s.turno] ?? s.turno}
+      <div className="max-h-[30rem] space-y-4 overflow-y-auto pr-1">
+        <section>
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary">
+              Materia teórica
+            </p>
+            <span className="text-[10px] text-muted-foreground">Elegí sección y turno</span>
+          </div>
+          <div className="space-y-2">
+            {filteredTheory.map((s) => {
+              const isChosen = s.id === chosenTheoryId;
+              const conflict = conflictFor(s);
+              const posibles = s.docentesPosibles?.length
+                ? s.docentesPosibles.join(" · ")
+                : docenteNombre(s.docente);
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => onChooseTheory(s.id)}
+                  className={`w-full rounded-xl border px-3 py-2.5 text-left text-xs transition-all ${
+                    isChosen
+                      ? conflict
+                        ? "border-red-400/60 bg-red-400/10"
+                        : "border-primary/50 bg-primary/10"
+                      : "border-border bg-card hover:border-primary/30 hover:bg-foreground/5"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium text-foreground">
+                      {etiquetaSeleccion(s, secciones)}
                     </span>
+                    <span className="flex items-center gap-1.5">
+                      {s.turno && (
+                        <span
+                          className="rounded-full px-1.5 py-0.5 text-[10px] font-medium"
+                          style={{
+                            background: `${TURNO_COLOR[s.turno] ?? "#94a3b8"}22`,
+                            color: TURNO_COLOR[s.turno] ?? "#94a3b8",
+                          }}
+                        >
+                          {TURNO_LABEL[s.turno] ?? s.turno}
+                        </span>
+                      )}
+                      {isChosen && !conflict && <Check className="h-3.5 w-3.5 text-primary" />}
+                      {conflict && <AlertTriangle className="h-3.5 w-3.5 text-red-500" />}
+                    </span>
+                  </div>
+                  <div className="mt-1.5 grid gap-0.5 text-muted-foreground">
+                    {s.materia !== materia.nombre && (
+                      <p className="font-medium text-foreground">
+                        {nombreMateriaVisible(s.materia)}
+                      </p>
+                    )}
+                    <p className="line-clamp-2" title={posibles}>
+                      <span className="text-muted-foreground/60">Docentes posibles: </span>
+                      {posibles}
+                    </p>
+                    <p>
+                      <span className="text-muted-foreground/60">Horario teórico: </span>
+                      {resumenHorario(s)}
+                    </p>
+                  </div>
+                  {conflict && (
+                    <p className="mt-1.5 flex items-center gap-1 text-[11px] font-medium text-red-500">
+                      <AlertTriangle className="h-3 w-3 flex-shrink-0" />
+                      Choca con{" "}
+                      {conflict.a.seccion.id === s.id
+                        ? conflict.b.seccion.materia
+                        : conflict.a.seccion.materia}{" "}
+                      el {conflict.dia}
+                    </p>
                   )}
-                  {isChosen && !conflict && <Check className="h-3.5 w-3.5 text-primary" />}
-                  {conflict && <AlertTriangle className="h-3.5 w-3.5 text-red-500" />}
-                </span>
-              </div>
-              {/* Docente → Horario → Aula, en filas claras */}
-              <div className="mt-1.5 grid gap-0.5 text-muted-foreground">
-                {s.materia !== materia.nombre && (
-                  <p className="font-medium text-foreground">{nombreMateriaVisible(s.materia)}</p>
-                )}
-                <p className="line-clamp-2" title={docenteNombre(s.docente)}>
-                  <span className="text-muted-foreground/60">Docentes posibles: </span>
-                  {docenteNombre(s.docente)}
-                </p>
-                {s.laboratorio && (
-                  <p>
-                    <span className="text-muted-foreground/60">Docente de laboratorio: </span>
-                    {s.laboratorio.docente || "Docente a confirmar"}
-                  </p>
-                )}
-                <p className="truncate">
-                  <span className="text-muted-foreground/60">Horario: </span>
-                  {resumenHorario(s)}
-                </p>
-              </div>
-              {conflict && (
-                <p className="mt-1.5 flex items-center gap-1 text-[11px] font-medium text-red-500">
-                  <AlertTriangle className="h-3 w-3 flex-shrink-0" />
-                  Choca con{" "}
-                  {conflict.a.seccion.id === s.id
-                    ? conflict.b.seccion.materia
-                    : conflict.a.seccion.materia}{" "}
-                  el {conflict.dia}
+                </button>
+              );
+            })}
+            {filteredTheory.length === 0 && (
+              <p className="py-2 text-center text-xs text-muted-foreground">
+                Sin opciones teóricas.
+              </p>
+            )}
+          </div>
+        </section>
+
+        {laboratorios.length > 0 && (
+          <section className="border-t border-border pt-3">
+            <div className="mb-2 flex items-center justify-between gap-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-cyan-500">
+                Laboratorio
+              </p>
+              <span className="text-[10px] text-muted-foreground">
+                Elección independiente · sin sección X/Y
+              </span>
+            </div>
+            <div className="space-y-2">
+              {filteredLaboratories.map((s) => {
+                const isChosen = s.id === chosenLaboratoryId;
+                const conflict = conflictFor(s);
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => onChooseLaboratory(s.id)}
+                    className={`w-full rounded-xl border px-3 py-2.5 text-left text-xs transition-all ${
+                      isChosen
+                        ? conflict
+                          ? "border-red-400/60 bg-red-400/10"
+                          : "border-cyan-500/50 bg-cyan-500/10"
+                        : "border-border bg-card hover:border-cyan-500/30 hover:bg-foreground/5"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-medium text-foreground">{etiquetaSeleccion(s)}</span>
+                      <span className="flex items-center gap-1.5">
+                        {isChosen && !conflict && <Check className="h-3.5 w-3.5 text-cyan-500" />}
+                        {conflict && <AlertTriangle className="h-3.5 w-3.5 text-red-500" />}
+                      </span>
+                    </div>
+                    <div className="mt-1.5 grid gap-0.5 text-muted-foreground">
+                      <p>
+                        <span className="text-muted-foreground/60">Docente posible: </span>
+                        {docenteNombre(s.docente)}
+                      </p>
+                      <p>
+                        <span className="text-muted-foreground/60">Horario de laboratorio: </span>
+                        {resumenHorario(s)}
+                      </p>
+                    </div>
+                    {conflict && (
+                      <p className="mt-1.5 flex items-center gap-1 text-[11px] font-medium text-red-500">
+                        <AlertTriangle className="h-3 w-3 flex-shrink-0" />
+                        Choca con{" "}
+                        {conflict.a.seccion.id === s.id
+                          ? conflict.b.seccion.materia
+                          : conflict.a.seccion.materia}{" "}
+                        el {conflict.dia}
+                      </p>
+                    )}
+                  </button>
+                );
+              })}
+              {filteredLaboratories.length === 0 && (
+                <p className="py-2 text-center text-xs text-muted-foreground">
+                  Sin prácticas que coincidan con la búsqueda.
                 </p>
               )}
-            </button>
-          );
-        })}
-        {filtered.length === 0 && (
-          <p className="py-3 text-center text-xs text-muted-foreground">Sin resultados.</p>
+            </div>
+          </section>
         )}
       </div>
     </div>
