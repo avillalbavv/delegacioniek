@@ -68,6 +68,22 @@ function cleanSubjectName(value: string): string {
     .trim();
 }
 
+function asteriskCount(value: string): number {
+  return value.match(/\(\s*(\*+)\s*\)/)?.[1]?.length || 0;
+}
+
+function normalizeTurn(value: string): string {
+  const normalized = headerKey(value);
+  if (normalized === "mi") return "M";
+  if (["m", "t", "n"].includes(normalized)) return normalized.toUpperCase();
+  return value.trim().toUpperCase();
+}
+
+function normalizeSection(value: string): string {
+  const normalized = value.trim().toUpperCase();
+  return normalized === "X" || normalized === "Y" ? normalized : value.trim();
+}
+
 function formatTime(totalMinutes: number): string {
   const minutes = ((Math.round(totalMinutes) % 1440) + 1440) % 1440;
   return `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
@@ -165,6 +181,9 @@ function mergeSections(left: Seccion, right: Seccion): Seccion {
     ...left,
     sourceRow: sourceRows.length ? Math.min(...sourceRows) : undefined,
     enfasis: mergeListValues(left.enfasis, right.enfasis),
+    docentesPosibles: [
+      ...new Set([...(left.docentesPosibles || []), ...(right.docentesPosibles || [])]),
+    ],
     clases: [...classes.values()],
     examenes: { ...left.examenes, ...right.examenes },
     docente: left.docente.apellido || left.docente.nombre ? left.docente : right.docente,
@@ -346,7 +365,7 @@ function parseTeacherDirectory(sheet: Worksheet | undefined): TeacherDirectoryEn
         materia,
         carrera: valueAt(row, headers, ["carrera", "sigla carrera"]),
         plan: valueAt(row, headers, ["plan"]),
-        turno: valueAt(row, headers, ["turno"]),
+        turno: normalizeTurn(valueAt(row, headers, ["turno"])),
         docentes,
       },
     ];
@@ -354,30 +373,38 @@ function parseTeacherDirectory(sheet: Worksheet | undefined): TeacherDirectoryEn
 }
 
 function enrichTeachers(sections: Seccion[], directory: TeacherDirectoryEntry[]): Seccion[] {
-  if (!directory.length) return sections;
   return sections.map((section) => {
-    const modoSeleccion =
-      section.plan === "2008"
-        ? ("turno" as const)
-        : section.plan === "2026"
-          ? ("opcion" as const)
-          : undefined;
-    const entry = directory.find(
+    const compatible = directory.filter(
       (candidate) =>
         (!candidate.carrera || headerKey(candidate.carrera) === headerKey(section.carrera)) &&
         (!candidate.plan || headerKey(candidate.plan) === headerKey(section.plan)) &&
-        (!candidate.turno || headerKey(candidate.turno) === headerKey(section.turno)) &&
-        academicNamesMatch(candidate.materia, cleanSubjectName(section.materia)),
+        (!candidate.turno || normalizeTurn(candidate.turno) === normalizeTurn(section.turno)),
     );
-    if (!entry) return { ...section, modoSeleccion };
+    const exact = compatible.filter(
+      (candidate) =>
+        headerKey(cleanSubjectName(candidate.materia)) ===
+        headerKey(cleanSubjectName(section.materia)),
+    );
+    const entries = exact.length
+      ? exact
+      : compatible.filter((candidate) =>
+          academicNamesMatch(candidate.materia, cleanSubjectName(section.materia)),
+        );
+    const docentesPosibles = [...new Set(entries.flatMap((entry) => entry.docentes))].sort(
+      (left, right) => left.localeCompare(right, "es"),
+    );
+    if (!docentesPosibles.length) {
+      return { ...section, modoSeleccion: "seccion" as const, docentesPosibles: [] };
+    }
     return {
       ...section,
-      modoSeleccion,
+      modoSeleccion: "seccion" as const,
+      docentesPosibles,
       docenteEsPlantel: true,
       docente: {
         titulo: "",
         apellido: "",
-        nombre: entry.docentes.join(" · "),
+        nombre: docentesPosibles.join(" · "),
         correo: "",
       },
     };
@@ -447,14 +474,19 @@ export function parseScheduleRows(rows: Row[]): Seccion[] {
   for (let index = dataStart; index < rows.length; index += 1) {
     const row = rows[index];
     const materia = valueAt(row, headers, ["materia", "asignatura"]);
-    const turno = valueAt(row, headers, ["turno"]);
-    const explicitSection = valueAt(row, headers, ["seccion", "confirmar seccion"]);
-    if (!materia || (!turno && !explicitSection)) continue;
-    const seccion = explicitSection || turno || "Única";
+    const turno = normalizeTurn(valueAt(row, headers, ["turno"]));
+    const explicitSection = normalizeSection(
+      valueAt(row, headers, ["seccion", "confirmar seccion"]),
+    );
+    if (!materia || !turno || !explicitSection) continue;
+    const seccion = explicitSection;
     const plan = valueAt(row, headers, ["plan", "plan academico"]);
     const semGrupo = valueAt(row, headers, ["semestre", "sem grupo", "semgrupo"]);
     const carrera = valueAt(row, headers, ["sigla carrera", "carrera"]);
     const memberIndexes = columns(headers, ["mesa examinadora miembro", "miembro"]);
+    const marker = asteriskCount(materia);
+    const soloExamenFinal = marker === 1;
+    const parsedClasses = parseClasses(row, headers, academicYear);
     result.push({
       id: stableId([
         plan,
@@ -477,7 +509,10 @@ export function parseScheduleRows(rows: Row[]): Seccion[] {
       semGrupo,
       enfasis: valueAt(row, headers, ["enfasis", "orientacion"]),
       docente: parseTeacher(row, headers),
-      clases: parseClasses(row, headers, academicYear),
+      modoSeleccion: "seccion",
+      soloExamenFinal,
+      requiereLaboratorio: marker >= 2,
+      clases: soloExamenFinal ? [] : parsedClasses,
       examenes: parseExams(row, headers),
       mesaExaminadora: {
         presidente: valueAt(row, headers, ["mesa examinadora presidente", "presidente mesa"]),
@@ -512,7 +547,7 @@ export interface LaboratoryGroup {
   turno: string;
   grupo: string;
   docente: string;
-  clase: ClaseInfo;
+  clases: ClaseInfo[];
 }
 
 export function parseLaboratoryRows(rows: Row[]): LaboratoryGroup[] {
@@ -528,60 +563,113 @@ export function parseLaboratoryRows(rows: Row[]): LaboratoryGroup[] {
   }
   const { headers, dataStart } = buildHeaders(rows, headerRow);
   const unique = new Map<string, LaboratoryGroup>();
+  const unlabeledLabels = new Map<string, string>();
+  const unlabeledCounts = new Map<string, number>();
   for (let index = dataStart; index < rows.length; index += 1) {
     const row = rows[index];
     const materia = valueAt(row, headers, ["materia", "asignatura"]);
     const carrera = valueAt(row, headers, ["carrera", "sigla carrera"]);
     const plan = valueAt(row, headers, ["plan"]);
-    const turno = valueAt(row, headers, ["turno"]);
-    if (!materia || (carrera && !IEK_SHEET_NAMES.has(headerKey(carrera)))) continue;
+    const turno = normalizeTurn(valueAt(row, headers, ["turno"]));
+    if (!materia || !plan || !turno || (carrera && !IEK_SHEET_NAMES.has(headerKey(carrera))))
+      continue;
     const docenteRaw = valueAt(row, headers, ["prof de laboratorio", "profesor de laboratorio"]);
     const docente = /^a confirmar$/i.test(docenteRaw)
       ? "Docente a confirmar"
       : docenteRaw || "Docente a confirmar";
+    const baseKey = [
+      headerKey(cleanSubjectName(materia)),
+      headerKey(carrera || "IEK"),
+      headerKey(plan),
+      turno,
+    ].join("|");
+    const rowScheduleSignature = DAYS.map((day) => {
+      const timeIndex = column(headers, [`${day} hora`, `hora ${day}`, day]);
+      const roomIndex = column(headers, [`${day} aula`, `aula ${day}`]);
+      return [
+        headerKey(day),
+        timeIndex >= 0 ? text(row[timeIndex]) : "",
+        roomIndex >= 0 ? text(row[roomIndex]) : "",
+      ].join(":");
+    }).join("|");
+    const unlabeledSignature = [baseKey, headerKey(docente), headerKey(rowScheduleSignature)].join(
+      "|",
+    );
     for (const day of DAYS) {
       const timeIndex = column(headers, [`${day} hora`, `hora ${day}`, day]);
       if (timeIndex < 0) continue;
       const roomIndex = column(headers, [`${day} aula`, `aula ${day}`]);
       const room = roomIndex >= 0 ? text(row[roomIndex]) : "";
-      const entries = text(row[timeIndex])
-        .split(/\n|;/)
-        .map((entry) => entry.trim())
-        .filter(Boolean);
-      for (const entry of entries) {
-        const range = entry.match(/(\d{1,2}:\d{2})\s*(?:-|–|—|a)\s*(\d{1,2}:\d{2})/i);
-        const group = entry.match(/\((T\d+)\)/i)?.[1]?.toUpperCase();
-        if (!range || !group) continue;
-        const item: LaboratoryGroup = {
-          materia: cleanSubjectName(materia),
-          carrera: carrera || "IEK",
-          plan,
-          turno,
-          grupo: group,
-          docente,
-          clase: {
-            dia: day,
-            hora: `${range[1]} - ${range[2]}`,
-            aula: room || null,
-            tipo: "laboratorio",
-          },
+      const source = text(row[timeIndex]);
+      const ranges = source.matchAll(
+        /(\d{1,2}:\d{2})\s*(?:-|–|—|a)\s*(\d{1,2}:\d{2})(?:\s*\((T\d+)\))?/gi,
+      );
+      for (const range of ranges) {
+        let group: string | undefined = range[3]?.toUpperCase();
+        if (!group) {
+          group = unlabeledLabels.get(unlabeledSignature);
+          if (!group) {
+            const next = (unlabeledCounts.get(baseKey) || 0) + 1;
+            unlabeledCounts.set(baseKey, next);
+            group = `L${next}`;
+            unlabeledLabels.set(unlabeledSignature, group);
+          }
+        }
+        const key = [baseKey, group].join("|");
+        const clase: ClaseInfo = {
+          dia: day,
+          hora: `${range[1]} - ${range[2]}`,
+          aula: room || null,
+          tipo: "laboratorio",
         };
-        unique.set(
-          [
-            headerKey(item.materia),
-            headerKey(item.carrera),
-            headerKey(item.plan),
-            item.grupo,
-            headerKey(item.clase.dia),
-            item.clase.hora,
-          ].join("|"),
-          item,
-        );
+        const existing = unique.get(key);
+        if (existing) {
+          if (
+            !existing.clases.some(
+              (candidate) =>
+                candidate.dia === clase.dia &&
+                candidate.hora === clase.hora &&
+                candidate.aula === clase.aula,
+            )
+          ) {
+            existing.clases.push(clase);
+          }
+          if (
+            docente !== "Docente a confirmar" &&
+            !existing.docente.split(" · ").includes(docente)
+          ) {
+            existing.docente =
+              existing.docente === "Docente a confirmar"
+                ? docente
+                : `${existing.docente} · ${docente}`;
+          }
+        } else {
+          unique.set(key, {
+            materia: cleanSubjectName(materia),
+            carrera: carrera || "IEK",
+            plan,
+            turno,
+            grupo: group,
+            docente,
+            clases: [clase],
+          });
+        }
       }
     }
   }
   const groups = [...unique.values()];
-  if (!groups.length) throw new Error("No se detectaron grupos T1, T2, etc. con horario.");
+  for (const group of groups) {
+    const baseKey = [
+      headerKey(cleanSubjectName(group.materia)),
+      headerKey(group.carrera),
+      headerKey(group.plan),
+      group.turno,
+    ].join("|");
+    if (group.grupo === "L1" && unlabeledCounts.get(baseKey) === 1) {
+      group.grupo = "Único";
+    }
+  }
+  if (!groups.length) throw new Error("No se detectaron prácticas de laboratorio con horario.");
   return groups;
 }
 
@@ -590,22 +678,34 @@ export function mergeLaboratoryGroups(
   laboratoryGroups: LaboratoryGroup[],
 ): Seccion[] {
   return sections.flatMap((section) => {
-    const matches = laboratoryGroups.filter(
+    const compatible = laboratoryGroups.filter(
       (group) =>
         (!group.plan || headerKey(group.plan) === headerKey(section.plan)) &&
         (!group.carrera || headerKey(group.carrera) === headerKey(section.carrera)) &&
-        (!group.turno || headerKey(group.turno) === headerKey(section.turno)) &&
-        academicNamesMatch(group.materia, cleanSubjectName(section.materia)),
+        (!group.turno || normalizeTurn(group.turno) === normalizeTurn(section.turno)),
     );
+    const exact = compatible.filter(
+      (group) =>
+        headerKey(cleanSubjectName(group.materia)) === headerKey(cleanSubjectName(section.materia)),
+    );
+    const matches = exact.length
+      ? exact
+      : compatible.filter((group) =>
+          academicNamesMatch(group.materia, cleanSubjectName(section.materia)),
+        );
     if (!matches.length) return [section];
     return matches.map((group) => ({
       ...section,
-      id: stableId([section.id, group.grupo]),
-      seccion: `${section.seccion} · ${group.grupo}`,
+      id: stableId([
+        section.id,
+        group.grupo,
+        group.turno,
+        ...group.clases.map((clase) => `${clase.dia}-${clase.hora}`),
+      ]),
       laboratorio: { grupo: group.grupo, docente: group.docente },
       clases: [
         ...section.clases.map((clase) => ({ ...clase, tipo: clase.tipo || ("teoria" as const) })),
-        group.clase,
+        ...group.clases,
       ],
     }));
   });
@@ -632,24 +732,52 @@ export async function analyzeScheduleBundle(
   const schedule = await analyzeScheduleFile(scheduleFile);
   if (!laboratoryFile) return schedule;
   const laboratoryGroups = await parseLaboratoryFile(laboratoryFile);
-  const sections = mergeLaboratoryGroups(schedule.sections, laboratoryGroups);
+  const schedulePlans = new Set(schedule.sections.map((section) => headerKey(section.plan)));
+  const relevantLaboratoryGroups = laboratoryGroups.filter(
+    (group) => !group.plan || schedulePlans.has(headerKey(group.plan)),
+  );
+  const sections = mergeLaboratoryGroups(schedule.sections, relevantLaboratoryGroups);
   const matchedGroups = new Set(
-    sections
-      .map((section) => section.laboratorio?.grupo)
-      .filter((group): group is string => Boolean(group)),
+    sections.flatMap((section) =>
+      section.laboratorio
+        ? [
+            [
+              headerKey(cleanSubjectName(section.materia)),
+              headerKey(section.plan),
+              normalizeTurn(section.turno),
+              section.laboratorio.grupo,
+            ].join("|"),
+          ]
+        : [],
+    ),
   );
   const warnings = [...schedule.warnings];
-  if (matchedGroups.size < new Set(laboratoryGroups.map((group) => group.grupo)).size) {
+  const availableGroups = new Set(
+    relevantLaboratoryGroups.map((group) =>
+      [
+        headerKey(group.materia),
+        headerKey(group.plan),
+        normalizeTurn(group.turno),
+        group.grupo,
+      ].join("|"),
+    ),
+  );
+  if (matchedGroups.size < availableGroups.size) {
+    const unmatched = [...availableGroups].filter((group) => !matchedGroups.has(group));
     warnings.push(
-      "Algunos grupos de laboratorio no encontraron una materia equivalente en el horario principal.",
+      `${unmatched.length} grupo${unmatched.length === 1 ? "" : "s"} de laboratorio no ${unmatched.length === 1 ? "encontró" : "encontraron"} una materia y turno equivalentes en el horario principal.`,
     );
   }
   return {
     ...schedule,
     sections,
     totalSections: sections.length,
-    offeredSections: sections.filter((section) => section.clases.length > 0).length,
-    examOnlySections: sections.filter((section) => section.clases.length === 0).length,
+    offeredSections: sections.filter(
+      (section) => !section.soloExamenFinal && section.clases.length > 0,
+    ).length,
+    examOnlySections: sections.filter(
+      (section) => section.soloExamenFinal || section.clases.length === 0,
+    ).length,
     laboratoryGroups: matchedGroups.size,
     warnings,
   };
@@ -755,8 +883,12 @@ export async function analyzeScheduleFile(file: File): Promise<ScheduleParseResu
     sections: parsed,
     sheetName,
     totalSections: parsed.length,
-    offeredSections: parsed.filter((section) => section.clases.length > 0).length,
-    examOnlySections: parsed.filter((section) => section.clases.length === 0).length,
+    offeredSections: parsed.filter(
+      (section) => !section.soloExamenFinal && section.clases.length > 0,
+    ).length,
+    examOnlySections: parsed.filter(
+      (section) => section.soloExamenFinal || section.clases.length === 0,
+    ).length,
     warnings,
   };
 }

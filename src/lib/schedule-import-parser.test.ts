@@ -116,14 +116,14 @@ function officialRows(): unknown[][] {
     15,
     1,
     "DEE",
-    "Electrónica I (*)",
+    "Electrónica I (**)",
     4,
     4,
     "IEK",
     "",
     2008,
     "T",
-    "TQ",
+    "X",
     "",
     "Ing.",
     "Pérez",
@@ -146,14 +146,14 @@ function officialRows(): unknown[][] {
     15,
     2,
     "DEE",
-    "Electrónica II",
+    "Electrónica II (*)",
     5,
     5,
     "IEK",
     "",
     2008,
     "N",
-    "NA",
+    "X",
     "",
     "Ing.",
     "Gómez",
@@ -164,7 +164,7 @@ function officialRows(): unknown[][] {
   return [group, header, regular, examOnly];
 }
 
-test("interpreta el formato oficial IEK y distingue oferta por horarios, no por asteriscos", () => {
+test("interpreta el formato oficial IEK y aplica las reglas de uno y dos asteriscos", () => {
   const sections = parseScheduleRows(officialRows() as Parameters<typeof parseScheduleRows>[0]);
   assert.equal(sections.length, 2);
   assert.deepEqual(sections[0].clases, [
@@ -180,7 +180,9 @@ test("interpreta el formato oficial IEK y distingue oferta por horarios, no por 
   assert.equal(sections[0].examenes.revision2?.dia, "Lun 22/12/25");
   assert.equal(sections[0].docente.apellido, "Pérez");
   assert.equal(sections[0].departamento, "DEE");
+  assert.equal(sections[0].requiereLaboratorio, true);
   assert.equal(sections[0].clases.length > 0, true);
+  assert.equal(sections[1].soloExamenFinal, true);
   assert.equal(sections[1].clases.length === 0, true);
 });
 
@@ -282,21 +284,22 @@ test("interpreta el formato 2026 y enlaza el plantel de la hoja Docentes", async
   assert.equal(result.totalSections, 1);
   assert.equal(result.sections[0].plan, "2026");
   assert.equal(result.sections[0].docenteEsPlantel, true);
-  assert.equal(result.sections[0].modoSeleccion, "opcion");
+  assert.equal(result.sections[0].modoSeleccion, "seccion");
+  assert.deepEqual(result.sections[0].docentesPosibles, ["Crispín Vargas", "Juan Fatecha"]);
   assert.equal(result.sections[0].docente.nombre, "Crispín Vargas · Juan Fatecha");
   assert.equal(result.sections[0].examenes.parcial1?.dia, "Mie 09/09/26");
   assert.equal(result.sections[0].examenes.parcial2?.dia, "Mie 04/11/26");
 });
 
-test("el formato 2008 permite elegir por turno sin depender de una sección", async () => {
+test("el formato 2008 conserva sección X/Y y normaliza el turno matutino MI", async () => {
   const workbook = new ExcelJS.Workbook();
   workbook.addWorksheet("IEK").addRows([
-    ["Asignatura", "Sigla carrera", "Plan", "Turno", "Lunes"],
-    ["Cálculo I", "IEK", 2008, "N", "20:00 - 22:15"],
+    ["Asignatura", "Sigla carrera", "Plan", "Turno", "Sección", "Lunes"],
+    ["Cálculo I", "IEK", 2008, "MI", "X", "10:00 - 12:15"],
   ]);
   workbook.addWorksheet("Docentes").addRows([
     ["Asignatura", "Carrera", "Plan", "Turno", "Docente"],
-    ["Cálculo I", "IEK", 2008, "N", "Prof. Ada Lovelace"],
+    ["Cálculo I", "IEK", 2008, "MI", "Prof. Ada Lovelace"],
   ]);
   const bytes = await workbook.xlsx.writeBuffer();
   const result = await analyzeScheduleFile(
@@ -306,9 +309,9 @@ test("el formato 2008 permite elegir por turno sin depender de una sección", as
   );
 
   assert.equal(result.totalSections, 1);
-  assert.equal(result.sections[0].seccion, "N");
-  assert.equal(result.sections[0].turno, "N");
-  assert.equal(result.sections[0].modoSeleccion, "turno");
+  assert.equal(result.sections[0].seccion, "X");
+  assert.equal(result.sections[0].turno, "M");
+  assert.equal(result.sections[0].modoSeleccion, "seccion");
   assert.equal(result.sections[0].docenteEsPlantel, true);
   assert.equal(result.sections[0].docente.nombre, "Prof. Ada Lovelace");
 });
@@ -336,6 +339,10 @@ test("integra los grupos T1 y T2 sin duplicar filas del laboratorio", () => {
   }
   const groups = parseLaboratoryRows([header, first, duplicate]);
   assert.equal(groups.length, 2);
+  assert.deepEqual(
+    groups.map((group) => group.clases.length),
+    [1, 1],
+  );
 
   const base = parseScheduleRows([
     ["Materia", "Sección", "Turno", "Plan", "Sigla carrera", "Lunes"],
@@ -343,10 +350,70 @@ test("integra los grupos T1 y T2 sin duplicar filas del laboratorio", () => {
   ]);
   const merged = mergeLaboratoryGroups(base, groups);
   assert.deepEqual(merged.map((section) => section.laboratorio?.grupo).sort(), ["T1", "T2"]);
+  assert.deepEqual(
+    merged.map((section) => section.seccion),
+    ["X", "X"],
+  );
   assert.equal(
     merged.every(
       (section) => section.clases.filter((clase) => clase.tipo === "laboratorio").length === 1,
     ),
     true,
+  );
+});
+
+test("integra una práctica sin código T como un único laboratorio con todas sus clases", () => {
+  const header = Array(66).fill("");
+  const row = Array(66).fill("");
+  header[1] = "Asignatura";
+  header[14] = "Carrera";
+  header[16] = "Plan";
+  header[20] = "Turno";
+  header[38] = "PROF. DE LABORATORIO";
+  header[55] = "Lunes";
+  header[61] = "Jueves";
+  row[1] = "Control Automático I";
+  row[14] = "IEK";
+  row[16] = "2008";
+  row[20] = "T";
+  row[38] = "César Meza";
+  row[55] = "16:15 - 18:30";
+  row[61] = "19:15 - 21:30";
+
+  const groups = parseLaboratoryRows([header, row]);
+  assert.equal(groups.length, 1);
+  assert.equal(groups[0].grupo, "Único");
+  assert.equal(groups[0].clases.length, 2);
+});
+
+test("separa alternativas de laboratorio sin código T cuando cambian docente u horario", () => {
+  const header = Array(66).fill("");
+  const first = Array(66).fill("");
+  const second = Array(66).fill("");
+  header[1] = "Asignatura";
+  header[14] = "Carrera";
+  header[16] = "Plan";
+  header[20] = "Turno";
+  header[38] = "PROF. DE LABORATORIO";
+  header[61] = "Jueves";
+  for (const row of [first, second]) {
+    row[1] = "Control Automático I";
+    row[14] = "IEK";
+    row[16] = "2008";
+    row[20] = "T";
+  }
+  first[38] = "César Meza";
+  first[61] = "19:15 - 21:30";
+  second[38] = "Juan Candia";
+  second[61] = "17:00 - 19:15";
+
+  const groups = parseLaboratoryRows([header, first, second]);
+  assert.deepEqual(
+    groups.map((group) => group.grupo),
+    ["L1", "L2"],
+  );
+  assert.deepEqual(
+    groups.map((group) => group.docente),
+    ["César Meza", "Juan Candia"],
   );
 });
